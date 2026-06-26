@@ -1,0 +1,1164 @@
+[
+  {
+    "id": "mqucj1k0g5m5",
+    "front": "What is the <b>Ad hoc model</b>?",
+    "back": "<b>“Build and fix” model </b>(also referred to as an “ad hoc” model)<br><br><ul><li>Software is developed without any specification or design<br></li><li>Initial product is built, which is then repeatedly modified until it (software) satisfies the user<br></li><li>User checks whether the desired functions 'are present. If not, then the software is changed according to the needs by adding, modifying or deleting functions.<br></li></ul><div>This process goes on until the user feels that the software can be used productively.<br></div><div><br></div><div>However, the <b>lack of design requirements </b>and <b>repeated modifications </b>result in loss of acceptability of software. Thus, software engineers are strongly discouraged from using this development approach.<br></div><div><br></div><div><img src=\"paste-83e57b5401f710919612ca3b7eace90d4918a3c4.jpg\" width=\"267\"><br></div>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k00vdp",
+    "front": "What are the <b>Advantages </b>of the Ad hoc model?",
+    "back": "<ul><li>Requires less experience to execute or manage other than the ability to program.<br></li><li>Suitable for smaller software.<br></li><li>Requires less project planning.<br></li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0ay0a",
+    "front": "What are the <b>Disadvantages&nbsp;</b>of the Ad hoc model?",
+    "back": "<ul><li>No real means is available of assessing the progress, quality, and risks.<br></li><li>Cost of using this process model is high as it requires rework until user's requirements are accomplished.<br></li><li>Informal design of the software as it involves unplanned procedure.<br></li><li>Maintenance of these models is problematic.<br></li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0zyc8",
+    "front": "What are Software Development Models?",
+    "back": "<ul><li>Tools for planning, performing, controlling software development projects</li><li>Various phases, executed one after the other in a fixed sequence, building on each other</li><li>Defined milestones in between</li></ul><div><br></div><div>Due to complexity of IT projects various development models have been established:<br></div><div><ul><li>To minimize development risks</li><li>To make development status transparent</li></ul></div>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k04v2c",
+    "front": "What is the <b>definition </b>of Software Development Models?",
+    "back": "A development/procedure model represents a development plan for conception, production, and maintenance of software products or systems which defines the procedure of software development by using defined phases, activties, and tools.<br><br>Selecting the appropriate development model is crucial for IT projects‘ success and quality and for meeting time and cost restrictions (magic triangle).",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0zbq9",
+    "front": "What is the <b>basic structure identical </b>and what are <b>common phases</b>?",
+    "back": "From a preliminary conception to an executable software<br><br><b>Common phases:</b><br><ol><li><b>Problem analysis: </b>analyzing the business case </li><li><b>Conception: </b>draft of future business processes or applications</li><li><b>System design: </b>Transfer of optimized business processes and data structures in a codable model</li><li><b>Realization: </b>Programming/coding</li><li><b>Test: </b>Check functionality on the base of test cases</li><li><b>Rollout: </b>Deployment and startup in „production“ – operation</li><li><b>Maintenance: </b>Bugfixing, support and new releases</li></ol>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0i3ba",
+    "front": "Which different <b>categories </b>of Software Development Models do exist?",
+    "back": "<b>Classical models </b>(Sequential procedure models):<br><ul><li>Waterfall model</li><li>Spirtal model</li></ul><div><b>Modern models:</b></div><div><ul><li>V-model</li><li>RationalUnified Process (RUP) model</li></ul><div><b>Agile models:</b></div></div><div><ul><li>Extreme programming</li><li>Scrum</li></ul></div>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k09lq0",
+    "front": "What are the <b>characteristics </b>of the waterfall model?",
+    "back": "The Waterfall Model was the first Process Model to be introduced. <br><br>It is also referred to as a <b>linearsequential </b>life cycle model, which is <b>not adaptive</b>. <br><br>It is very simple to understand and use. The Waterfall Model is organized in subsequently following phases; each phase must be completed before the next phase can begin and there is no overlapping in the phases. The outcome of one phase acts as the input for the next phase sequentially.",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0hpjn",
+    "front": "What are the <b>different Phases </b>of the <b>waterfall model </b>(more details)?",
+    "back": "<ul><li><b>Requirement Gathering and analysis </b>− All possible requirements of the system to be developed are captured in this phase and documented in a requirement specification document.<br><br></li><li><b>System Design </b>− The requirement specifications from first phase are studied in this phase and the system design is prepared. This system design helps in specifying hardware and system requirements and helps in defining the overall system architecture.<br><br></li><li><b>Implementation </b>− With inputs from the system design, the system is first developed in small programs called units, which are integrated in the next phase. Each unit is developed and tested for its functionality, which is referred to as Unit Testing.<br><br></li><li><b>Integration and Testing </b>− All the units developed in the implementation phase are integrated into a system after testing of each unit. Post integration the entire system is tested for any faults and failures.<br><br></li><li><b>Deployment of system</b> − Once the functional and non-functional testing is done, the product is deployed in the customer environment or released into the market.<br><br></li><li><b>Maintenance </b>− There are some issues which come up in the client environment. To fix those issues, patches are released. Also to enhance the product some better versions are released. Maintenance is done to deliver these changes in the customer environment</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k09cts",
+    "front": "What are <b>applications </b>of the waterfall model?",
+    "back": "<ul><li>Requirements are very well documented, clear and fixed.</li><li>Product definition is stable.</li><li>Technology is understood and is not dynamic.</li><li>There are no ambiguous requirements.</li><li>Ample resources with required expertise are available to support the product.</li><li>The project is short.</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k05m7s",
+    "front": "How does the <b>spirtal model </b>look like?",
+    "back": "<img src=\"paste-8747a1f90a6c7259e3318a48ebc61cb85e5b3afd.jpg\">",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k06uae",
+    "front": "What are the <b>characteristics </b>of the <b>spirtal model</b>?",
+    "back": "The spiral model combines the idea of <b>iterative development </b>with the <b>systematic</b>, <b>controlled </b>aspects of the waterfall model. This Spiral model is a combination of iterative development process model and sequential linear development model i.e. the waterfall model with a very high emphasis on risk analysis. It allows incremental releases of the product or incremental refinement through each iteration around the spiral.",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k047j6",
+    "front": "What are the <b>4 phases&nbsp;</b>of the spiral model?",
+    "back": "The spiral model has four phases. A software project repeatedly passes through these phases in iterations called Spirals.<br><ul><li><b>Planning/SRS (Identification):</b> This phase starts with gathering the business requirements in the baseline spiral. In the subsequent spirals as the product matures, identification of system requirements, subsystem requirements and unit requirements are all done in this phase. This phase also includes understanding the system requirements by continuous communication between the customer and the system analyst.<br><br></li><li><b>Design &amp; Risk Analysis:</b> The Design phase starts with the conceptual design in the baseline spiral and involves architectural design, logical design of modules, physical product design and the final design in the subsequent spirals. Risk Analysis includes identifying, estimating and monitoring the technical feasibility and management risks, such as schedule slippage and cost overrun<br><br></li><li><b>Coding (Construct or Build): </b>The Construct phase refers to production of the actual software product at every spiral. In the baseline spiral, when the product is just thought of and the design is being developed a POC (Proof of Concept) is developed in this phase to get customer feedback. Then in the subsequent spirals with higher clarity on requirements and design details a working model of the software called build is produced with a version number. These builds are sent to the customer for feedback.<br><br></li><li><b>Testing (Evaluation):</b> After testing the build, at the end of first iteration, the customer evaluates the software and provides feedback.</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k03nqx",
+    "front": "What are the application of the spiral model?",
+    "back": "The Spiral Model is widely used in the software industry as it is in sync with the natural development process of any product, i.e. learning with maturity which involves minimum risk for the customer as well as the development firms.<br><ul><li>When there is a budget constraint and risk evaluation is important.</li><li>For medium to high-risk projects. </li><li>Long-term project commitment because of potential changes to economic priorities as the requirements change with time.</li><li>Customer is not sure of their requirements which is usually the case. </li><li>Requirements are complex and need evaluation to get clarity.</li><li>New product line which should be released in phases to get enough customer feedback.</li><li>Significant changes are expected in the product during the development cycle.</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0daco",
+    "front": "What are the <b>characteristics </b>of the <b>V-Model</b>?",
+    "back": "The V-Model is an extension of the waterfall model and is based on the association of a testing phase for each corresponding development stage. This means that for every single phase in the development cycle, there is a directly associated testing phase. This is a highly-disciplined model and the <i>next phase starts only after completion of the previous phase</i>. <br><br>Under the V-Model, the corresponding testing phase of the development phase is planned in parallel. So, there are Verification phases on one side of the ‘V’ and Validation phases on the other side. The Coding Phase joins the two sides of the V-Model.",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0fzzv",
+    "front": "What are the <b>phases </b>of the <b>V-Model</b>?",
+    "back": "<b>Business Requirement Analysis</b> <b>– Concept of Operations</b>: This is the first phase in the development cycle where the product requirements are understood from the customer’s perspective. This phase involves detailed communication with the customer to understand his expectations and exact requirement. This is a very important activity and needs to be managed well, as most of the customers are not sure about what exactly they need. The <b>acceptance test design planning </b>is done at this stage as business requirements can be used as an input for acceptance testing.<br><br><b>System Design:</b> Once you have the clear and detailed product requirements, it is time to design the complete system. The system design will have the understanding and detailing the complete hardware and communication setup for the product under development. The system test plan is developed based on the system design. Doing this at an earlier stage leaves more time for the actual test execution later.<br><br><b>Architectural Design (Subsystem Design):&nbsp;</b>Architectural specifications are understood and designed in this phase. Usually more than one technical approach is proposed and based on the technical and financial feasibility the final decision is taken. The <b>system design is broken down further into modules taking up different functionality. </b>This is also referred to as <b>High Level Design (HLD).</b><br>The data transfer and communication between the internal modules and with the outside world (other systems) is clearly understood and defined in this stage. With this information, integration tests can be designed and documented during this stage.<br><br><b>Module Design (Unit Design):</b> In this phase, the detailed internal design for all the system modules is specified, referred to as <b>Low Level Design (LLD). </b>It is important that the design is compatible with the other modules in the system architecture and the other external systems. The unit tests are an essential part of any development process and helps eliminate the maximum faults and errors at a very early stage. These unit tests can be designed at this stage based on the internal module designs.<br><br><b>Coding Phase:</b> The actual coding of the system modules designed in the design phase is taken up in the Coding phase. The best suitable programming language is decided based on the system and architectural requirements. The coding is performed based on the coding guidelines and standards. The code goes through numerous code reviews and is optimized for best performance before the final build is checked into the repository.<br><br><b>Unit Testing:&nbsp;</b>Unit tests designed in the module design phase are executed on the code during this validation phase. Unit testing is the testing at code level and helps eliminate bugs at an early stage, though all defects cannot be uncovered by unit testing<br><br><b>Integration Testing:</b> Integration testing is associated with the architectural design phase. Integration tests are performed to test the coexistence and communication of the internal modules within the system.<br><br><b>System Testing:&nbsp;</b>System testing is directly associated with the system design phase. System tests check the entire system functionality and the communication of the system under development with external systems. Most of the software and hardware compatibility issues can be uncovered during this system test execution.<br><br><b>Acceptance Testing:&nbsp;</b>Acceptance testing is associated with the business requirement analysis phase and involves testing the product in user environment. Acceptance tests uncover the compatibility issues with the other systems available in the user environment. It also discovers the non-functional issues such as load and performance defects in the actual user environment<br>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0nsrj",
+    "front": "What are applications of the V-Model?",
+    "back": "V- Model application is almost the same as the waterfall model, as both the models are of sequential type. Requirements have to be very clear before the project starts, because it is usually expensive to go back and make changes. <u>This model is used in the medical development field, as it is strictly a disciplined domain</u>.<br><ul><li>Requirements well defined, clearly documented and fixed.</li><li>Product definition is stable.</li><li>Technology is not dynamic and is well understood by the project team.</li><li>There are no ambiguous or undefined requirements.</li><li>The project is short.</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0a4z1",
+    "front": "What are the <b>advantages </b>of the <b>V-Model</b>?",
+    "back": "The advantage of the V-Model method is that it is very <u>easy to understand and apply</u>. The simplicity of this model also makes it easier to manage. The disadvantage is that the model is <u>not flexible to changes </u>and just in case there is a requirement change, which is very common in today’s dynamic world, it <u>becomes very expensive to make the change</u>.<br><br>Advantages of the V-Model method:<br><ul><li>Phases are completed one at a time</li><li>Works well for smaller projects where requirements are very well understood</li><li>Simple and easy to understand and use</li><li>Easy to manage&nbsp;</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0dotk",
+    "front": "What are the <b>disadvantages </b>of the <b>V-Model</b>?",
+    "back": "The disadvantages of the V-Model method are as follows:<br><ul><li>High risk and uncertainty.</li><li>Not a good model for complex and object-oriented projects.</li><li>Poor model for long and ongoing projects.</li><li>Not suitable for the projects where requirements are at a moderate to high risk of changing.</li><li>Once an application is in the testing stage, it is difficult to go back and change a functionality.</li><li>No working software is produced until late during the life cycle.</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0b7p4",
+    "front": "How does the V-Model XT (Ectreme Tailoring) look like?",
+    "back": "<img src=\"paste-8a83dc0ec45e0aa1530c05e790fab0f5dc2c7738.jpg\">",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0w6fo",
+    "front": "What is V-Model XT (Extreme Tailoring)?",
+    "back": "The V – Model XT is a (German) model that works well for development of a project which has the constraints about time, budget and the most important features: the project has to have the specified functionality. This model has a complex structure of components, including Project Types, Process Modules, Project Execution Strategies. These components are connected with others and with the ‘extended tailoring’ provide a new methodically way to develop system and project.<br>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0tl09",
+    "front": "What is the Rational Unified Process Model?",
+    "back": "Organization along <b>content</b>: Disciplines<br><b>Timeline</b>: Phases &amp; Iterations<br><b>Milestones</b>: At the end of each phase: critical decisions must be made, key goals must have been achieved<br><br><img src=\"paste-882ff4e08b46acd6f8519fd5118e96f56336dbdf.jpg\" width=\"390\"><br><img src=\"paste-845c162e2070964ba59b175db00b9c527ca4c1ac.jpg\"><br><img src=\"paste-94916f3f5691ee312b8b9a83c4bd11d3013891c0.jpg\">",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0v4hn",
+    "front": "What are the <b>Main Characteristics </b>of <u>Rational Unified Process Model</u>?",
+    "back": "The Rational Unified Process (RUP) Model is based on sound software engineering principles such as taking an <b>iterative</b>, <b>requirements-driven</b>, and <b>architecture-centric </b>approach <u>to software development</u>.",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0zkrb",
+    "front": "What are the different <u>disciplines </u>of the <b>Rational Unified Process Model</b>?",
+    "back": "<b>Development Disciplines:</b><br><u>Business Modeling:&nbsp;</u>The goal is to understand the business of the organization, usually confined to the scope of the business that is relevant to the system being developed.<br><br><u>Requirements:&nbsp;</u>The goal is to elicit, document, and agree upon the scope of what is and what is not to be built. This information is used by analysts, designers, and programmers to build the system, by testers to verify the system, and by the project manager to plan and manage the project.<br><br><u>Analysis &amp; Design:&nbsp;</u>The goal is to analyze the requirements for the system and to design a solution to be implemented, taking into consideration the requirements, constraints and all applicable standards and guidelines.<br><br><u>Implementation:&nbsp;</u>The goal is to transform the design into executable code and to perform a basic level of testing, in particular unit testing.<br><br><u>Test:&nbsp;</u>The goal is to perform an objective evaluation to ensure quality. This includes finding defects, validating that system works as designed, and verifying that the requirements are met.<br><br><u>Deployment:&nbsp;</u>The goal is to plan for the delivery of the system and to execute the plan to make the system available to end users.<br><br><b>Support Disciplines:</b>&nbsp;<br><u>Configuration and Change Management:&nbsp;</u>The goal is to manage access to the project’s work products. This includes not only tracking versions over time but also controlling and managing changes to them.<br><br><u>Project Management:</u>&nbsp;The goal is to direct the activities that take place on the project. This includes managing risks, directing people (assigning tasks, tracking progress, etc.), and coordinating with people and systems outside the scope of the project to be sure that it is delivered on time and within budget.<br><br><u>Environment:</u>&nbsp;The goal is to support the rest of the effort in terms in ensuring that the proper process, guidance (standards and guidelines), and tools (hardware, software, etc.) are available for the team as needed<br>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0fb6k",
+    "front": "Rational Unified Process Mode Overview (Image)",
+    "back": "<img src=\"paste-066041e72a905f9683d57a4d3422bbf7d279e96e.jpg\">",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0390l",
+    "front": "What are the <b>Advantages </b>of the <u>Rational Unified Porcess Model</u>?",
+    "back": "<ul><li>Allows adaptive capability to deal with changing requirements throughout the development life cycle<br></li><li>Emphasizes the need of accurate documentation.<br></li><li>Forcing integration to occur throughout development.<br></li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0eklq",
+    "front": "What are the <b>Disadvantages&nbsp;</b>of the&nbsp;<u>Rational Unified Porcess Model</u>?",
+    "back": "<ul><li>Heavily relies on proficient and expert team members<br></li><li>Given the emphasis on integration throughout the development process</li><li>RUP is a fairly complicated model.&nbsp;</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0lgmx",
+    "front": "What are the principles of the Manifesto for Agile Software Development?",
+    "back": "<ul><li>Our highest priority is to <b>satisfy the customer </b>through early and continuous delivery of valuable software.</li><li>Welcome <b>changing requirements</b>, even late in development. Agile processes harness change for the customer's competitive advantage.</li><li>Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the <b>shorter </b>timescale.</li><li>Business people and developers must <b>work together </b>daily throughout the project.</li><li>Build projects around motivated individuals. Give them the environment and support they need, and <b>trust </b>them to get the job done.</li><li>The most efficient and effective method of conveying information to and within a development team is <b>face-to-face conversation</b>.</li><li>Working software is the primary <b>measure of progress</b>.</li><li>Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a <b>constant pace </b>indefinitely.</li><li>Continuous attention to <b>technical excellence </b>and <b>good design </b>enhances agility.</li><li>Simplicity--the art of <b>maximizing the amount of work not done</b>--is essential.</li><li>The best architectures, requirements, and designs emerge from <b>self-organizing teams</b>. </li><li>At regular intervals, the team reflects on how to become more effective, then tunes and <b>adjusts </b>its behavior accordingl</li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0qu8t",
+    "front": "What is <b>Extreme Programming </b>(<u>XP</u>) and main characteristics?",
+    "back": "<ul><li>Extreme Programming improves a software project in five essential ways; <u>communication</u>, <u>simplicity</u>, <u>feedback</u>, <u>respect</u>, and <u>courage</u>.</li><li>Extreme Programmers constantly <b>communicate </b>with their customers and fellow programmers.</li><li>They keep their design <u>simple </u>and <u>clean</u>.</li><li>They get <b>feedback </b>by testing their software starting on day one.</li><li>They deliver the system to the customers as early as possible and implement changes as suggested. Every small success deepens their <u>respect </u>for the unique contributions of each and every team member.</li><li>With this foundation Extreme Programmers are able to <u>courageously </u>respond to changing requirements and technology</li></ul><div><img src=\"paste-bb9bfe1e74bb98147b3bfe8ec095b8d35e52e9b1.jpg\" width=\"586\"><br></div>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k00wca",
+    "front": "What are the different <b>rules</b>/<b>phases&nbsp;</b>of Extreme Programming?",
+    "back": "<b>Planning:</b><br><ul><li>User stories are written<br></li><li>Release planning creates the release schedule.<br></li><li>Make frequent small releases.<br></li><li>The project is divided into iterations.<br></li><li>Iteration planning starts each iteration.<br></li><li>A stand-up meeting starts each day.</li></ul><b>Designing:</b><br><ul><li>Simplicity. Always do the simplest thing that could possibly work next.<br></li><li>Choose a system metaphor.<br></li><li>Use CRC cards for design sessions.<br></li><li>Create spike solutions to reduce risk.<br></li><li>No functionality is added early.<br></li><li>Refactor whenever and wherever possible.</li></ul><b>Coding:</b><br><ul><li>The customer is always available.<br></li><li>Code must be written to agreed standards.<br></li><li>Code the unit test first.<br></li><li>All production code is pair programmed.<br></li><li>Only one pair integrates code at a time.<br></li><li>Integrate often.<br></li><li>Set up a dedicated integration computer.<br></li><li>Use collective ownership.<br></li></ul><b>Testing:</b><br><ul><li>All code must have unit tests.</li><li>All code must pass all unit tests before it can be released.</li><li>When a bug is found tests are created.<br></li><li>Acceptance tests are run often and the score is published.<br></li></ul>&nbsp;<br><br>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k05zr8",
+    "front": "What are the <b>advantages </b>of <u>extreme programming</u>?",
+    "back": "<ul><li>Emphasis customer involvement<br></li><li>helps establish rational plans and schedules and to get the developers personally committed to their schedules<br></li><li>This model is consistent with most modern development methods<br></li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0xigc",
+    "front": "What are the <b>disadvantages&nbsp;</b>of&nbsp;<u>extreme programming</u>?",
+    "back": "<ul><li>Only as effective as the people involved; Agile does not solve this issue.<br></li><li>Requires meetings at frequent intervals.<br></li><li>Requires too much development changes&nbsp;<br></li><li>Tends to be impossible to be known exact estimates of work effort at the start of project<br></li></ul>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0gd0x",
+    "front": "What is the difference between a <b>User Story </b>and a <b>Use Case</b>?",
+    "back": "<b>User stories:</b><br>A user story provides a short descriptive sentence that outlines the <u>who</u>, <u>what </u>and <u>why </u>of one or a set of software requirements. User stories put context around interactions, which enables developers to focus their efforts on perspectives, features, functionality and results.<br><br>Here's a generic format for a user story:<br><u>“A (user/item) should be able to (do something) so that an (outcome) can be achieved” “As a (role) I want (something) so that (benefit)”</u><br><br><b>Use cases:<br></b>A use case expresses a functional software requirement by describing a behavior or interaction, often in the form of a flow or a dialog. The focus of a use case is on cause and effect, as it usually outlines how a user or item interacts with software, as well as how that system responds to those actions.<br><b><br></b>Here's a general use case format:<br><u>“A user does (A), the system responds (B)”</u><br><b><br></b>Use cases generally provide more detail and a deeper understanding of functional behaviors to contextualize a software requirement.<b><br></b>",
+    "deck": "1. Software Development Models (J1)",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k00xu9",
+    "front": "How is Software Configuration Management Defined? <i>(According to ISO/IEC/IEEE 24765:2017)</i>",
+    "back": "The application of configuration management principles to software <u>to systematically control software changes</u>, <u>maintain integrity </u>and <u>traceability</u>, and <u>ensure consistency throughout the software development lifecycle</u>.",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0ty2h",
+    "front": "What are the Key Components of Software Configuration Management?",
+    "back": "<b>Configuration Identification:</b><br><ul><li>Defining and managing software configuration items (CIs), such as source code, documentation, libraries, and test cases.</li><li>Assigning unique identifiers to track versions and dependencies.</li></ul><div><b>Version Control:</b><br></div><div><ul><li>Managing different versions of software artifacts using version control systems (VCS) like Git, SVN, or Mercurial.<br></li></ul><div><b>Change Control:</b></div></div><div><ul><li>Establishing processes for reviewing, approving, and implementing changes to prevent unauthorized modifications.<br></li><li>Commonly involves Change Control Boards (CCBs) in regulated industries.<br></li></ul><div><b>Configuration Status Accounting:</b><br></div></div><div><ul><li>Keeping records of configuration items, versions, changes, and updates to ensure traceability and compliance.<br></li></ul><div><b>Configuration Auditing:&nbsp;</b><br></div></div><div><ul><li>Verifying that software configurations match their specifications and that all changes are properly documented.</li></ul></div>",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0e9s5",
+    "front": "Why is Software Configuration Management important?",
+    "back": "<ul><li>Ensures <u>consistency</u>, <u>integrity</u>, and <u>traceability</u> in software development.<br></li><li>Supports regulatory compliance (e.g., ISO 13485, IEC 62304, FDA 21 CFR Part 820 for medical software).<br></li><li>Enables collaboration, rollback, and risk management in software projects.<br></li></ul>",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0neu2",
+    "front": "What is the Scope of Software Configuration Management?",
+    "back": "Software systems are being changed for many reasons: Strategy and marketing decisions, bug fixing, customer requests, intrusion prevention, retired third-party components etc.<br><br>Changes have impact on many different elements:<br><ul><li>Development Documents: Requirements specification, design description, Test plan, Test report, Test specification, Project plan<br></li><li>Source code files, Makefiles, resource files<br></li><li>Third-party products: Compiler, Libraries, Datenbase, ...</li><li>Manuals: user manual, administration manual, ...</li><li>Training course material, marketing brochures, ...</li></ul>",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0vgxu",
+    "front": "What is the Definition and Goal of Software Configuration Management?",
+    "back": "Not keeping track of modifications to one or more elements of a software system will almost certainly introduce <b>failures and inconsistencies</b>.<br><br>To ensure integrity and reproducibility of a software system a systematic approach is essential:<br>Configuration Management ... is a management process for establishing and maintaining consistency of a product’s performance, its functional and physical attributes, with its requirements, design and operational information, throughout its life. (ANSI/EIA)",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0b15d",
+    "front": "How does the Software Configuration Process look like? <i>(IEEE/SWEBOK)</i>",
+    "back": "SCM controls the evolution and integrity of a product by identifying its elements; managing and controlling change; and verifying, recording, and reporting on configuration information.<br><br><img src=\"paste-e4bcdd36fd59ee6f7a541d7e53e4a9ceeb57bf9c.jpg\" width=\"443\"><br><br><b>Management &amp; Planning:</b><br><ul><li>Organizational Context: assigning roles and responsibilities, identifying interfaces and relations to other business units or projects.<br></li><li>Constraints and Guidance: considering contractual, procedural or other business restrictions, applying and promoting “Best-Practices”.<br></li><li>Planning: adapting and scaling methods and procedures to the project characteristics (size, safety, security), selecting and implementing the tools, creating an SCM Plan (SCMP).<br></li></ul><div><b>Configuration Identification:</b></div><div><ul><li>Configuration Item: an item or aggregation that is managed as a single entity.</li><li>Version of a Software Item: an identified instance (state) of an item.</li><li>Baseline: an approved and fixed (frozen) version of a configuration item at a specific time in the item’s life cycle.</li><li>Software Library: a controlled (identified) collection of software and related documentation designed to aid in software development, use, or maintenance.</li></ul></div><div><b>Core Areas:</b></div><div><ul><li><u>Control:</u> managing changes during the software life cycle: requesting, evaluating, and approving software changes</li><li><u>Status Accounting:</u> recording and reporting of SCM activities</li><li><u>Auditing:</u> compliance assessment, improvement evaluation</li><li><u>Release Processing:</u> identification, packaging, and delivery of the elements of a product (executable program, documentation, release notes, configuration data).</li></ul></div>",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k0ppu0",
+    "front": "What are Versions, Revisions and Releases?",
+    "back": "Depending on the context a version has different meanings. Multiple versions of a file (document) may exist:<br><img src=\"paste-935e2c9477619ce1e94f54460bb8815a7f84624f.jpg\" width=\"364\"><br>They are called <b>Revisions</b>.<br><br>Multiple versions of a software system may exist. They are called <b>Releases </b>each build with a specific set of source file versions:<br><img src=\"paste-2e1dce3a4644ac94eb4758116fd0b5827fb591e8.jpg\" width=\"465\">",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980000
+  },
+  {
+    "id": "mqucj1k1ndr5",
+    "front": "What are Branches?",
+    "back": "Branches are used to isolate changes. Different workflow models exist to deal with branches. The main (or master) branch reflects a production-ready state. The develop branch includes the latest development changes. On the release branch only bug fixes are done.<br>The state of a branch can be merged into another branch.<br><br><img src=\"paste-1c880386a1ccad2505ab66bff8293e405d186262.jpg\" width=\"596\"><br><br>A baseline (code or feature freeze) marks a set of changes to be included in a new release.",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1w320",
+    "front": "How does the Release Identification and Semantic Versioning work?",
+    "back": "Each release must have a unique identifier. Semantic versioning is a broadly accepted set of rules to build meaningful identifiers based on strictly incrementing version numbers: <b>major.minor.patch<br></b><br><u>Major: </u>significant (possibly incompatible) changes and extensions <br><u>Minor: </u>added functionality<br><u>Patch: </u>bug fixes and small improvements",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1369c",
+    "front": "What does Change Management include?",
+    "back": "<ul><li>Managing defects, issues and change requests<br></li><li>Evaluation, prioritization, coordination<br></li><li>Review, approval and communication<br></li><li>Configuration identification<br></li><li>Merging and tracking code changes<br></li><li>Retrieval of previous versions<br></li></ul><div><img src=\"paste-522caefb35637e8af2cda63c2bb2cff096705b83.jpg\" width=\"436\"><br></div>",
+    "deck": "03 - Configuration Management",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1w6gu",
+    "front": "What is Software Version Control?",
+    "back": "Version control (also known as revision control, source control, or source code management) is a class of systems responsible for managing changes to computer programs, documents, web sites, or other collections of information. <br>Version control is a component of software configuration management.",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1reoh",
+    "front": "What are the purposes of Software Version Control?",
+    "back": "<ul><li>Version control gives access to historical versions of your project.</li><li>You can reproduce and understand a bug report on a past version of your software.</li><li>Version control enables multiple people to simultaneously work on a single project. Each person edits his or her own copy of the files and chooses when to share those changes with the rest of the team.</li></ul>",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1k5no",
+    "front": "What kind of available systems for version control do exist?",
+    "back": "<b>Centralized:</b><br>In centralized version control, each user gets his or her own working copy, but there is just one central repository. As soon as you commit, it is possible for your co-workers to update and to see your changes.<br><img src=\"paste-86d3489060920781d47f5d5d5becd80310ede953.jpg\"><br>For others to see your changes, 2 things must happen: You commit, They update<br>Typical systems are: CVS, Subersion<br><br><b>Distributed</b><br>In distributed version control, each user gets his or her own repository and working copy. After you commit, others have no access to your changes until you push your changes to the central repository. A pull needs to be executed to get new data into your local repository.<br><img src=\"paste-02b6b7015133dca50b1802132916ad56f5cdf50a.jpg\"><br>For others to see your changes, 3 things must happen: You commit, You Push, They pull (fetch)<br>Typical systems are: <b>Git</b>, GNU Arch, Bazaar-NG, BitKeeper, Monotone, Mercurial",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k19hyj",
+    "front": "What is Git?",
+    "back": "Git is software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development. <br><br>Its goals include speed, data integrity, and support for distributed, non-linear workflows (several branches running on different systems). <br><br>Git was created by Linus Torvalds in 2005 for development of the Linux kernel, with other kernel developers contributing to its initial development. Since 2005, Junio Hamano has been the core maintainer. As with most other distributed version control systems, and unlike most client–server systems, every Git directory on every computer is a full-fledged repository with complete history and full version-tracking abilities, independent of network access or a central server. Git is free and open-source software.",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k14k49",
+    "front": "What are the most important features of Git?",
+    "back": "<ul><li><b>Distributed repositories: </b>each user gets his or her own repository and working copy.</li><li><b>Branches and tags:</b> Branches and tags are part of the repository (compared to centralized systems)</li><li><b>Revision identifier:</b> The SHA1 of the commit is the hash of all the information.</li><li><b>Commits are snapshots: </b>In other version control systems, changes to individual files are tracked and referred to as revisions, but with git you are tracking the entire workspace, so they use the term snapshot to denote the difference.</li><li><b>Stages:</b> Files have one of the following stages: untracked, modified, staged, committed</li></ul>",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1710l",
+    "front": "What is the Git Object Store?",
+    "back": "The object store contains the original data files and all the log messages, author information, dates, and other information required to rebuild any revision or branch of the project. There are 4 different object types:<br><ul><li><b>Blob: </b>A blob is used to store file data. It is generally a file.</li><li><b>Tree: </b>A tree is basically like a directory. It references a bunch of other trees and blobs</li><li><b>Commit: </b>A commit object holds metadata for each change introduced in the repository, including the author, committer, commit-data, and log messages.</li><li><b>Tag: </b>A tag object assigns an arbitrary human-readable name to a specific object usually a commit</li></ul><div><img src=\"paste-f7900904502e01e27acfdc237e26af5bf7d6eec7.jpg\"><br></div><div><img src=\"paste-532ff8f548f156771aca2fde1bc0b1b1dcd3ddb9.jpg\"><br></div>",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1z2xk",
+    "front": "What are Git Branches?",
+    "back": "One of the biggest advantages of Git compared to other systems is the easy handling of branches. Branches are needed for:<br><ul><li>Executing experiments</li><li>Try out new ideas</li><li>Development of new features</li></ul><div>In general, for any type of modification. In some software projects, it is forbidden to push directly to the master branch. Therefore it is needed to create a branch for each modification.<br></div>",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1bnok",
+    "front": "What are the important git commands?",
+    "back": "<u>git --version</u><br>Display version of git. Also used to check whether git is installed or not.<br><br><u>git --config</u><br><i>git config - - global user . name ”David Herzig”<br>git config - - global user . email ”dave . herzig@gmail . com”</i><br>This information will be stored in the home directory in a file called <i>.gitconfig</i><br>-&nbsp;User level (--global) - Home directory<br>-&nbsp;Repository level - Repository directory<br>-&nbsp;System level (--system) - Git installation directory<br><br><u>git init</u><br>Convert an existing unversioned project(workspace) to git repository or to create a new empty git repository. Executing this command creates a .git subdirectory, which contains all the metadata for the new repository. This metadata includes subdirectories for objects, refs, and template files. A HEAD file is also created which points to the current branch reference.<br><br><u>git clone</u><br>Download an existing git repository to your local computer. git clone -b branch_name : The -b argument lets you specify a specific branch to clone instead of the branch the remote HEAD is pointing to, usually the master branch.<br><br>git init vs git clone: At a high level, they can both be used to initialize a new git repository. However, git clone is dependent on git init. Internally, git clone first calls git init to create a new repository. It then copies the data from the existing repository.<br><br><u>git status</u><br>Displays:<br>- Current branch<br>-&nbsp;Files that have differences between Workspace - Staging area (Untracked(new) files and Unstaged changes)<br>-&nbsp;Files that have differences between Staging - Local Git Repository (Uncommitted changes)<br><br><u>git add&nbsp;</u><br>Add changes in the workspace to the staging area. Workspace → Staging area<br><u><br>git commit</u><br>Add changes in the staging area to the local Git repository<br>git commit: Staging area → Local git repository<br>git commit -m \"commit message\"<br><br><u>git push</u><br>Push: Add changes in the local git repository to the remote repository<br>git push&nbsp; <i>&lt;remote&gt; &lt;local&gt;</i>: Local git repository → Remote git repository<br><br><u>git pull</u><br>Update local git repository from the corresponding remote git repository<br>git pull <i>&lt;remote&gt; &lt;local&gt;</i>:&nbsp;Local git repository ← Remote git repository<br><u><br>git branch</u><br>List all local branches<br><i>git branch -a</i>: List all remote branches as well<br><i>git branch -d &lt;branch&gt;</i>: Delete the specified branch<br><i>git branch &lt;new branch&gt;</i>: Create a new branch<br><u><br>git checkout </u><i>&lt;branch&gt;</i><br>Navigate between different branches.<br><u><br>git merge</u> <i>&lt;branch&gt;</i><br>Integrate changes from multiple branches into one.<br><u><br>git remote</u><br>Manage connections to remote repositories. It allows you to show which remotes are currently connected, but also to add new connections or remove existing ones.<br><i>git remote -v</i>: List all remote connections<br><i>git remote add</i>: Create a new remote<br><i>connection git remote rm</i>: Delete a connection to a remote repository<br><i>git remote rename</i>: Rename a remote connection<br><u><br>git fetch </u><i>&lt;remote&gt; &lt;local&gt;</i><br>Update local git repository from the corresponding remote git repository. Git fetch does not change your workspace, it keeps the fetched content separate until it is merged.<br><u><br>git log &amp; git reflog</u><br>Displays information about repository changes.<br><u><br>.gitignore file</u><br>A text file which tells which files and folders to ignore in a project.",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1nb8i",
+    "front": "What is a git conflict?",
+    "back": "A conflict could occur if 2 or more developers work on the same file(s) or if two branches are merged.<br><img src=\"paste-a37edd7d3cc9bd6bd93c08998393da9977621654.jpg\" width=\"272\"><br><img src=\"paste-e31d91f1a0ffcca3ab3d731863bb15c799f4386b.jpg\" width=\"448\">",
+    "deck": "04 - Version Control",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k10huj",
+    "front": "What are top risk for software development?",
+    "back": "<ul><li>Schedule (e.g. Time estimation)</li><li>Budget (e.g. Cost overrun)</li><li>Operational and Management (e.g. Resoure planning)</li><li>Technical (e.g. Change of requirements)</li><li>External (e.g. Gouverment rule change)</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1s4nv",
+    "front": "What are part of <b>Software Requirements</b>?",
+    "back": "<ul><li>Elicitation</li><li>Negotiation</li><li>Analysis</li><li>Specification</li><li>Validation</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1jyg6",
+    "front": "What are part of <b>Software Design</b>?",
+    "back": "<ul><li>Definition of the architecture</li><li>Components</li><li>Interfaces</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1yyqs",
+    "front": "What are part of <b>Software Construction</b>?",
+    "back": "<ul><li>Detailed design</li><li>Coding</li><li>Unit testing</li><li>Integration testing</li><li>Debugging</li><li>Verification and tools</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1b1qy",
+    "front": "What are part of <b>Software Testing</b>?",
+    "back": "<ul><li>Fundamentals of software testing</li><li>Testing techniques</li><li>Cuman-computer user interface testing and evaluation</li><li>Test-related measures</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1s6h0",
+    "front": "What are part of <b>Software Maintenance</b>?",
+    "back": "<ul><li>Program comprehension</li><li>Re-engineering</li><li>Reverse engineering</li><li>Refactoring</li><li>Software retirement</li><li>Disaster recovery techniques, tools</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1b0ok",
+    "front": "What are part of <b>Software Configuration Management</b>?",
+    "back": "<ul><li>Identification</li><li>Control</li><li>Status accounting</li><li>Auditing</li><li>Software release management and delivery</li><li>Tools</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k12wl1",
+    "front": "What are part of <b>Software Engineering Management</b>?",
+    "back": "<ul><li>Process planning, </li><li>Estimation of effort, cost, and schedule</li><li>Resource allocation</li><li>Risk analysis, planning for quality</li><li>Product acceptance</li><li>Review and analysis of project performance</li><li>Project closure</li><li>Tools</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1sy6k",
+    "front": "What are part of <b>Software Engineering Methods</b>?",
+    "back": "<ul><li>Modeling</li><li>Analysis</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k14xkc",
+    "front": "What are part of <b>Software Quality</b>?",
+    "back": "<ul><li>Verification</li><li>Validation</li><li>Reviews</li><li>Audits</li><li>Tools</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k16rkq",
+    "front": "What are part of <b>Software Engineering Professional Practice</b>?",
+    "back": "<ul><li>Standards</li><li>Codes of ethics</li><li>Group dynamics (working in teams, cognitive problem complexity, interacting with stakeholders)</li><li>Dealing with uncertainty and ambiguity &amp; multicultural environments</li><li>Communication skills</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1ac8e",
+    "front": "What are part of <b>Software Engineering Economics</b>?",
+    "back": "<ul><li>Cost-benefit analysis</li><li>Optimization</li><li>Risk analysis</li><li>Estimation</li><li>Decision making</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1qga6",
+    "front": "What are part of <b>Computing Foundations</b>?",
+    "back": "<ul><li>Operation systems</li><li>Networking</li><li>Algorithms</li><li>Parallel and distributed computing</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1jky2",
+    "front": "What are part of <b>Mathematical Foundations</b>?",
+    "back": "<ul><li>Sets, relations and functions</li><li>Basic propositional and predicate logic</li><li>Proof techniques</li><li>Graphs and trees</li><li>Discrete probability</li><li>Grammars and finite state machines</li><li>Number Theory</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1ckib",
+    "front": "What are part of <b>Engineering Foundations</b>?",
+    "back": "<ul><li>Statistical analysis</li><li>Measurements and metrics</li><li>Engineering design</li><li>Simulation and modeling</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1vyic",
+    "front": "What are related disciplines to software engineering?",
+    "back": "<ul><li>Computer Engineering</li><li>Computer Science</li><li>General Management</li><li>Mathematics</li><li>Project Management</li><li>Quality Management</li><li>Systems Engineering</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k16q6f",
+    "front": "What types of applications do exist?",
+    "back": "<ul><li>Stand-alone applicaitons</li><li>Interactive transaction-based applications</li><li>Embedded control systems</li><li>Batch processing systems</li><li>Entertainment systems</li><li>Systems for modeling and simulation</li><li>Data collection and analysis systems</li><li>Systems of systems</li></ul>",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k18n9s",
+    "front": "What is part of Software Development and what is part of project management?",
+    "back": "<b>Software Development:</b><br><u>Requirements:</u>&nbsp;Elication, Negotiation, Analysis, Specification, Validation<br><u>Design:</u>&nbsp;Architecture, Components, Interfaces<br><u>Construction:</u>&nbsp;Coding, Unit &amp; integration testing, documentation<br><br><b>Project Management:<br></b><u>Configuration Management:</u>&nbsp;Change control, release management<br><u>Process Life Cycle:</u>&nbsp;Planning, resource allocation, risk analysis<br><u>Quality Management:</u>&nbsp;Verification, validation, reviews",
+    "deck": "01 - Software Engineering",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k10hjd",
+    "front": "What are examples of softwares in the healthcare environment?",
+    "back": "<ul><li>Electronic Health Records (EHRs)</li><li>Practice Management Software</li><li>Medical Billing Software</li><li>Clinical Decision Support Systems</li><li>Telemedicine Software</li><li>Medical Imaging Software</li><li>Laboratory Information Management Systems (LIMS)</li><li>Patient portals</li><li>Wearable and Remote Monitoring Software</li><li>Medical Research and Clinical Trial Management Software</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1620x",
+    "front": "What are Key benefits of healthcare software?",
+    "back": "<ul><li>Improved Patient Care</li><li>Increased Efficiency</li><li>Cost Saving</li><li>Enhanced Communication</li><li>Data-Driven Insights</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1tm90",
+    "front": "What are aspects that must be considered when developing medical software?",
+    "back": "<ul><li>Data Security and Privacy</li><li>Reliability</li><li>Regulatory Compliance</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1xg8v",
+    "front": "How can software be classified?",
+    "back": "<ul><li><u>Standard software</u>: e.g. software to manage a hospital, drug reminder.</li><li><u>Validated software</u>: software used in a regulated enviorrnment, e.g. drug production<br>- <i>Software used in a medical device</i>: e.g. software used to run a medical device<br>- <i>Software as medical device</i>: e.g. diagnosis software for breast cancer&nbsp;</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1vpdh",
+    "front": "What type of software is \"software to control a x-ray machine\"?",
+    "back": "Medical device software",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1nknw",
+    "front": "What is the name of the european/swiss counterpart of the american FDA",
+    "back": "<ul><li>EMA (European)</li><li>Swissmedic (Swiss)</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1836c",
+    "front": "What is the mission of the FDA?",
+    "back": "<ul><li>Efficacy</li><li>Safety - Usability</li><li>Security - Cybersecurity</li></ul><div><br></div><div>\"The FDA is responsible for protecting the public health by ensuring the <u>safety</u>, <u>efficacy</u>, and <u>security </u>of human and veterinary drugs, biological products, and medical devices; and by ensuring the safety of our nation’s food supply, cosmetics, and products that emit radiation\"</div>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1qa96",
+    "front": "What software is not subject to FDA regulations?",
+    "back": "<ul><li>Software for administrative support of health care facility</li><li>Software to serve as electronic patient records</li><li>Software for maintaining or encouraging a healthy lifestyle</li><li>Software for transferring, storing, converting or displaying data</li><li>Software to provide certain, limited clinical decision support</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1bs8z",
+    "front": "What are examples of medical devices (WHO)?",
+    "back": "<ul><li>Single use devices (syringes, catheters)</li><li>Implantable (hip prothesis, pacemakers)</li><li>Imaging (ultrasound, CT-scanners)</li><li>Medical equipment (anesthesia machines, patient monitors)</li><li>Software (computer aided diagnostics)</li><li>In vitro diagnostics (glucometer, HIV tests)</li><li>Personal protective equipment (mask, gowns, gloves)</li><li>Surgical and labratory instruments</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1dapu",
+    "front": "What is the Definition of Software as Medical Device (FDA)?",
+    "back": "Software intended to be used for one or more medical purposes that perform these purposes without being part of a hardware medical device",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1f723",
+    "front": "What are examples of SaMD (Software as a medical device) and what is not?",
+    "back": "<ul><li>Diagnosis, prevention, monitoring, treatment or alleviation of disease</li><li>Disease management</li><li>Control of conception</li><li>In-vitro diagnostics and sterillization</li></ul><div>Not SaMD examples:</div><div><ul><li>A software that is embedded as part of a hardware medical device and is necessary to drive the intended medical purpose</li><li>Software to serve as electronic patient records</li><li>Software for administrative support of heatlh care facility</li><li>Software to maintain a healthy lifestyle</li></ul></div>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1en5s",
+    "front": "What is the difference between Laws, Regulations and Guidance?",
+    "back": "<ul><li><u>Laws: </u>Laws are passed by both houses of the U.S. Congress and then signed by the president</li><li><u>Regulations: </u>Agencies are tasked with implementing laws by drafting regulation. They take the broad ideas of the bill and fill in the details of what needs to be done and how it will be enforced.</li><li><u>Guidance:</u> Guidance is supplemental material published by an agency that helps clarify existing rules. These include interagency statements, advisories, bulletins, policy statements, questions and answers and frequently asked questions. It is not subject to rule-making procedures, so there is no proposal or comment period. Guidance can be helpful, but it is not binding.</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k11wjm",
+    "front": "What are Industry Standards for Medical Software Development?",
+    "back": "<ul><li><u>ISO 13485: </u>Medical Devices - Quality Management Systems</li><li><u>ISO 14971: </u>Application of Risk Management to medical devices</li><li><u>IEC 62304: </u>Medical device software - systems lifecycle process</li><li><u>IEC 6366: </u>Medical devices - Application of usability engineering to medical devices</li><li><u>IEC 82304: </u>Health Software</li><li><u>IEC 60601: </u>Medical electrical equipment</li></ul><div>A set of criteria within an industry relating to the standard functioning and carrying out of operations in their respective fields of production. In other words, it is the generally accepted requirements followed by the members of an industry<br></div>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k14a6u",
+    "front": "What is important in terms of software classification?",
+    "back": "If a software product is classified as medical device, software engineers must pay attention to different regulations. The decision on whether a software should be classified as a medical device is up to the manufacturer themselves.&nbsp;<br><br><img src=\"paste-3f4b20f6799eacb3bcd017c5fa2b16b6c0adc90d.jpg\" width=\"441\"><br><img src=\"paste-76fbc07925fd05141c048729932b6327486282d9.jpg\" width=\"437\">",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1sosd",
+    "front": "A digital biomarker application (collecting data from a smart device) is used to drive clinical management decisions for patient with serious healthcare conditions. What is the correct medical device classification for that software?<br><br>What could be an additional benefit for the company to achieve SaMD regulatory approval?",
+    "back": "<u>ChatGPT:</u><br><br>Under the widely used IMDRF risk framework, a digital biomarker application that “drives clinical management” for a “serious” condition typically falls into SaMD <b>Category III<br></b><br>An additional benefit of obtaining SaMD regulatory approval (beyond mere compliance) is that it can open doors to <u>reimbursement</u>, <u>expand market access</u>, and <u>build clinical </u>and <u>commercial credibility </u>for the product.",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1y137",
+    "front": "How does the Regulatory Approval process work?",
+    "back": "<ol><li>Establish quality process for software creation</li><li>Design software and document</li><li>Perform risk analysis</li><li>Review process with FDA (optional)</li><li>Implement software and document</li><li>Perform validation study</li><li>Submit entire process to FDA</li><li>Approval/Clearance</li><li>Post-market monitoring</li></ol><div>To get approval/clearance for a SaMD product, the regulation body (e.g. FDA) will not test your code/software. The regulation body will review/check if there is a process in place and there is a proof that the process was followed correctly.<br></div>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1i62j",
+    "front": "What does the Quality System Regulation do?",
+    "back": "The quality system regulation includes requirements related to the methods used in, and the facilities and controls used for, designing, manufacturing, packaging, labeling, storing, installing, and servicing of medical devices intended for human use.<br><br>Consists of 10 parts:<br>A: General Provisions<br>B: <b>Quality System Requirements</b><br>C: <b>Design Controls</b><br>D: Document Controls<br>E: Purchasing Controls<br>F: ...<br><br><u>B: Quality System Requirements:</u><br><ul><li>Management Responsibility<br></li><li>Quality Audit</li><li>Personnel</li></ul><div><u>C: Design Controls:</u>&nbsp;Each manufacturer of any class III or class II device, and the class I devices listed in paragraph ... of this section, shall establish and maintain procedures to control the design of the device in order to ensure that specified design requirements are met.</div>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1p9yr",
+    "front": "What is the difference between Verification and Validation?",
+    "back": "<u>Verification:</u> Specified requirements have been fulfilled<br><u>Validation:</u> Particular requirements for a specific intended use can be conistently fulfilled<br><br><img src=\"paste-3045c025f60442519ab831643c306b29232b8e0a.jpg\" width=\"384\">",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1xt2u",
+    "front": "What does <u>Design input</u>, <u>Specification</u>, <u>Design Output</u>, <u>Design Review </u>and <u>Design history file </u>mean?",
+    "back": "<u>Design input</u>:&nbsp; Means the physical and performance requirements of a device that are used as a basis for device design. IEC 62304: The interpretation of customer needs into formally documented medical device requirements.<br><br><u>Specification:</u>&nbsp;Means any requirement with which a product, process service, or other activity must conform. IEC 62304: ...are the formally documented specifications of what the software does to meet the customer needs and the design inputs.<br><br><u>Design Output:</u>&nbsp;Means the result of a design effort at each design phase and at the end of the total design effort.<br><br><u>Design reviews:</u> Means a documented, comprehensive, systematic examination of a design to evaluate the adequacy of the design requirements, to evaluate the capability of the design to meet these requirements, and to identify problems.<br><br><u>Design history file:</u> Means a compilation of records which describes the design history of a finished device.",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1ctc9",
+    "front": "What is Software Validation (in detail)?",
+    "back": "<u>FDA:</u>&nbsp;&nbsp;Validation is the confirmation by objective evidence, that the previously established requirements for the use of a process or system are met.<br><br>This is widely used in the Pharmaceutical, Life Sciences and BioTech industries and is a cousin of Software Testing but with a more formal and documented approach. The validation process begins with validation planning, system requirements definition, testing and verification activities, and validation reporting. The system lifecycle then enters the operational phase and continues until system retirement and retention of system data based on regulatory rules.",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1d8ib",
+    "front": "How should software be devloped?",
+    "back": "This guidance recommends an integration of software life cycle management and risk management activities. Based on the intended use and the safety risk associated with the software to be developed, the software developer should determine the specific approach, the combination of techniques to be used, and the level of effort to be applied.<br><br>Example: The V-Model",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k18du3",
+    "front": "Examples and uses of Software Life Cycle models",
+    "back": "<img src=\"paste-5ce3ad391475be30ab50482a9f16b2f8153d7746.jpg\">",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1cjqe",
+    "front": "What needs to be done for Software Validation?",
+    "back": "<ul><li>Software Requirements Specification</li><li>Implementations and Traceability</li><li>Software Architecture</li><li>Third-Party Libraries (SOUP - Software of Unknown Proveance)</li><li>Verification</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k11but",
+    "front": "Question:&nbsp;What general (software development) techniques could be used to improve defect prevention?",
+    "back": "<ul><li>Using code reviews</li><li>Automated testing</li><li>Static code analysis</li><li>Adherence to ISO/IEC 62304 helps prevent defects early in development.</li></ul>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1lngu",
+    "front": "Question:&nbsp;What techniques could be used to prevent defects after changes?",
+    "back": "Regression testing, automated continuous integration, version control, and thorough impact analysis ensure that new changes don’t introduce defects.",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1os21",
+    "front": "Question:&nbsp;What is the difference between validation and verification?",
+    "back": "<div>Verification checks if the software meets specifications, while validation ensures the software fulfills its intended purpose in real-world conditions.</div> <div></div>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1ofnw",
+    "front": "Question: Which software life cycle models are good fits for validated software?",
+    "back": "<div>The V-Model and Waterfall Model are commonly used for validated software due to their structured approach and traceability.</div> <div></div>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1cuk2",
+    "front": "Question: What techniques could be used to trace a bug/issue?",
+    "back": "<div><div><ul><li>Logging</li><li>Debugging tools</li><li>Issue tracking systems (e.g., Jira)</li><li>Root cause analysis&nbsp;</li></ul></div> </div><div><div><div><div></div><div></div></div></div></div>",
+    "deck": "02 - Medical Software",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1cjkl",
+    "front": "Difference between \"Software in a Medical Device\" and \"Software as a Medical Device (SaMD)\"?",
+    "back": "<div><ul><li><b>Software in a Medical Device: </b>Software that is embedded in and necessary to operate a hardware medical device (e.g., software controlling an x-ray machine).</li><li><b>Software as a Medical Device (SaMD): </b>Software that performs a medical function without being part of a hardware device (e.g., diagnosis software for breast cancer)</li></ul></div>",
+    "deck": "Summary 01",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1204g",
+    "front": "When does software qualify as a medical device?",
+    "back": "Software qualifies as a medical device when it is intended for medical purposes such as <i>diagnosis</i>, <i>treatment</i>, <i>prevention</i>, or <i>monitoring of diseases</i>, regardless of whether it’s embedded in hardware or standalone",
+    "deck": "Summary 01",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1xk64",
+    "front": "Are FDA guidance documents legally binding?",
+    "back": "No, guidance documents are not legally binding. They help clarify existing rules but are not subject to rule-making procedures",
+    "deck": "Summary 01",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k12ftq",
+    "front": "What is the FDA looking for during the SaMD approval process? Is it the final product?",
+    "back": "<div><div>The FDA does not evaluate the final product alone. Instead, it assesses whether:</div><div><ul><li>A formal quality process was followed<br></li><li>Documentation of design, risk analysis, validation, etc. exists<br></li><li>The entire process complies with regulatory expectations<br></li></ul><div><div>So, it’s the process, not just the final software, that matters.</div></div></div> <div></div></div>",
+    "deck": "Summary 01",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1kju4",
+    "front": "What fraction of software-related recalls were due to software updates (not original version)?",
+    "back": "According to the FDA's analysis:<br><ul><li>7.7% of 3140 medical device recalls were due to software failures<br></li><li>Of these, 79% were caused by software defects introduced during updates after initial release<br></li></ul>",
+    "deck": "Summary 01",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1dlpe",
+    "front": "SaMD that analyzes images, eye movement, etc. to guide astigmatism diagnosis – what classification is that?",
+    "back": "<div>This would likely fall under <b>IMDRF Class III </b>or <b>IV</b>, depending on:</div><div><ul><li>The severity of the condition being diagnosed<br></li><li>Whether it drives clinical decisions<br></li></ul><div>Given it influences next diagnostic actions for a <u>vision disorder</u>, it's a moderate to <u>high-risk SaMD</u>.<br></div></div> <div></div>",
+    "deck": "Summary 01",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1qzgf",
+    "front": "According to IEC 62304, what should be part of your software lifecycle process?",
+    "back": "IEC 62304 outlines a comprehensive software lifecycle process for medical device software. Key required activities include:<br><ul><li>Software Development Planning<br></li><li>Software Requirements Analysis<br></li><li><div>Software Architecture and Design</div> <div></div></li><li><div><div>Software Implementation and Unit Testing</div> <div></div></div></li><li><div><div>Software Integration and Integration Testing</div> <div></div></div></li><li><div><div>System Testing</div> <div></div></div></li><li><div><div>Software Maintenance</div> <div></div></div></li><li><div><div>Risk Management throughout the lifecycle</div> <div></div></div></li><li><div><div>Configuration and Problem Resolution Management</div> <div></div></div></li></ul><div>This ensures traceability, quality, and safety across the software's entire lifecycle<br></div>",
+    "deck": "Summary 02",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1qu31",
+    "front": "Does the FDA prescribe a particular software life cycle model?",
+    "back": "No, the FDA does not prescribe a specific software life cycle model. Instead, it requires that:<br><ul><li>A formal development process is followed<br></li><li>The process must be documented<br></li><li>The selected model must comply with IEC 62304 principles<br></li></ul><div>You can use models like Waterfall, V-Model, Agile, etc., as long as they are properly documented and adhered to<br></div>",
+    "deck": "Summary 02",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1z7wj",
+    "front": "At what point in the software life cycle does one perform risk management?",
+    "back": "Risk management must be integrated throughout the entire software life cycle. It begins early, during:<br><ul><li>Requirements and design phases (to identify and mitigate hazards)</li><li>And continues through<br>- Implementation<br>- Testing<br>- Maintenance and updates</li></ul><div>This aligns with both IEC 62304 and FDA expectations.<br></div>",
+    "deck": "Summary 02",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1b6a1",
+    "front": "Are agile processes compatible with FDA regulations?",
+    "back": "Yes, agile processes are compatible with FDA regulations if:<br><ul><li>The development process is well-documented<br></li><li>All regulatory requirements (e.g., validation, verification, risk management) are met<br></li><li>There is traceability from user needs to final implementation<br></li><li>Agile artifacts (e.g., user stories, sprints) are supplemented with the necessary documentation<br></li></ul><div>FDA is flexible in how you develop software, but strict on demonstrating compliance and quality<br></div>",
+    "deck": "Summary 02",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1u358",
+    "front": "What is the primary purpose of configuration management in software development?",
+    "back": "<div>The primary purpose is to systematically control software changes, ensuring:</div><div><ul><li><u>Consistency</u>, <u>integrity</u>, and <u>traceability </u>throughout the software lifecycle<br></li><li>That all components are identified, tracked, and auditable<br></li><li>Compliance with regulations like IEC 62304, ISO 13485, and FDA 21 CFR Part 820<br></li></ul></div> <div></div>",
+    "deck": "Summary 03",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k18r7w",
+    "front": "What is the difference between a centralized and distributed version control system?",
+    "back": "<b>Centralized Version Control System (CVCS):</b><br><ul><li>One central repository</li><li>Developers commit directly to the central server</li><li>Examples: CVS, Subversion (SVN)</li><li>Workflow: commit &gt; update</li></ul><div><b>Distributed Version Control Systems (DVCS):</b></div><div><ul><li>Each developer has a local repository and working copy</li><li>Changes are comitted locally first, then pushed</li><li>Others must pull to receive changes</li><li>Examples: Git, Mercurial</li><li>Workflow: commit &gt; push &gt; pull</li></ul></div>",
+    "deck": "Summary 03",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1zvjc",
+    "front": "What does git commit do?",
+    "back": "<ul><li>Moves changes from the staging area into the local repository</li><li>Saves a snapshot of the current project state</li></ul>",
+    "deck": "Summary 03",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1dol9",
+    "front": "What is the purpose of branching?",
+    "back": "<ul><li>Isolate changes for experiments, features, bug fixes or releases</li><li>Enable parallel development without affecting the main codebase</li><li>Protect the master/main banch from unstable code</li><li>Allow merging once changes are tested and reviewed</li></ul><div><br></div>",
+    "deck": "Summary 03",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1q39k",
+    "front": "What does the basic COCOMO model primarily use to estimate the effort required for a software project?",
+    "back": "The basic COCOMO model (Constructive Cost Model by Barry Boehm) estimates software project effort using the formula:<br><br><img src=\"paste-23f3974d0e88d3d2f1eb12aaf30e7c318bc1fa2c.jpg\" width=\"577\">",
+    "deck": "Summary 04",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k18udl",
+    "front": "What does the critical path in a project network represent?",
+    "back": "The critical path is the longest path through the project network. It determines the shortest possible project duration. Tasks on this path:<br><ul><li>Cannot be delayed without delaying the entire project<br></li><li>Represent the most time-sensitive activities in the plan<br></li></ul>",
+    "deck": "Summary 04",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1dp2v",
+    "front": "If a task is not on the critical path, what does that imply?",
+    "back": "<div>If a task is not on the critical path, it implies that:</div><div><ul><li>The task has slack or float time<br></li><li>Its start or end can be delayed without affecting the total project duration<br></li></ul><div>These tasks offer <i>scheduling flexibility</i>, allowing better resource distribution<br></div></div> <div></div>",
+    "deck": "Summary 04",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1n00x",
+    "front": "What are typical ways on how to describe requirements?",
+    "back": "<ul><li>User Stories (Agile approach)</li><li>Use Cases (Unified Process)</li><li>UML Diagrams (Class, Sequence, State-Transitions)</li><li>Mockups (UI Design)</li><li>Data Flow Diagrams, Entity-Relationship Diagrams</li><li>Structured documents like Software Requirements Specifications (SRS)</li></ul>",
+    "deck": "Summary 05",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1sewa",
+    "front": "What is the difference between functional and non-functional requirements?",
+    "back": "<b>Functional Requirements:&nbsp;</b>Describe what the system should do.<br><u>Examples: </u>input/output behavior, actions, triggers, use cases<br><br><b>Non-Functional Requirements (NFRs):</b> Describe how the system performs or the constraints.<br><u>Examples:</u> performance, security, maintainability, usability, availability",
+    "deck": "Summary 05",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1bikb",
+    "front": "Why is it important when meeting with users to try to restate the problem in your own words?",
+    "back": "Restating the problem in your own words helps:<br><ul><li>Ensure you understand the user's actual needs<br></li><li><div>Catch hidden assumptions or unclear requirements</div> <div></div></li><li><div>Build trust and alignment between stakeholders and developers<br></div></li></ul>",
+    "deck": "Summary 05",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1ch8x",
+    "front": "What is the role of the revision control page?",
+    "back": "The revision control page in a design document:<br><ul><li>Tracks versions, changes, and updates<br></li><li><div>Ensures traceability and accountability</div></li><li><div>Helps teams maintain a stable reference document throughout development<br></div></li></ul>",
+    "deck": "Summary 05",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k19wol",
+    "front": "Is this a functional or a non-functional requirement?<br><br><i>\"The system should export the result in a PowerPoint file which can be shared with the referring physician.\"</i>",
+    "back": "This is a functional requirement, because it specifies a specific action or behavior of the system (i.e., exporting results in a certain format)",
+    "deck": "Summary 05",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1qstu",
+    "front": "What should a software designer do if he/she identifies a problem with the system’s requirements during the creation of the software design document?",
+    "back": "<div>They should:</div><div><ul><li>Report the issue immediately<br></li><li>Communicate with stakeholders or requirements engineers<br></li><li>Clarify or request updates to the SRS document<br></li><li>Avoid proceeding with design based on unclear or flawed requirements<br></li></ul></div> <div></div>",
+    "deck": "Summary 05",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k13su3",
+    "front": "What is the purpose of a UML class diagram, and what key elements does it include?",
+    "back": "Shows the static structure of a system—classes and relationships.<br><br>Key elements:<br><ul><li><u>Class: </u>name, attributes, methods<br></li><li><u>Visibility: </u>+ public, − private, # protected<br></li><li><u>Relationships: </u>association, inheritance, aggregation, composition<br></li></ul>",
+    "deck": "Summary 06",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1oxct",
+    "front": "Draw and describe a use case diagram for a simple online bookstore. Include actors and at least three use cases.",
+    "back": "<img src=\"paste-3eabb18ca2c59150598b115c2aa28673fc01a3f2.jpg\" width=\"447\">",
+    "deck": "Summary 06",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k10nl1",
+    "front": "Explain the singleton pattern.",
+    "back": "Ensures only one instance of a class exists.",
+    "deck": "Summary 06",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1pg5i",
+    "front": "What does CRISP means in a build process?",
+    "back": "<b>C</b>omplete<br><b>R</b>epeatable<br><b>I</b>nformative<br><b>S</b>chedulable<br><b>P</b>ortable",
+    "deck": "Summary 07",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k14cp9",
+    "front": "What are typical systems used for the build process?",
+    "back": "<ul><li>Make, CMake</li><li>Apahe Ant</li><li>Apache Maven</li><li>Gradle</li><li>CI systems: Jenkins, GitLab CI/CD</li></ul>",
+    "deck": "Summary 07",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k19lx3",
+    "front": "What are typical tasks fulfilled in a build process?",
+    "back": "<ul><li>Fetch code from version control</li><li>Compile code</li><li>Run unit tests</li><li>Link libraries</li><li>Generate artifacts (e.g. .jar, .exe)</li><li>Create documentation</li><li>Archvie logs</li></ul>",
+    "deck": "Summary 07",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1nza8",
+    "front": "How does dependency management work in a modern build system?",
+    "back": "<div>Modern tools (like Maven, Gradle, pip) manage dependencies by:</div><div><ul><li>Declaring them in config files (<i>pom.xml</i>, <i>build.gradle</i>, <i>requirements.txt</i>)<br></li><li><div>Automatically downloading required versions</div> <div></div></li><li><div>Handling version conflicts and scopes (test, runtime, etc.)<br></div></li></ul></div> <div></div>",
+    "deck": "Summary 07",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1i7hu",
+    "front": "What is a coverage report?",
+    "back": "A coverage report shows how much of the source code is tested by automated tests (e.g., unit tests), identifying tested vs untested code",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k14juz",
+    "front": "Why is a high coverage grade good?",
+    "back": "<ul><li>Ensure code is thoroughly tested</li><li>Detect dead/unreachable code</li><li>Reduce bugs and improve reliability<br></li></ul>",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k17x7x",
+    "front": "Headless vs Headful Web Testing",
+    "back": "<ul><li>Headful: UI is rendered</li><li>Headless: No GUI, runs faster and ideal for CI/CD pipelines</li></ul>",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1g9je",
+    "front": "What is remote debugging?&nbsp;<div></div>",
+    "back": "Debugging a program running on a different machine than the one running the debugger",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1n3pi",
+    "front": "What is an assertion?",
+    "back": "<ul><li>A condition in code that must always be true</li><li>Used to detect bugs during development and testing</li></ul>",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1lmto",
+    "front": "Why perform memory analysis?",
+    "back": "To detect memory leaks or inefficient usage, which can crash the system over time",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k12bt8",
+    "front": "Advantages of a logging system:",
+    "back": "<ul><li>Easier debugging</li><li>Error tracking</li><li>System monitoring</li><li>Audit trail creation</li></ul>",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k16ooy",
+    "front": "Typical logging appenders",
+    "back": "<ul><li>Console</li><li>File</li><li>E-Mail (SMTP)</li><li>Database (JDBC)</li><li>Syslog</li><li>Socket</li></ul>",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k12mdx",
+    "front": "What is Continuous Integration (CI)?",
+    "back": "Practice of frequent code integration into a shared repo, with automated builds and tests to catch issues early",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k13q5c",
+    "front": "How to define a CI pipeline in GitLab?",
+    "back": "<div>By adding a <i>.gitlab-ci.yml </i>file that defines stages (build, test, deploy) and scripts for each job.</div>",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1n9pk",
+    "front": "What should be used as input for unit tests?",
+    "back": "Isolated units like functions or methods, using mocked data or parameters",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1zr3t",
+    "front": "What should be used as input for system tests?",
+    "back": "Entire system with real or simulated external components (DB, APIs, UI) using realistic user scenarios",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1xxbx",
+    "front": "What are typical issues when it comes to documentation?&nbsp;",
+    "back": "<ul><li>No documentation created at all</li><li>Outdated documentation that quickly becomes irrelelvant</li><li>Unnecessary documentation that nobody reads or uses</li><li>Ignored documentation, even if it exists and is usful</li></ul><div><div><div><div><div><div><div><div><div><div>These problems reduce communication efficiency, increase onboarding time, and raise maintenance difficulty.</div></div></div></div></div><div><div></div></div><div><div></div></div></div><div><div></div></div></div></div></div><div></div></div>",
+    "deck": "Summary 09",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1w46k",
+    "front": "What is the CIA triangle?",
+    "back": "<ul><li>Confidentiality - Prevent unauthorized access to data</li><li>Integrity - Ensure data is not altered or tampered with</li><li>Availability - Ensure systems and data are accessible when neeeded</li></ul>",
+    "deck": "Summary 10",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1uypr",
+    "front": "Difference between Authentication and Authorization",
+    "back": "<div><ul><li><b>Authentication: </b>Confirms who you are (e.g., login with password)</li><li><b>Authorization:</b> Defines what you’re allowed to do (e.g., access admin panel)</li></ul></div>",
+    "deck": "Summary 10",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1iiop",
+    "front": "What types of attacks do you know?",
+    "back": "<ul><li>Injection attacks (e.g. SQL injection)</li><li>Cross-site scripting (XSS)</li><li>Session hijacking</li><li>Denial of Service (DOS)</li><li>Brute-force attacks</li></ul>",
+    "deck": "Summary 10",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1fja8",
+    "front": "Difference between Symmetric and Asymmetric Encryption",
+    "back": "Symmetric encryption uses the same key for both encryption and decryption. In contrast, asymmetric encryption uses a pair of keys—a public key to encrypt and a private key to decrypt.",
+    "deck": "Summary 10",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1dk86",
+    "front": "What does Analytical Validation mean?",
+    "back": "It verifies that the software correctly processes input data to produce accurate, reliable, and precise outputs as intended (e.g., algorithm correctness, data handling)",
+    "deck": "Summary 11",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1baah",
+    "front": "What does Clinical Validation mean?",
+    "back": "It confirms that the software achieves its intended medical purpose in the target user population within a real clinical context",
+    "deck": "Summary 11",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1e616",
+    "front": "When is an IDE required to test a medical device?",
+    "back": "An Investigational Device Exemption (IDE) is required when testing a significant-risk medical device on humans, to allow its use in clinical trials before full regulatory approval",
+    "deck": "Summary 11",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1y5v1",
+    "front": "What does decommissioning mean?",
+    "back": "Decommissioning (or software retirement) is the planned discontinuation of a software product, including stopping support, migrating data, and removing it from operation",
+    "deck": "Summary 11",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1d2yk",
+    "front": "What are typical mechanisms to deploy a piece of software?",
+    "back": "<ul><li>Mobile app stores</li><li>Rich client installers</li><li>Web applications</li><li>Docker containers</li><li>Package managers (pip, npm)</li></ul>",
+    "deck": "Summary 11",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1jm52",
+    "front": "Why is maintenance important (even if there is no change in the software itself)?",
+    "back": "Because of evolving regulations, security vulnerabilities, infrastructure changes, and user environment updates, maintenance ensures the system stays compliant, secure, and functional",
+    "deck": "Summary 11",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1s30z",
+    "front": "Please explain the <b>Waterfall </b>model (what, when to use it, advantages/disadvantages)",
+    "back": "<b>What:</b><br> A linear, step-by-step software development model with phases like:<br>Requirements → Design → Implementation → Testing → Deployment → Maintenance.<br><br><b>When:</b><br><ul><li><div>Requirements are clear and fixed</div></li><li><div>High need for documentation or regulatory compliance</div></li><li><div>Projects are small or simple</div></li></ul><div><b>Pros:</b></div><div><div><ul><li>Easy to understand and manage</li><li>Clear structure and milestones</li><li>Good for well-defined projects</li></ul></div>  </div><div><b>Cons:</b></div><div><div><ul><li>Inflexible to changes</li><li>Testing happens late</li><li>Poor fit for complex or evolving projects</li></ul></div>  </div><div><br></div>",
+    "deck": "Summary 02",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1bah0",
+    "front": "Please explain the <b>V-Model&nbsp;</b>model (what, when to use it, advantages/disadvantages)",
+    "back": "<b>What:</b><br>An extension of the Waterfall model where each development phase has a corresponding testing phase, forming a \"V\" shape. Emphasizes validation at every stage.<br><br><b>When:</b><br><div><div><ul><li>Projects with clear, stable requirements</li><li>Safety-critical systems (e.g. medical, aerospace)</li><li>Need for early and rigorous testing</li></ul></div>  </div><div><br></div><div><b>Pros:</b></div><div><div><ul><li>Early error detection</li><li>Strong quality assurance</li><li>Clear links between dev &amp; test phases</li></ul></div>  </div><div><br></div><div><b>Cons:</b></div><div><div><ul><li>Rigid and costly to change</li><li>Not suited for agile/uncertain projects</li></ul></div> </div><div><br></div>",
+    "deck": "Summary 02",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1qreh",
+    "front": "Please explain the <b>SCRUM&nbsp;</b>model (what, when to use it, advantages/disadvantages)",
+    "back": "<b>What:</b><br>An iterative, team-based Agile framework for developing complex products. Work is done in fixed-length cycles called Sprints (usually 1–4 weeks).<br><br><u>Key Roles:</u><br><div><ul><li>Product Owner – defines and prioritizes features (Product Backlog)</li><li>Scrum Master – facilitates the process, removes blockers</li><li>Development Team – builds the product</li></ul></div><b>When:</b><br><div><div><ul><li><div>Projects with changing or unclear requirements</div></li><li><div>Teams that value collaboration and flexibility</div></li><li><div>Fast-paced environments needing frequent delivery</div></li></ul></div></div><div><b>Pros:</b></div><div><ul><li><div>Adaptable to change</div></li><li><div>Encourages team communication</div></li><li><div>Frequent feedback improves product quality</div></li></ul></div><div><b>Cons:</b></div><div><div><ul><li><div>Needs experienced, disciplined teams</div></li><li><div>Less emphasis on documentation</div></li><li><div>Can be hard to scale for large teams</div></li></ul></div> </div><div><br></div>",
+    "deck": "Summary 02",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1txbs",
+    "front": "Please explain the <b>Unified Process</b> model (what, when to use it, advantages/disadvantages)",
+    "back": "<b>What:</b><br>An iterative and incremental software development framework that focuses on architecture, risk management, and use cases.<br><br><u>Phases:</u><br><div><ol><li><div>Inception – define scope and business case</div></li><li><div><div>Elaboration – design architecture, address high risks</div> <div></div></div></li><li><div>Construction – build the product incrementally</div></li><li><div>Transition – deliver to users, refine based on feedback</div></li></ol><div><b>When:</b></div><div><ul><li><div>Large, complex, or high-risk systems</div></li><li><div>Teams using object-oriented design (e.g., UML)</div></li><li><div>Projects needing formal processes with flexibility</div></li></ul></div></div><div><b>Pros:</b></div><div><ul><li><div>Risk-focused and architecture-driven</div></li><li><div>Scalable and customizable</div></li><li><div>Supports iterative development</div></li></ul></div><div><b>Cons:</b></div><div><div><ul><li><div>Can be complex and heavyweight</div></li><li><div>May be overkill for small projects</div></li><li><div>Needs training and tooling</div></li></ul></div> </div><div><br></div>",
+    "deck": "Summary 02",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1dmgm",
+    "front": "What is Configuration Management?",
+    "back": "<div>Configuration Management is a structured process used to:</div> <div><ul><li>Identify, organize, and control changes to software artifacts (like code, documentation, requirements)</li><li>Ensure consistency and traceability throughout the software lifecycle</li><li>Keep track of different versions, who changed what, when, and why</li></ul><div>It supports:</div></div><div><ul><li>Version Control</li><li>Change tracking</li><li>Release management</li><li>Auditability</li></ul><div>In regulated environments (like medical software), configuration management is mandatory to ensure compliance with standards like IEC 62304, FDA 21 CFR 820, and ISO 13485.<br></div></div>",
+    "deck": "Summary 03",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k15adk",
+    "front": "What are tags in Git?",
+    "back": "<div><div><ul><li>A named snapshot of the code at a specific point</li><li>Often used to mark releases (e.g., v1.0.0)</li><li>Tags are read-only references</li></ul></div>  </div>",
+    "deck": "Summary 03",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1ljbh",
+    "front": "What are important Git Operations?",
+    "back": "<div><div><ul><li><div><u>git clone:</u> copy a remote repo</div></li><li><div><u>git add: </u>stage changes</div></li><li><div><u>git commit: </u>save changes locally</div></li><li><div><u>git push: </u>upload to remote</div></li><li><div><u>git pull: </u>fetch updates from remote</div></li><li><div><u>git merge: </u>combine branches</div></li><li><div><u>git checkout: </u>switch versions or branches</div></li><li><div><u>git status: </u>see current changes</div></li></ul></div>  </div>",
+    "deck": "Summary 03",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1siyr",
+    "front": "Why are Branches imprtant?",
+    "back": "<div>Used to isolate development (e.g., features, bugfixes)</div> <div></div>",
+    "deck": "Summary 03",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1i20l",
+    "front": "What does the SRS bridge?",
+    "back": "Bridge between user needs and software design",
+    "deck": "Summary 05",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1gfr6",
+    "front": "What does the Technical System Design (TSD) bridge?",
+    "back": "Bridge between user needs and the process of coding",
+    "deck": "Summary 05",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1i59p",
+    "front": "What are Design Patterns?",
+    "back": "Reusable solution for a common problem (e.g. singleton, factory)",
+    "deck": "Summary 06",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1vc0x",
+    "front": "What kinds of UML do exist?",
+    "back": "<ul><li>Structure Diagram (e.g. Class diagram)</li><li>Behavior Diagram (e.g. Use Case diagram)</li></ul>",
+    "deck": "Summary 06",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1o1zs",
+    "front": "What are tools for Source Code Analysis?",
+    "back": "<ul><li>Sonar</li><li>PyLint</li></ul>",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1dalf",
+    "front": "What do the following terms mean?<br><br><ul><li>Debug</li><li>Assertions</li><li>Unit Testing</li><li>Web Testing</li><li>Load Tests</li><li>Logging</li><li>Continous integration</li></ul>",
+    "back": "<ul><li><b>Debug: </b>Debugging is the process of identifying and fixing errors or bugs in the software by analyzing code behavior and execution.&nbsp;<br><br></li><li><b>Assertions: </b>Assertions are conditions placed in the code to automatically check that certain assumptions hold true during execution.<br>&nbsp;</li><li><b>Unit Testing: </b>Unit testing involves testing individual components or functions of a program to ensure they work as expected in isolation.<br><br></li><li><b>Web Testing: </b>Web testing checks a web application for functionality, usability, compatibility, performance, and security.<br><br></li><li><b>Load Tests: </b>Load testing evaluates how a system performs under expected or heavy user loads to identify performance bottlenecks.<br>&nbsp;</li><li><b>Logging: </b>Logging records runtime events and messages from a program to help with monitoring, debugging, and audits.<br><br></li><li><b>Continous integration: </b>Continuous integration is the automated process of building and testing code every time changes are committed to a shared repository.</li></ul>",
+    "deck": "Summary 08",
+    "created": 1782442980001
+  },
+  {
+    "id": "mqucj1k1bogg",
+    "front": "Difference between Verification and Validation",
+    "back": "<b>Verification: </b>Specified requirements have been fullfilled<br><b>Validation:&nbsp;</b>Particular requirements for a specific intended use can be consistently fulfilled.",
+    "deck": "Summary 01",
+    "created": 1782442980001
+  }
+]
