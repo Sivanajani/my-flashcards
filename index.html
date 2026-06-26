@@ -4,207 +4,246 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Flashcards</title>
 <style>
 :root {
-  --bg: #0c0e14;
-  --surface: #13151f;
-  --card: #181b28;
-  --border: #252836;
-  --border2: #2e3147;
-  --accent: #7c6af7;
-  --accent2: #5ea5fa;
-  --text: #e8eaf2;
-  --muted: #7880a0;
-  --muted2: #4a5068;
-  --green: #3dd68c;
-  --red: #f06a6a;
+  --bg: #f0f2f8;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --border: #e2e5f0;
+  --border2: #d0d4e8;
+  --accent: #4f46e5;
+  --accent-light: #eef2ff;
+  --accent2: #6366f1;
+  --text: #1a1d2e;
+  --text2: #4b5063;
+  --muted: #8b90a8;
+  --muted2: #c0c4d8;
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --green-border: #bbf7d0;
+  --red: #dc2626;
+  --red-bg: #fff5f5;
+  --red-border: #fecaca;
+  --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
   --radius: 16px;
   --radius-sm: 10px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.5; overscroll-behavior: none; }
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.5; overscroll-behavior: none; }
 
 /* NAV */
-.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(12,14,20,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; height: 56px; gap: 8px; }
-.nav-logo { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0; }
-.nav-sync { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; flex-shrink: 0; }
-.nav-sync:hover { border-color: var(--accent); color: var(--accent); }
-.nav-sync.syncing { animation: spin 1s linear infinite; }
-.nav-settings { margin-left: auto; width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; flex-shrink: 0; }
-.nav-settings:hover { border-color: var(--accent); color: var(--accent); }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; height: 54px; gap: 10px; }
+.nav-logo { font-size: 16px; font-weight: 800; letter-spacing: -0.4px; color: var(--accent); flex-shrink: 0; }
+.nav-tabs { display: flex; gap: 2px; }
+.nav-tab { padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); border: none; background: none; transition: all 0.15s; }
+.nav-tab.active { background: var(--accent-light); color: var(--accent); }
+.nav-icon-btn { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+.nav-icon-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.nav-icon-btn svg { width: 16px; height: 16px; }
+.nav-icon-btn.syncing svg { animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* MODAL */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.active { display: flex; }
-.modal { background: var(--card); border: 1px solid var(--border2); border-radius: var(--radius); padding: 20px; width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; }
-.modal-title { font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
-.modal-close { width: 28px; height: 28px; border-radius: 7px; border: none; background: var(--surface); color: var(--muted); cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-.modal p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.modal { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 16px; box-shadow: var(--shadow); }
+.modal-title { font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
+.modal-close { width: 28px; height: 28px; border-radius: 7px; border: 1px solid var(--border); background: none; color: var(--muted); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.modal-close:hover { background: var(--bg); }
+.modal p { font-size: 12px; color: var(--text2); line-height: 1.7; }
 .modal p a { color: var(--accent); }
+.modal p b { color: var(--text); }
 .modal-row { display: flex; flex-direction: column; gap: 5px; }
 .modal-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); }
-.modal-input { background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; width: 100%; }
-.modal-input:focus { outline: none; border-color: var(--accent); }
-.modal-status { font-size: 12px; padding: 8px 10px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border); }
-.modal-status.ok { border-color: rgba(61,214,140,0.3); color: var(--green); }
-.modal-status.err { border-color: rgba(240,106,106,0.3); color: var(--red); }
+.modal-input { background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; width: 100%; }
+.modal-input:focus { outline: none; border-color: var(--accent); background: #fff; }
+.modal-status { font-size: 12px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); }
+.modal-status.ok { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
+.modal-status.err { background: var(--red-bg); border-color: var(--red-border); color: var(--red); }
 .modal-btns { display: flex; gap: 8px; }
-.modal-btn-save { flex: 1; padding: 11px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
-.modal-btn-sec { padding: 11px 14px; background: var(--surface); color: var(--muted); border: 1px solid var(--border2); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
-.nav-tabs { display: flex; gap: 2px; }
-.nav-tab { padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); border: none; background: none; transition: all 0.15s; }
-.nav-tab.active { background: var(--surface); color: var(--text); }
+.modal-btn-save { flex: 1; padding: 11px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; }
+.modal-btn-save:hover { opacity: 0.9; }
+.modal-btn-sec { padding: 11px 16px; background: var(--bg); color: var(--text2); border: 1px solid var(--border2); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
 
 /* PAGES */
-.page { display: none; padding-top: 56px; min-height: 100vh; }
+.page { display: none; padding-top: 54px; min-height: 100vh; }
 .page.active { display: block; }
 
 /* SETUP BANNER */
-.setup-banner { margin: 16px; padding: 16px; background: rgba(124,106,247,0.08); border: 1px solid rgba(124,106,247,0.25); border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 10px; }
+.setup-banner { margin: 16px; padding: 16px; background: var(--accent-light); border: 1px solid rgba(79,70,229,0.2); border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 10px; }
 .setup-banner h3 { font-size: 14px; font-weight: 700; color: var(--accent); }
-.setup-banner p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.setup-banner p { font-size: 13px; color: var(--text2); line-height: 1.6; }
 .setup-row { display: flex; gap: 8px; }
-.setup-input { flex: 1; background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 13px; padding: 9px 11px; font-family: inherit; }
+.setup-input { flex: 1; background: #fff; border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 13px; padding: 9px 11px; font-family: inherit; }
 .setup-input:focus { outline: none; border-color: var(--accent); }
-.setup-btn { padding: 9px 14px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.setup-btn { padding: 9px 16px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
 
 /* HOME */
-.home-wrap { padding: 16px 16px 100px; max-width: 640px; margin: 0 auto; }
+.home-wrap { padding: 20px 16px 100px; max-width: 640px; margin: 0 auto; }
 .section-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 20px 0 10px; }
-.deck-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; margin-bottom: 8px; transition: border-color 0.15s, background 0.15s; }
-.deck-card:hover, .deck-card:active { border-color: var(--accent); background: rgba(124,106,247,0.06); }
-.deck-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.deck-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; margin-bottom: 8px; transition: all 0.15s; box-shadow: var(--shadow-sm); }
+.deck-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(79,70,229,0.12); transform: translateY(-1px); }
+.deck-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); }
+.deck-icon svg { width: 20px; height: 20px; }
 .deck-info { flex: 1; min-width: 0; }
-.deck-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.deck-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
 .deck-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .deck-actions { display: flex; gap: 6px; }
-.deck-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.15s; }
-.deck-btn:hover { border-color: var(--accent); color: var(--accent); }
-.deck-btn.danger:hover { border-color: var(--red); color: var(--red); }
-.empty-state { text-align: center; padding: 40px 20px; color: var(--muted); }
-.empty-state .icon { font-size: 44px; margin-bottom: 12px; }
-.empty-state p { font-size: 13px; line-height: 1.6; }
+.deck-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border2); background: var(--bg); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.deck-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.deck-btn.danger:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+.deck-btn svg { width: 14px; height: 14px; }
+.empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+.empty-state .icon { width: 56px; height: 56px; margin: 0 auto 16px; background: var(--accent-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+.empty-state .icon svg { width: 28px; height: 28px; }
+.empty-state p { font-size: 13px; line-height: 1.7; }
 
 /* LEARN */
-.learn-wrap { padding: 16px 16px 24px; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; min-height: calc(100vh - 56px); }
+.learn-wrap { padding: 16px 16px 32px; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; min-height: calc(100vh - 54px); }
 .learn-header { display: flex; align-items: center; gap: 10px; }
-.learn-back { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--border2); background: var(--surface); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.learn-deck-name { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.learn-back { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--border2); background: var(--surface); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
+.learn-back:hover { border-color: var(--accent); color: var(--accent); }
+.learn-back svg { width: 16px; height: 16px; }
+.learn-deck-name { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
 .learn-stats { margin-left: auto; display: flex; gap: 10px; flex-shrink: 0; }
-.learn-stat { font-size: 13px; font-weight: 700; }
+.learn-stat { font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
 .learn-stat.green { color: var(--green); }
 .learn-stat.red { color: var(--red); }
-.prog-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
-.prog-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width 0.4s ease; }
+.learn-stat svg { width: 13px; height: 13px; }
+.prog-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.prog-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease; }
 
-/* CARD */
-.card-scene { flex: 1; min-height: 280px; perspective: 1400px; cursor: pointer; }
-.card-inner { width: 100%; height: 100%; min-height: 280px; transform-style: preserve-3d; transition: transform 0.42s cubic-bezier(.4,0,.2,1); border-radius: var(--radius); position: relative; }
-.card-scene.flipped .card-inner { transform: rotateY(180deg); }
-.card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border); padding: 22px 20px 18px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
-.card-face.back { transform: rotateY(180deg); }
-.card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); }
-.card-body { flex: 1; font-size: 15px; line-height: 1.7; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.card-body ul, .card-body ol { padding-left: 18px; }
-.card-body li { margin: 3px 0; }
-.card-body b, .card-body strong { color: #c4cbff; }
-.card-body u { text-decoration-color: var(--accent); }
-.card-body i { color: var(--muted); }
-.card-body img { display: none; }
-.card-tap-hint { font-size: 12px; color: var(--muted2); text-align: center; padding-top: 4px; }
+/* CARD - new flat reveal design */
+.card-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.card-question-area { padding: 24px 22px 20px; }
+.card-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+.card-counter { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0; text-transform: none; }
+.card-text { font-size: 16px; line-height: 1.7; color: var(--text); }
+.card-text ul, .card-text ol { padding-left: 20px; }
+.card-text li { margin: 4px 0; }
+.card-text b, .card-text strong { color: var(--accent); }
+.card-text img { display: none; }
+.card-divider { height: 1px; background: var(--border); margin: 0; }
+.card-answer-area { padding: 20px 22px 22px; transition: all 0.25s ease; }
+.card-answer-area.hidden-answer .card-answer-content { opacity: 0; filter: blur(6px); user-select: none; pointer-events: none; }
+.card-answer-area .card-label { color: var(--text2); }
+.card-answer-content { transition: opacity 0.25s ease, filter 0.25s ease; }
+.tts-btn { width: 28px; height: 28px; border-radius: 7px; border: 1px solid var(--border2); background: var(--bg); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+.tts-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.tts-btn.speaking { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.tts-btn svg { width: 13px; height: 13px; }
 
-.flip-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; cursor: pointer; }
+.flip-btn { width: 100%; padding: 14px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; }
+.flip-btn:hover { opacity: 0.9; }
+.flip-btn.secondary { background: var(--bg); color: var(--text2); border: 1px solid var(--border2); font-weight: 600; }
+.flip-btn.secondary:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
 .rating-btns { display: flex; gap: 10px; }
-.rating-btn { flex: 1; padding: 13px 8px; border-radius: var(--radius-sm); border: 1px solid; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; transition: transform 0.1s; }
+.rating-btn { flex: 1; padding: 13px 8px; border-radius: var(--radius-sm); border: 1px solid; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: transform 0.1s, opacity 0.1s; }
 .rating-btn:active { transform: scale(0.96); }
-.rating-btn .emoji { font-size: 20px; }
-.rating-btn .label { font-size: 11px; letter-spacing: 0.4px; }
-.btn-wrong { background: rgba(240,106,106,0.1); border-color: rgba(240,106,106,0.3); color: var(--red); }
-.btn-skip { background: var(--surface); border-color: var(--border2); color: var(--muted); flex: 0.7 !important; }
-.btn-right { background: rgba(61,214,140,0.1); border-color: rgba(61,214,140,0.3); color: var(--green); }
+.rating-btn .r-icon { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; }
+.rating-btn .r-icon svg { width: 18px; height: 18px; }
+.rating-btn .label { font-size: 11px; letter-spacing: 0.3px; }
+.btn-wrong { background: var(--red-bg); border-color: var(--red-border); color: var(--red); }
+.btn-wrong:hover { background: #fee2e2; }
+.btn-skip { background: var(--bg); border-color: var(--border2); color: var(--text2); flex: 0.7 !important; }
+.btn-skip:hover { border-color: var(--accent); color: var(--accent); }
+.btn-right { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
+.btn-right:hover { background: #dcfce7; }
 .key-hint { text-align: center; font-size: 11px; color: var(--muted2); }
 
 /* DONE */
-.done-screen { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 32px 20px; text-align: center; flex: 1; }
+.done-screen { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 40px 20px; text-align: center; flex: 1; }
 .done-screen.active { display: flex; }
-.done-emoji { font-size: 56px; }
-.done-title { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
-.done-sub { font-size: 13px; color: var(--muted); }
-.score-grid { display: flex; gap: 24px; margin: 6px 0; }
-.score-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.score-num { font-size: 30px; font-weight: 800; letter-spacing: -1px; }
+.done-icon { width: 72px; height: 72px; border-radius: 20px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; color: var(--accent); }
+.done-icon svg { width: 36px; height: 36px; }
+.done-title { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
+.done-sub { font-size: 14px; color: var(--text2); }
+.score-grid { display: flex; gap: 28px; margin: 4px 0; }
+.score-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.score-num { font-size: 32px; font-weight: 800; letter-spacing: -1px; }
 .score-lbl { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; }
-.done-btns { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 260px; }
-.done-btn { padding: 13px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; cursor: pointer; border: none; }
-.done-btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; }
-.done-btn.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border2); }
+.done-btns { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 280px; }
+.done-btn { padding: 13px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.15s; }
+.done-btn svg { width: 16px; height: 16px; }
+.done-btn.primary { background: var(--accent); color: #fff; }
+.done-btn.primary:hover { opacity: 0.9; }
+.done-btn.secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border2); }
+.done-btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
 
 /* MANAGE */
-.manage-wrap { padding: 16px 16px 100px; max-width: 640px; margin: 0 auto; }
-.add-card-form { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.manage-wrap { padding: 20px 16px 100px; max-width: 640px; margin: 0 auto; }
+.add-card-form { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow-sm); }
 .form-row { display: flex; flex-direction: column; gap: 5px; }
 .form-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); }
-.form-input, .form-textarea, .form-select { background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; transition: border-color 0.15s; width: 100%; resize: none; }
-.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); }
-.form-textarea { min-height: 78px; }
+.form-input, .form-textarea, .form-select { background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; transition: border-color 0.15s; width: 100%; resize: none; }
+.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); background: #fff; }
+.form-textarea { min-height: 80px; }
 .form-actions { display: flex; gap: 8px; }
-.btn-primary { flex: 1; padding: 11px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
-.btn-secondary { padding: 11px 14px; background: var(--surface); color: var(--muted); border: 1px solid var(--border2); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.btn-primary { flex: 1; padding: 11px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; }
+.btn-primary:hover { opacity: 0.9; }
+.btn-secondary { padding: 11px 14px; background: var(--bg); color: var(--text2); border: 1px solid var(--border2); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 .new-deck-row { display: flex; gap: 8px; }
-.import-box { background: var(--card); border: 1px dashed var(--border2); border-radius: var(--radius); padding: 24px 20px; text-align: center; cursor: pointer; transition: border-color 0.15s, background 0.15s; margin-top: 6px; }
-.import-box:hover { border-color: var(--accent); background: rgba(124,106,247,0.04); }
-.import-icon { font-size: 32px; margin-bottom: 6px; }
-.import-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.import-box { background: var(--card); border: 2px dashed var(--border2); border-radius: var(--radius); padding: 28px 20px; text-align: center; cursor: pointer; transition: all 0.15s; margin-top: 6px; box-shadow: var(--shadow-sm); }
+.import-box:hover { border-color: var(--accent); background: var(--accent-light); }
+.import-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: var(--accent); }
+.import-icon svg { width: 24px; height: 24px; }
+.import-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
 .import-sub { font-size: 12px; color: var(--muted); }
 #apkgInput { display: none; }
-.card-list-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 13px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; }
-.card-list-front { font-size: 13px; color: var(--text); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.card-list-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; box-shadow: var(--shadow-sm); }
+.card-list-front { font-size: 13px; color: var(--text); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; }
 .card-list-front * { font-size: 13px !important; }
-.card-list-deck { font-size: 10px; color: var(--muted); margin-top: 3px; }
-.card-del { width: 28px; height: 28px; border-radius: 7px; border: none; background: none; color: var(--muted2); cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; transition: color 0.15s; }
-.card-del:hover { color: var(--red); }
+.card-list-deck { font-size: 10px; color: var(--muted); margin-top: 3px; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; }
+.card-del { width: 28px; height: 28px; border-radius: 7px; border: none; background: none; color: var(--muted2); cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
+.card-del:hover { color: var(--red); background: var(--red-bg); }
+.card-del svg { width: 14px; height: 14px; }
 
 /* TOAST */
-.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1px solid var(--border2); color: var(--text); padding: 10px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; z-index: 999; transition: transform 0.3s cubic-bezier(.4,0,.2,1); white-space: nowrap; pointer-events: none; }
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--text); color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; z-index: 999; transition: transform 0.3s cubic-bezier(.4,0,.2,1); white-space: nowrap; pointer-events: none; }
 .toast.show { transform: translateX(-50%) translateY(0); }
-
-
-/* MODAL */
-.nav-settings { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; flex-shrink: 0; }
-.nav-settings:hover { border-color: var(--accent); color: var(--accent); }
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-.modal-overlay.active { display: flex; }
-.modal { background: var(--card); border: 1px solid var(--border2); border-radius: var(--radius); padding: 20px; width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; }
-.modal-title { font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
-.modal-close { width: 28px; height: 28px; border-radius: 7px; border: none; background: var(--surface); color: var(--muted); cursor: pointer; font-size: 14px; }
-.modal p { font-size: 12px; color: var(--muted); line-height: 1.6; }
-.modal-row { display: flex; flex-direction: column; gap: 5px; }
-.modal-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); }
-.modal-input { background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; width: 100%; }
-.modal-input:focus { outline: none; border-color: var(--accent); }
-.modal-status { font-size: 12px; padding: 8px 10px; border-radius: 7px; }
-.modal-status.ok { background: rgba(61,214,140,0.1); border: 1px solid rgba(61,214,140,0.3); color: var(--green); }
-.modal-status.err { background: rgba(240,106,106,0.1); border: 1px solid rgba(240,106,106,0.3); color: var(--red); }
-.modal-btns { display: flex; gap: 8px; }
-.modal-btn-save { flex: 1; padding: 11px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
-.modal-btn-sec { padding: 11px 14px; background: var(--surface); color: var(--muted); border: 1px solid var(--border2); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
 .hidden { display: none !important; }
 </style>
 </head>
 <body>
 
+<!-- SVG SPRITE -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ic-cards" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="13" rx="2"/><path d="M6 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-2"/></symbol>
+  <symbol id="ic-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+  <symbol id="ic-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+  <symbol id="ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></symbol>
+  <symbol id="ic-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="ic-skip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+  <symbol id="ic-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
+  <symbol id="ic-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></symbol>
+  <symbol id="ic-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+  <symbol id="ic-volume" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="ic-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="11"/><path d="M6 3H18l-1 7a5 5 0 0 1-10 0Z"/><path d="M4 3c0 0 0 4 2 7"/><path d="M20 3c0 0 0 4-2 7"/></symbol>
+</svg>
+
 <nav class="nav">
-  <div class="nav-logo">⚡ Cards</div>
+  <div class="nav-logo">Cards</div>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('home')">Decks</button>
-    <button class="nav-tab" onclick="showPage('manage')">+ Verwalten</button>
+    <button class="nav-tab" onclick="showPage('manage')">Verwalten</button>
   </div>
   <div style="margin-left:auto;display:flex;gap:6px">
-    <button class="nav-sync" id="syncBtn" onclick="syncNow()" title="Sync">↻</button>
-    <button class="nav-settings" onclick="openSettings()" title="Einstellungen">⚙️</button>
+    <button class="nav-icon-btn" id="syncBtn" onclick="syncNow()" title="Synchronisieren">
+      <svg><use href="#ic-sync"/></svg>
+    </button>
+    <button class="nav-icon-btn" onclick="openSettings()" title="Einstellungen">
+      <svg><use href="#ic-settings"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -212,13 +251,13 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 <div class="modal-overlay" id="settingsModal" onclick="closeSettingsOutside(event)">
   <div class="modal">
     <div class="modal-title">
-      ⚙️ GitHub-Sync Einstellungen
-      <button class="modal-close" onclick="closeSettings()">✕</button>
+      GitHub-Sync Einstellungen
+      <button class="modal-close" onclick="closeSettings()">&#x2715;</button>
     </div>
-    <p>Token erstellen: github.com → Settings → Developer settings → Fine-grained tokens → <b>my-flashcards</b> auswählen → Permissions → Contents: <b>Read and write</b></p>
+    <p>Token erstellen: github.com &rarr; Settings &rarr; Developer settings &rarr; Fine-grained tokens &rarr; <b>my-flashcards</b> &rarr; Permissions &rarr; Contents: <b>Read and write</b></p>
     <div class="modal-row">
       <div class="modal-label">GitHub Token</div>
-      <input class="modal-input" id="modalToken" type="password" placeholder="github_pat_xxx…">
+      <input class="modal-input" id="modalToken" type="password" placeholder="github_pat_xxx&hellip;">
     </div>
     <div class="modal-row">
       <div class="modal-label">Repository</div>
@@ -236,9 +275,9 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 <div class="page active" id="page-home">
   <div class="home-wrap">
     <div id="setupBannerHome" class="setup-banner hidden">
-      <h3>⚙️ GitHub-Sync einrichten</h3>
+      <h3>GitHub-Sync einrichten</h3>
       <p>Gib dein GitHub Token und Repo ein, damit deine Karten geräteübergreifend gespeichert werden.<br>
-         Token erstellen: <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained → Contents: Read & Write</strong></p>
+         Token: <strong>github.com &rarr; Settings &rarr; Developer settings &rarr; Personal access tokens &rarr; Fine-grained &rarr; Contents: Read &amp; Write</strong></p>
       <div class="setup-row">
         <input class="setup-input" id="ghToken" type="password" placeholder="ghp_xxx... (GitHub Token)">
       </div>
@@ -250,7 +289,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
     <div class="section-title">Deine Decks</div>
     <div id="deckList"></div>
     <div class="empty-state hidden" id="emptyDecks">
-      <div class="icon">📚</div>
+      <div class="icon"><svg><use href="#ic-book"/></svg></div>
       <p>Noch keine Karten.<br>Geh zu "Verwalten" um Karten hinzuzufügen oder ein Anki-Deck zu importieren.</p>
     </div>
   </div>
@@ -260,42 +299,69 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 <div class="page" id="page-learn">
   <div class="learn-wrap">
     <div class="learn-header">
-      <button class="learn-back" onclick="backToHome()">←</button>
+      <button class="learn-back" onclick="backToHome()"><svg><use href="#ic-back"/></svg></button>
       <div class="learn-deck-name" id="learnDeckName">Deck</div>
       <div class="learn-stats">
-        <span class="learn-stat green" id="learnRight">✅ 0</span>
-        <span class="learn-stat red" id="learnWrong">❌ 0</span>
+        <span class="learn-stat green" id="learnRight"><svg><use href="#ic-check"/></svg> 0</span>
+        <span class="learn-stat red" id="learnWrong"><svg><use href="#ic-x"/></svg> 0</span>
       </div>
     </div>
     <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
 
-    <div class="card-scene" id="cardScene" onclick="flipCard()">
-      <div class="card-inner">
-        <div class="card-face front">
-          <div class="card-tag">Frage · <span id="cardCounter">1 / 1</span></div>
-          <div class="card-body" id="frontBody"></div>
-          <div class="card-tap-hint">antippen zum umdrehen</div>
+    <div class="card-wrap" id="cardWrap">
+      <!-- Question always visible -->
+      <div class="card-question-area">
+        <div class="card-label">
+          <span>Frage</span>
+          <span style="display:flex;align-items:center;gap:8px">
+            <span class="card-counter" id="cardCounter">1 / 1</span>
+            <button class="tts-btn" id="ttsFrontBtn" onclick="speakFront(event)" title="Vorlesen">
+              <svg><use href="#ic-volume"/></svg>
+            </button>
+          </span>
         </div>
-        <div class="card-face back">
-          <div class="card-tag">Antwort</div>
-          <div class="card-body" id="backBody"></div>
-          <div class="card-tap-hint">wie gut wusstest du es?</div>
+        <div class="card-text" id="frontBody"></div>
+      </div>
+
+      <!-- Divider -->
+      <div class="card-divider"></div>
+
+      <!-- Answer — blurred until revealed -->
+      <div class="card-answer-area hidden-answer" id="answerArea">
+        <div class="card-label">
+          <span style="color:var(--text2)">Antwort</span>
+          <button class="tts-btn" id="ttsBackBtn" onclick="speakBack(event)" title="Antwort vorlesen" style="display:none">
+            <svg><use href="#ic-volume"/></svg>
+          </button>
+        </div>
+        <div class="card-answer-content" id="answerContent">
+          <div class="card-text" id="backBody"></div>
         </div>
       </div>
     </div>
 
-    <button class="flip-btn" id="flipBtn" onclick="flipCard()">Antwort anzeigen</button>
+    <button class="flip-btn" id="flipBtn" onclick="revealAnswer()">Antwort anzeigen</button>
+    <button class="flip-btn secondary hidden" id="hideBtn" onclick="hideAnswer()">Antwort verbergen</button>
 
     <div class="rating-btns hidden" id="ratingBtns">
-      <button class="rating-btn btn-wrong" onclick="rate(false)"><span class="emoji">❌</span><span class="label">Nochmal</span></button>
-      <button class="rating-btn btn-skip" onclick="skipCard()"><span class="emoji">→</span><span class="label">Skip</span></button>
-      <button class="rating-btn btn-right" onclick="rate(true)"><span class="emoji">✅</span><span class="label">Gewusst</span></button>
+      <button class="rating-btn btn-wrong" onclick="rate(false)">
+        <span class="r-icon"><svg><use href="#ic-x"/></svg></span>
+        <span class="label">Nochmal</span>
+      </button>
+      <button class="rating-btn btn-skip" onclick="skipCard()">
+        <span class="r-icon"><svg><use href="#ic-skip"/></svg></span>
+        <span class="label">Skip</span>
+      </button>
+      <button class="rating-btn btn-right" onclick="rate(true)">
+        <span class="r-icon"><svg><use href="#ic-check"/></svg></span>
+        <span class="label">Gewusst</span>
+      </button>
     </div>
 
-    <div class="key-hint">Leertaste = umdrehen · ← Nochmal · → Gewusst</div>
+    <div class="key-hint">Leertaste = Antwort &middot; &larr; Nochmal &middot; &rarr; Gewusst</div>
 
     <div class="done-screen" id="doneScreen">
-      <div class="done-emoji" id="doneEmoji">🎉</div>
+      <div class="done-icon" id="doneIcon"><svg><use href="#ic-trophy"/></svg></div>
       <div class="done-title" id="doneTitle">Fertig!</div>
       <div class="done-sub" id="doneSub"></div>
       <div class="score-grid">
@@ -304,9 +370,15 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
         <div class="score-item"><div class="score-num" style="color:var(--accent)" id="donePct">—</div><div class="score-lbl">Quote</div></div>
       </div>
       <div class="done-btns">
-        <button class="done-btn primary" onclick="restartDeck()">🔄 Nochmal</button>
-        <button class="done-btn secondary" id="wrongBtn" onclick="restartWrong()">❌ Nur falsche</button>
-        <button class="done-btn secondary" onclick="backToHome()">← Zurück</button>
+        <button class="done-btn primary" onclick="restartDeck()">
+          <svg><use href="#ic-repeat"/></svg> Nochmal
+        </button>
+        <button class="done-btn secondary" id="wrongBtn" onclick="restartWrong()">
+          <svg><use href="#ic-x"/></svg> Nur falsche
+        </button>
+        <button class="done-btn secondary" onclick="backToHome()">
+          <svg><use href="#ic-back"/></svg> Zurück
+        </button>
       </div>
     </div>
   </div>
@@ -316,8 +388,8 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 <div class="page" id="page-manage">
   <div class="manage-wrap">
     <div id="setupBannerManage" class="setup-banner hidden">
-      <h3>⚙️ GitHub-Sync einrichten</h3>
-      <p>Token: <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained → Contents: Read & Write</strong></p>
+      <h3>GitHub-Sync einrichten</h3>
+      <p>Token: <strong>github.com &rarr; Settings &rarr; Developer settings &rarr; Personal access tokens &rarr; Fine-grained &rarr; Contents: Read &amp; Write</strong></p>
       <div class="setup-row">
         <input class="setup-input" id="ghToken2" type="password" placeholder="ghp_xxx... (Token)">
       </div>
@@ -336,17 +408,17 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
           <button class="btn-secondary" onclick="toggleNewDeck()">+ Neu</button>
         </div>
         <div class="new-deck-row hidden" id="newDeckRow">
-          <input class="form-input" id="newDeckName" placeholder="Deck-Name…" style="flex:1">
+          <input class="form-input" id="newDeckName" placeholder="Deck-Name&hellip;" style="flex:1">
           <button class="btn-secondary" onclick="createDeck()">OK</button>
         </div>
       </div>
       <div class="form-row">
         <label class="form-label">Vorderseite (Frage)</label>
-        <textarea class="form-textarea" id="cardFront" placeholder="Was ist…?"></textarea>
+        <textarea class="form-textarea" id="cardFront" placeholder="Was ist&hellip;?"></textarea>
       </div>
       <div class="form-row">
         <label class="form-label">Rückseite (Antwort)</label>
-        <textarea class="form-textarea" id="cardBack" placeholder="Antwort…"></textarea>
+        <textarea class="form-textarea" id="cardBack" placeholder="Antwort&hellip;"></textarea>
       </div>
       <div class="form-actions">
         <button class="btn-secondary" onclick="clearForm()">Leeren</button>
@@ -354,17 +426,17 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
       </div>
     </div>
 
-    <div class="section-title" style="margin-top:22px">Anki importieren (.apkg)</div>
+    <div class="section-title" style="margin-top:24px">Anki importieren (.apkg)</div>
     <div class="import-box" onclick="document.getElementById('apkgInput').click()">
-      <div class="import-icon">📦</div>
+      <div class="import-icon"><svg><use href="#ic-upload"/></svg></div>
       <div class="import-title">Anki-Datei auswählen</div>
-      <div class="import-sub">.apkg — wird importiert und direkt auf GitHub gespeichert</div>
+      <div class="import-sub">.apkg &mdash; wird importiert und direkt auf GitHub gespeichert</div>
     </div>
     <input type="file" id="apkgInput" accept=".apkg,.zip" onchange="importApkg(event)">
 
-    <div class="section-title" style="margin-top:22px">
-      Karten (<span id="cardCount">0</span>)
-      <button class="btn-secondary" style="float:right;padding:4px 10px;font-size:11px;margin-top:-2px" onclick="deleteAll()">Alle löschen</button>
+    <div class="section-title" style="margin-top:24px;display:flex;align-items:center;justify-content:space-between">
+      <span>Karten (<span id="cardCount">0</span>)</span>
+      <button class="btn-secondary" style="padding:4px 10px;font-size:11px" onclick="deleteAll()">Alle löschen</button>
     </div>
     <div id="cardListEl"></div>
   </div>
@@ -375,7 +447,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"></script>
 <script>
-// ── CONFIG (localStorage, nicht GitHub) ──
+// ── CONFIG ──
 const CFG_KEY = 'flashcards_config';
 const GH_FILE = 'cards.json';
 
@@ -387,71 +459,39 @@ function saveConfig_() {
 }
 
 let cfg = loadConfig();
+let cards = [];
+let ghSha = null;
 
-// ── CARDS DATA ──
-let cards = []; // [{id, front, back, deck, created}]
-let ghSha = null; // SHA of cards.json on GitHub (needed for updates)
-
-// ── GITHUB API ──
+// ── GITHUB ──
 function ghHeaders() {
-  return {
-    'Authorization': `token ${cfg.token}`,
-    'Accept': 'application/vnd.github.v3+json',
-    'Content-Type': 'application/json'
-  };
+  return { 'Authorization': `token ${cfg.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
 }
-
-function ghUrl(path) {
-  return `https://api.github.com/repos/${cfg.repo}/contents/${path}`;
-}
+function ghUrl(path) { return `https://api.github.com/repos/${cfg.repo}/contents/${path}`; }
 
 async function ghGet() {
   if (!cfg.token || !cfg.repo) return false;
   try {
     const r = await fetch(ghUrl(GH_FILE), { headers: ghHeaders() });
-    if (r.status === 404) {
-      // File doesn't exist yet — start fresh
-      ghSha = null;
-      cards = [];
-      return true;
-    }
+    if (r.status === 404) { ghSha = null; cards = []; return true; }
     if (!r.ok) throw new Error(`GitHub: ${r.status}`);
     const j = await r.json();
     ghSha = j.sha;
-    const decoded = atob(j.content.replace(/\n/g, ''));
-    cards = JSON.parse(decoded);
+    const bytes = Uint8Array.from(atob(j.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+    cards = JSON.parse(new TextDecoder('utf-8').decode(bytes));
     return true;
-  } catch(e) {
-    toast('❌ GitHub Fehler: ' + e.message, 4000);
-    return false;
-  }
+  } catch(e) { toast('GitHub Fehler: ' + e.message, 4000); return false; }
 }
 
 async function ghPut() {
   if (!cfg.token || !cfg.repo) return false;
   try {
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(cards, null, 2))));
-    const body = {
-      message: `update cards (${cards.length} total)`,
-      content,
-      ...(ghSha ? { sha: ghSha } : {})
-    };
-    const r = await fetch(ghUrl(GH_FILE), {
-      method: 'PUT',
-      headers: ghHeaders(),
-      body: JSON.stringify(body)
-    });
-    if (!r.ok) {
-      const err = await r.json();
-      throw new Error(err.message || r.status);
-    }
-    const j = await r.json();
-    ghSha = j.content.sha;
+    const body = { message: `update cards (${cards.length} total)`, content, ...(ghSha ? { sha: ghSha } : {}) };
+    const r = await fetch(ghUrl(GH_FILE), { method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body) });
+    if (!r.ok) { const err = await r.json(); throw new Error(err.message || r.status); }
+    ghSha = (await r.json()).content.sha;
     return true;
-  } catch(e) {
-    toast('❌ Sync-Fehler: ' + e.message, 4000);
-    return false;
-  }
+  } catch(e) { toast('Sync-Fehler: ' + e.message, 4000); return false; }
 }
 
 // ── SETUP ──
@@ -459,49 +499,38 @@ function saveConfig() {
   const token = document.getElementById('ghToken').value.trim();
   const repo = document.getElementById('ghRepo').value.trim();
   if (!token || !repo) { toast('Token und Repo eingeben!'); return; }
-  cfg.token = token;
-  cfg.repo = repo;
-  saveConfig_();
+  cfg.token = token; cfg.repo = repo; saveConfig_();
   document.getElementById('setupBannerHome').classList.add('hidden');
   document.getElementById('setupBannerManage').classList.add('hidden');
   syncNow();
 }
-
 function saveConfig2() {
   const token = document.getElementById('ghToken2').value.trim();
   const repo = document.getElementById('ghRepo2').value.trim();
   if (!token || !repo) { toast('Token und Repo eingeben!'); return; }
-  cfg.token = token;
-  cfg.repo = repo;
-  saveConfig_();
+  cfg.token = token; cfg.repo = repo; saveConfig_();
   document.getElementById('setupBannerHome').classList.add('hidden');
   document.getElementById('setupBannerManage').classList.add('hidden');
   syncNow();
 }
-
 function checkSetup() {
-  const notConfigured = !cfg.token || !cfg.repo;
-  document.getElementById('setupBannerHome').classList.toggle('hidden', !notConfigured);
-  document.getElementById('setupBannerManage').classList.toggle('hidden', !notConfigured);
+  const nc = !cfg.token || !cfg.repo;
+  document.getElementById('setupBannerHome').classList.toggle('hidden', !nc);
+  document.getElementById('setupBannerManage').classList.toggle('hidden', !nc);
 }
 
 // ── SYNC ──
 let syncing = false;
-
 async function syncNow() {
   if (syncing) return;
   if (!cfg.token || !cfg.repo) { showPage('home'); return; }
   syncing = true;
   document.getElementById('syncBtn').classList.add('syncing');
-  toast('⏳ Synchronisiere…', 10000);
+  toast('Synchronisiere…', 10000);
   const ok = await ghGet();
   syncing = false;
   document.getElementById('syncBtn').classList.remove('syncing');
-  if (ok) {
-    toast('✅ Synchronisiert!');
-    renderHome();
-    renderManage();
-  }
+  if (ok) { toast('Synchronisiert!'); renderHome(); renderManage(); }
 }
 
 // ── UTILS ──
@@ -526,7 +555,7 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-// ── NAVIGATION ──
+// ── NAV ──
 let currentPage = 'home';
 function showPage(p) {
   document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
@@ -544,28 +573,24 @@ function renderHome() {
   const el = document.getElementById('deckList');
   const empty = document.getElementById('emptyDecks');
   const byDeck = {};
-  cards.forEach(c => {
-    if (!byDeck[c.deck]) byDeck[c.deck] = [];
-    byDeck[c.deck].push(c);
-  });
+  cards.forEach(c => { if (!byDeck[c.deck]) byDeck[c.deck] = []; byDeck[c.deck].push(c); });
   const names = Object.keys(byDeck);
   if (names.length === 0) { el.innerHTML = ''; empty.classList.remove('hidden'); return; }
   empty.classList.add('hidden');
-  const emojis = ['📚','🧠','💊','🔬','⚕️','🖥️','📋','🏥','🧬','📖','🎯','💡'];
   const allDecks = [
-    ...(names.length > 1 ? [{ name: '🌐 Alle Karten', key: '__all__', count: cards.length }] : []),
-    ...names.sort().map((n, i) => ({ name: n, key: n, count: byDeck[n].length, emoji: emojis[i % emojis.length] }))
+    ...(names.length > 1 ? [{ name: 'Alle Karten', key: '__all__', count: cards.length }] : []),
+    ...names.sort().map(n => ({ name: n, key: n, count: byDeck[n].length }))
   ];
   el.innerHTML = allDecks.map(d => `
     <div class="deck-card" onclick="startLearn('${esc(d.key)}')">
-      <div class="deck-icon">${d.key === '__all__' ? '🌐' : d.emoji}</div>
+      <div class="deck-icon"><svg><use href="#ic-book"/></svg></div>
       <div class="deck-info">
         <div class="deck-name">${esc(d.name)}</div>
         <div class="deck-meta">${d.count} Karten</div>
       </div>
       <div class="deck-actions" onclick="event.stopPropagation()">
-        <button class="deck-btn danger" onclick="deleteDeck('${esc(d.key)}')">🗑</button>
-        <button class="deck-btn" onclick="startLearn('${esc(d.key)}')">▶</button>
+        <button class="deck-btn danger" onclick="deleteDeck('${esc(d.key)}')" title="Löschen"><svg><use href="#ic-trash"/></svg></button>
+        <button class="deck-btn" onclick="startLearn('${esc(d.key)}')" title="Lernen"><svg><use href="#ic-play"/></svg></button>
       </div>
     </div>
   `).join('');
@@ -575,22 +600,51 @@ async function deleteDeck(key) {
   const n = key === '__all__' ? cards.length : cards.filter(c => c.deck === key).length;
   if (!confirm(`${key === '__all__' ? 'Alle' : `"${key}"`} (${n} Karten) wirklich löschen?`)) return;
   cards = key === '__all__' ? [] : cards.filter(c => c.deck !== key);
-  toast('⏳ Speichere…', 10000);
+  toast('Speichere…', 10000);
   const ok = await ghPut();
-  if (ok) toast('🗑 Gelöscht & gespeichert');
-  renderHome();
-  renderManage();
+  if (ok) toast('Gelöscht & gespeichert');
+  renderHome(); renderManage();
+}
+
+// ── TTS ──
+let currentSpeech = null;
+function stopSpeech() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.tts-btn').forEach(b => b.classList.remove('speaking'));
+  currentSpeech = null;
+}
+function speak(text, btn) {
+  if (!window.speechSynthesis) { toast('Text-to-Speech nicht unterstützt'); return; }
+  const plainText = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!plainText) return;
+  if (currentSpeech === plainText) { stopSpeech(); return; }
+  stopSpeech();
+  const utter = new SpeechSynthesisUtterance(plainText);
+  utter.lang = 'de-DE';
+  utter.rate = 0.9;
+  utter.onend = () => { btn && btn.classList.remove('speaking'); currentSpeech = null; };
+  utter.onerror = () => { btn && btn.classList.remove('speaking'); currentSpeech = null; };
+  currentSpeech = plainText;
+  if (btn) btn.classList.add('speaking');
+  window.speechSynthesis.speak(utter);
+}
+function speakFront(e) {
+  e.stopPropagation();
+  speak(document.getElementById('frontBody').innerHTML, document.getElementById('ttsFrontBtn'));
+}
+function speakBack(e) {
+  e.stopPropagation();
+  speak(document.getElementById('backBody').innerHTML, document.getElementById('ttsBackBtn'));
 }
 
 // ── LEARN ──
-let queue = [], wrongCards = [], learnIdx = 0, rightCnt = 0, wrongCnt = 0, flipped = false, learnDeck = '';
+let queue = [], wrongCards = [], learnIdx = 0, rightCnt = 0, wrongCnt = 0, revealed = false, learnDeck = '';
 
 function startLearn(key) {
   const src = key === '__all__' ? cards : cards.filter(c => c.deck === key);
   if (!src.length) { toast('Keine Karten'); return; }
   learnDeck = key;
-  queue = shuffle(src);
-  wrongCards = []; learnIdx = 0; rightCnt = 0; wrongCnt = 0;
+  queue = shuffle(src); wrongCards = []; learnIdx = 0; rightCnt = 0; wrongCnt = 0;
   document.getElementById('learnDeckName').textContent = key === '__all__' ? 'Alle Karten' : key;
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('page-home').classList.remove('active');
@@ -603,24 +657,32 @@ function startLearn(key) {
 function renderCard() {
   if (learnIdx >= queue.length) { showDone(); return; }
   const c = queue[learnIdx];
+  stopSpeech();
   document.getElementById('frontBody').innerHTML = c.front;
   document.getElementById('backBody').innerHTML = c.back;
   document.getElementById('cardCounter').textContent = `${learnIdx + 1} / ${queue.length}`;
-  document.getElementById('learnRight').textContent = `✅ ${rightCnt}`;
-  document.getElementById('learnWrong').textContent = `❌ ${wrongCnt}`;
+  document.getElementById('learnRight').innerHTML = `<svg><use href="#ic-check"/></svg> ${rightCnt}`;
+  document.getElementById('learnWrong').innerHTML = `<svg><use href="#ic-x"/></svg> ${wrongCnt}`;
   document.getElementById('progFill').style.width = Math.round((learnIdx / queue.length) * 100) + '%';
-  flipped = false;
-  document.getElementById('cardScene').classList.remove('flipped');
-  document.getElementById('flipBtn').classList.remove('hidden');
-  document.getElementById('ratingBtns').classList.add('hidden');
+  hideAnswer();
 }
 
-function flipCard() {
-  if (flipped) return;
-  flipped = true;
-  document.getElementById('cardScene').classList.add('flipped');
+function revealAnswer() {
+  revealed = true;
+  document.getElementById('answerArea').classList.remove('hidden-answer');
+  document.getElementById('ttsBackBtn').style.display = '';
   document.getElementById('flipBtn').classList.add('hidden');
+  document.getElementById('hideBtn').classList.remove('hidden');
   document.getElementById('ratingBtns').classList.remove('hidden');
+}
+
+function hideAnswer() {
+  revealed = false;
+  document.getElementById('answerArea').classList.add('hidden-answer');
+  document.getElementById('ttsBackBtn').style.display = 'none';
+  document.getElementById('flipBtn').classList.remove('hidden');
+  document.getElementById('hideBtn').classList.add('hidden');
+  document.getElementById('ratingBtns').classList.add('hidden');
 }
 
 function rate(ok) {
@@ -628,30 +690,31 @@ function rate(ok) {
   learnIdx++;
   renderCard();
 }
-
 function skipCard() { learnIdx++; renderCard(); }
 
 function showDone() {
-  document.getElementById('cardScene').classList.add('hidden');
+  document.getElementById('cardWrap').classList.add('hidden');
   document.getElementById('flipBtn').classList.add('hidden');
+  document.getElementById('hideBtn').classList.add('hidden');
   document.getElementById('ratingBtns').classList.add('hidden');
+  document.querySelector('.key-hint').classList.add('hidden');
   const total = rightCnt + wrongCnt;
   const pct = total > 0 ? Math.round((rightCnt / total) * 100) : 0;
   document.getElementById('doneRight').textContent = rightCnt;
   document.getElementById('doneWrong').textContent = wrongCnt;
   document.getElementById('donePct').textContent = pct + '%';
-  const e = pct === 100 ? ['🎉','Perfekt!','Alles gewusst!'] : pct >= 80 ? ['🌟','Sehr gut!','Fast perfekt'] : pct >= 50 ? ['💪','Gut gemacht!','Weiter so!'] : ['😅','Weiter üben!','Nochmal drüber'];
-  document.getElementById('doneEmoji').textContent = e[0];
-  document.getElementById('doneTitle').textContent = e[1];
-  document.getElementById('doneSub').textContent = e[2];
+  const msgs = pct === 100 ? ['Perfekt!','Alles gewusst!'] : pct >= 80 ? ['Sehr gut!','Fast perfekt'] : pct >= 50 ? ['Gut gemacht!','Weiter so!'] : ['Weiter üben!','Nochmal drüber'];
+  document.getElementById('doneTitle').textContent = msgs[0];
+  document.getElementById('doneSub').textContent = msgs[1];
   document.getElementById('wrongBtn').style.display = wrongCards.length > 0 ? '' : 'none';
   document.getElementById('doneScreen').classList.add('active');
   document.getElementById('progFill').style.width = '100%';
 }
 
 function hideDone() {
-  document.getElementById('cardScene').classList.remove('hidden');
+  document.getElementById('cardWrap').classList.remove('hidden');
   document.getElementById('doneScreen').classList.remove('active');
+  document.querySelector('.key-hint').classList.remove('hidden');
 }
 
 function restartDeck() { startLearn(learnDeck); }
@@ -660,24 +723,20 @@ function restartWrong() {
   queue = shuffle(wrongCards); wrongCards = []; learnIdx = 0; rightCnt = 0; wrongCnt = 0;
   hideDone(); renderCard();
 }
-function backToHome() { showPage('home'); }
+function backToHome() { stopSpeech(); showPage('home'); }
 
-// keyboard
 document.addEventListener('keydown', e => {
   if (currentPage !== 'learn') return;
   if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
-  if (e.code === 'Space') { e.preventDefault(); flipCard(); }
-  if (e.code === 'ArrowRight' && flipped) rate(true);
-  if (e.code === 'ArrowLeft' && flipped) rate(false);
+  if (e.code === 'Space') { e.preventDefault(); revealed ? hideAnswer() : revealAnswer(); }
+  if (e.code === 'ArrowRight' && revealed) rate(true);
+  if (e.code === 'ArrowLeft' && revealed) rate(false);
 });
 
 // ── MANAGE ──
 function renderManage() {
-  checkSetup();
-  renderDeckSelect();
-  renderCardList();
+  checkSetup(); renderDeckSelect(); renderCardList();
 }
-
 function renderDeckSelect() {
   const sel = document.getElementById('deckSelectManage');
   const decks = [...new Set(cards.map(c => c.deck))].sort();
@@ -685,7 +744,6 @@ function renderDeckSelect() {
     ? '<option value="">— Erst Deck erstellen —</option>'
     : decks.map(d => `<option value="${esc(d)}">${esc(d)}</option>`).join('');
 }
-
 function renderCardList() {
   document.getElementById('cardCount').textContent = cards.length;
   const el = document.getElementById('cardListEl');
@@ -697,34 +755,28 @@ function renderCardList() {
         <div class="card-list-front">${c.front}</div>
         <div class="card-list-deck">${esc(c.deck)}</div>
       </div>
-      <button class="card-del" onclick="deleteCard('${c.id}')">🗑</button>
+      <button class="card-del" onclick="deleteCard('${c.id}')" title="Löschen"><svg><use href="#ic-trash"/></svg></button>
     </div>
   `).join('');
-  if (cards.length > 60) el.innerHTML += `<div style="color:var(--muted);font-size:12px;text-align:center;padding:8px">… und ${cards.length - 60} weitere</div>`;
+  if (cards.length > 60) el.innerHTML += `<div style="color:var(--muted);font-size:12px;text-align:center;padding:10px">… und ${cards.length - 60} weitere</div>`;
 }
-
 function toggleNewDeck() {
   document.getElementById('newDeckRow').classList.toggle('hidden');
-  if (!document.getElementById('newDeckRow').classList.contains('hidden'))
-    document.getElementById('newDeckName').focus();
+  if (!document.getElementById('newDeckRow').classList.contains('hidden')) document.getElementById('newDeckName').focus();
 }
-
 function createDeck() {
   const name = document.getElementById('newDeckName').value.trim();
   if (!name) { toast('Name eingeben!'); return; }
   document.getElementById('newDeckName').value = '';
   document.getElementById('newDeckRow').classList.add('hidden');
   const sel = document.getElementById('deckSelectManage');
-  // Add if not already there
   if (![...sel.options].some(o => o.value === name)) {
     const opt = document.createElement('option');
-    opt.value = name; opt.textContent = name;
-    sel.appendChild(opt);
+    opt.value = name; opt.textContent = name; sel.appendChild(opt);
   }
   sel.value = name;
   toast(`Deck "${name}" bereit`);
 }
-
 async function addCard() {
   const front = document.getElementById('cardFront').value.trim();
   const back = document.getElementById('cardBack').value.trim();
@@ -734,25 +786,22 @@ async function addCard() {
   if (!deck) { toast('Deck auswählen oder erstellen!'); return; }
   cards.push({ id: uid(), front, back, deck, created: Date.now() });
   clearForm();
-  toast('⏳ Speichere auf GitHub…', 10000);
+  toast('Speichere auf GitHub…', 10000);
   const ok = await ghPut();
-  if (ok) toast('✅ Karte gespeichert!');
+  if (ok) toast('Karte gespeichert!');
   renderManage();
 }
-
 function clearForm() {
   document.getElementById('cardFront').value = '';
   document.getElementById('cardBack').value = '';
 }
-
 async function deleteCard(id) {
   cards = cards.filter(c => c.id !== id);
-  toast('⏳ Speichere…', 10000);
+  toast('Speichere…', 10000);
   const ok = await ghPut();
-  if (ok) toast('🗑 Gelöscht');
+  if (ok) toast('Gelöscht');
   renderManage();
 }
-
 async function deleteAll() {
   if (!confirm(`Alle ${cards.length} Karten löschen?`)) return;
   cards = [];
@@ -766,7 +815,7 @@ async function importApkg(event) {
   const file = event.target.files[0];
   if (!file) return;
   event.target.value = '';
-  toast('⏳ Lese Anki-Datei…', 60000);
+  toast('Lese Anki-Datei…', 60000);
   try {
     const zip = await JSZip.loadAsync(file);
     const dbFile = zip.file('collection.anki21') || zip.file('collection.anki2');
@@ -789,7 +838,6 @@ async function importApkg(event) {
 
     let imported = 0, skipped = 0;
     const baseName = file.name.replace('.apkg','').replace(/_/g,' ');
-
     notesRes[0].values.forEach(([nid, flds]) => {
       const fields = flds.split('\x1f');
       const front = (fields[0] || '').trim();
@@ -802,66 +850,47 @@ async function importApkg(event) {
       cards.push({ id: uid(), front, back, deck: shortDeck, created: Date.now() });
       imported++;
     });
-
     db.close();
-    toast('⏳ Speichere auf GitHub…', 60000);
+    toast('Speichere auf GitHub…', 60000);
     const ok = await ghPut();
-    if (ok) toast(`✅ ${imported} Karten importiert & gespeichert!`, 3500);
-    renderManage();
-    renderHome();
-  } catch(e) {
-    toast('❌ ' + e.message, 4000);
-  }
+    if (ok) toast(`${imported} Karten importiert & gespeichert!`, 3500);
+    renderManage(); renderHome();
+  } catch(e) { toast('Fehler: ' + e.message, 4000); }
 }
-
 
 // ── SETTINGS MODAL ──
 function openSettings() {
-  const modal = document.getElementById('settingsModal');
   document.getElementById('modalToken').value = cfg.token || '';
   document.getElementById('modalRepo').value = cfg.repo || '';
   document.getElementById('modalStatus').classList.add('hidden');
-  modal.classList.add('active');
+  document.getElementById('settingsModal').classList.add('active');
 }
-
-function closeSettings() {
-  document.getElementById('settingsModal').classList.remove('active');
-}
-
-function closeSettingsOutside(e) {
-  if (e.target === document.getElementById('settingsModal')) closeSettings();
-}
-
+function closeSettings() { document.getElementById('settingsModal').classList.remove('active'); }
+function closeSettingsOutside(e) { if (e.target === document.getElementById('settingsModal')) closeSettings(); }
 async function saveSettings() {
   const token = document.getElementById('modalToken').value.trim();
   const repo = document.getElementById('modalRepo').value.trim();
   const status = document.getElementById('modalStatus');
   if (!token || !repo) {
     status.textContent = 'Bitte Token und Repo eingeben!';
-    status.className = 'modal-status err';
-    status.classList.remove('hidden');
-    return;
+    status.className = 'modal-status err'; status.classList.remove('hidden'); return;
   }
-  cfg.token = token;
-  cfg.repo = repo;
-  saveConfig_();
-  status.textContent = '⏳ Verbinde mit GitHub…';
-  status.className = 'modal-status';
-  status.classList.remove('hidden');
+  cfg.token = token; cfg.repo = repo; saveConfig_();
+  status.textContent = 'Verbinde mit GitHub…';
+  status.className = 'modal-status'; status.classList.remove('hidden');
   const ok = await ghGet();
   if (ok) {
-    status.textContent = '✅ Verbunden! ' + cards.length + ' Karten geladen.';
+    status.textContent = 'Verbunden! ' + cards.length + ' Karten geladen.';
     status.className = 'modal-status ok';
     setTimeout(() => { closeSettings(); renderHome(); renderManage(); }, 1200);
   } else {
-    status.textContent = '❌ Fehler — Token oder Repo falsch?';
+    status.textContent = 'Fehler — Token oder Repo falsch?';
     status.className = 'modal-status err';
   }
 }
 
 // ── INIT ──
-checkSetup();
-renderHome();
+checkSetup(); renderHome();
 if (cfg.token && cfg.repo) syncNow();
 </script>
 </body>
