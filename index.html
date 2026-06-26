@@ -29,10 +29,31 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 /* NAV */
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(12,14,20,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; height: 56px; gap: 8px; }
 .nav-logo { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0; }
-.nav-sync { margin-left: auto; width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; flex-shrink: 0; }
+.nav-sync { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; flex-shrink: 0; }
 .nav-sync:hover { border-color: var(--accent); color: var(--accent); }
 .nav-sync.syncing { animation: spin 1s linear infinite; }
+.nav-settings { margin-left: auto; width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; flex-shrink: 0; }
+.nav-settings:hover { border-color: var(--accent); color: var(--accent); }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.active { display: flex; }
+.modal { background: var(--card); border: 1px solid var(--border2); border-radius: var(--radius); padding: 20px; width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; }
+.modal-title { font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
+.modal-close { width: 28px; height: 28px; border-radius: 7px; border: none; background: var(--surface); color: var(--muted); cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.modal p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.modal p a { color: var(--accent); }
+.modal-row { display: flex; flex-direction: column; gap: 5px; }
+.modal-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); }
+.modal-input { background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; width: 100%; }
+.modal-input:focus { outline: none; border-color: var(--accent); }
+.modal-status { font-size: 12px; padding: 8px 10px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border); }
+.modal-status.ok { border-color: rgba(61,214,140,0.3); color: var(--green); }
+.modal-status.err { border-color: rgba(240,106,106,0.3); color: var(--red); }
+.modal-btns { display: flex; gap: 8px; }
+.modal-btn-save { flex: 1; padding: 11px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.modal-btn-sec { padding: 11px 14px; background: var(--surface); color: var(--muted); border: 1px solid var(--border2); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
 .nav-tabs { display: flex; gap: 2px; }
 .nav-tab { padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); border: none; background: none; transition: all 0.15s; }
 .nav-tab.active { background: var(--surface); color: var(--text); }
@@ -150,6 +171,26 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1px solid var(--border2); color: var(--text); padding: 10px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; z-index: 999; transition: transform 0.3s cubic-bezier(.4,0,.2,1); white-space: nowrap; pointer-events: none; }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
+
+/* MODAL */
+.nav-settings { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; flex-shrink: 0; }
+.nav-settings:hover { border-color: var(--accent); color: var(--accent); }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.active { display: flex; }
+.modal { background: var(--card); border: 1px solid var(--border2); border-radius: var(--radius); padding: 20px; width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; }
+.modal-title { font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
+.modal-close { width: 28px; height: 28px; border-radius: 7px; border: none; background: var(--surface); color: var(--muted); cursor: pointer; font-size: 14px; }
+.modal p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.modal-row { display: flex; flex-direction: column; gap: 5px; }
+.modal-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); }
+.modal-input { background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; width: 100%; }
+.modal-input:focus { outline: none; border-color: var(--accent); }
+.modal-status { font-size: 12px; padding: 8px 10px; border-radius: 7px; }
+.modal-status.ok { background: rgba(61,214,140,0.1); border: 1px solid rgba(61,214,140,0.3); color: var(--green); }
+.modal-status.err { background: rgba(240,106,106,0.1); border: 1px solid rgba(240,106,106,0.3); color: var(--red); }
+.modal-btns { display: flex; gap: 8px; }
+.modal-btn-save { flex: 1; padding: 11px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.modal-btn-sec { padding: 11px 14px; background: var(--surface); color: var(--muted); border: 1px solid var(--border2); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
 .hidden { display: none !important; }
 </style>
 </head>
@@ -161,8 +202,35 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
     <button class="nav-tab active" onclick="showPage('home')">Decks</button>
     <button class="nav-tab" onclick="showPage('manage')">+ Verwalten</button>
   </div>
-  <button class="nav-sync" id="syncBtn" onclick="syncNow()" title="Mit GitHub synchronisieren">↻</button>
+  <div style="margin-left:auto;display:flex;gap:6px">
+    <button class="nav-sync" id="syncBtn" onclick="syncNow()" title="Sync">↻</button>
+    <button class="nav-settings" onclick="openSettings()" title="Einstellungen">⚙️</button>
+  </div>
 </nav>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal" onclick="closeSettingsOutside(event)">
+  <div class="modal">
+    <div class="modal-title">
+      ⚙️ GitHub-Sync Einstellungen
+      <button class="modal-close" onclick="closeSettings()">✕</button>
+    </div>
+    <p>Token erstellen: github.com → Settings → Developer settings → Fine-grained tokens → <b>my-flashcards</b> auswählen → Permissions → Contents: <b>Read and write</b></p>
+    <div class="modal-row">
+      <div class="modal-label">GitHub Token</div>
+      <input class="modal-input" id="modalToken" type="password" placeholder="github_pat_xxx…">
+    </div>
+    <div class="modal-row">
+      <div class="modal-label">Repository</div>
+      <input class="modal-input" id="modalRepo" type="text" placeholder="sivanajani/my-flashcards">
+    </div>
+    <div class="modal-status hidden" id="modalStatus"></div>
+    <div class="modal-btns">
+      <button class="modal-btn-sec" onclick="closeSettings()">Abbrechen</button>
+      <button class="modal-btn-save" onclick="saveSettings()">Speichern &amp; Sync</button>
+    </div>
+  </div>
+</div>
 
 <!-- HOME -->
 <div class="page active" id="page-home">
@@ -743,6 +811,51 @@ async function importApkg(event) {
     renderHome();
   } catch(e) {
     toast('❌ ' + e.message, 4000);
+  }
+}
+
+
+// ── SETTINGS MODAL ──
+function openSettings() {
+  const modal = document.getElementById('settingsModal');
+  document.getElementById('modalToken').value = cfg.token || '';
+  document.getElementById('modalRepo').value = cfg.repo || '';
+  document.getElementById('modalStatus').classList.add('hidden');
+  modal.classList.add('active');
+}
+
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('active');
+}
+
+function closeSettingsOutside(e) {
+  if (e.target === document.getElementById('settingsModal')) closeSettings();
+}
+
+async function saveSettings() {
+  const token = document.getElementById('modalToken').value.trim();
+  const repo = document.getElementById('modalRepo').value.trim();
+  const status = document.getElementById('modalStatus');
+  if (!token || !repo) {
+    status.textContent = 'Bitte Token und Repo eingeben!';
+    status.className = 'modal-status err';
+    status.classList.remove('hidden');
+    return;
+  }
+  cfg.token = token;
+  cfg.repo = repo;
+  saveConfig_();
+  status.textContent = '⏳ Verbinde mit GitHub…';
+  status.className = 'modal-status';
+  status.classList.remove('hidden');
+  const ok = await ghGet();
+  if (ok) {
+    status.textContent = '✅ Verbunden! ' + cards.length + ' Karten geladen.';
+    status.className = 'modal-status ok';
+    setTimeout(() => { closeSettings(); renderHome(); renderManage(); }, 1200);
+  } else {
+    status.textContent = '❌ Fehler — Token oder Repo falsch?';
+    status.className = 'modal-status err';
   }
 }
 
