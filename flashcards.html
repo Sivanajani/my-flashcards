@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Flashcards</title>
+<style>
+:root {
+  --bg: #0c0e14;
+  --surface: #13151f;
+  --card: #181b28;
+  --border: #252836;
+  --border2: #2e3147;
+  --accent: #7c6af7;
+  --accent2: #5ea5fa;
+  --text: #e8eaf2;
+  --muted: #7880a0;
+  --muted2: #4a5068;
+  --green: #3dd68c;
+  --red: #f06a6a;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.5; overscroll-behavior: none; }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(12,14,20,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; height: 56px; gap: 8px; }
+.nav-logo { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0; }
+.nav-sync { margin-left: auto; width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.15s; flex-shrink: 0; }
+.nav-sync:hover { border-color: var(--accent); color: var(--accent); }
+.nav-sync.syncing { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.nav-tabs { display: flex; gap: 2px; }
+.nav-tab { padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); border: none; background: none; transition: all 0.15s; }
+.nav-tab.active { background: var(--surface); color: var(--text); }
+
+/* PAGES */
+.page { display: none; padding-top: 56px; min-height: 100vh; }
+.page.active { display: block; }
+
+/* SETUP BANNER */
+.setup-banner { margin: 16px; padding: 16px; background: rgba(124,106,247,0.08); border: 1px solid rgba(124,106,247,0.25); border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 10px; }
+.setup-banner h3 { font-size: 14px; font-weight: 700; color: var(--accent); }
+.setup-banner p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.setup-row { display: flex; gap: 8px; }
+.setup-input { flex: 1; background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 13px; padding: 9px 11px; font-family: inherit; }
+.setup-input:focus { outline: none; border-color: var(--accent); }
+.setup-btn { padding: 9px 14px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+
+/* HOME */
+.home-wrap { padding: 16px 16px 100px; max-width: 640px; margin: 0 auto; }
+.section-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 20px 0 10px; }
+.deck-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; margin-bottom: 8px; transition: border-color 0.15s, background 0.15s; }
+.deck-card:hover, .deck-card:active { border-color: var(--accent); background: rgba(124,106,247,0.06); }
+.deck-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.deck-info { flex: 1; min-width: 0; }
+.deck-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.deck-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.deck-actions { display: flex; gap: 6px; }
+.deck-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border2); background: var(--surface); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.15s; }
+.deck-btn:hover { border-color: var(--accent); color: var(--accent); }
+.deck-btn.danger:hover { border-color: var(--red); color: var(--red); }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--muted); }
+.empty-state .icon { font-size: 44px; margin-bottom: 12px; }
+.empty-state p { font-size: 13px; line-height: 1.6; }
+
+/* LEARN */
+.learn-wrap { padding: 16px 16px 24px; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; min-height: calc(100vh - 56px); }
+.learn-header { display: flex; align-items: center; gap: 10px; }
+.learn-back { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--border2); background: var(--surface); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.learn-deck-name { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.learn-stats { margin-left: auto; display: flex; gap: 10px; flex-shrink: 0; }
+.learn-stat { font-size: 13px; font-weight: 700; }
+.learn-stat.green { color: var(--green); }
+.learn-stat.red { color: var(--red); }
+.prog-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.prog-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width 0.4s ease; }
+
+/* CARD */
+.card-scene { flex: 1; min-height: 280px; perspective: 1400px; cursor: pointer; }
+.card-inner { width: 100%; height: 100%; min-height: 280px; transform-style: preserve-3d; transition: transform 0.42s cubic-bezier(.4,0,.2,1); border-radius: var(--radius); position: relative; }
+.card-scene.flipped .card-inner { transform: rotateY(180deg); }
+.card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border); padding: 22px 20px 18px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+.card-face.back { transform: rotateY(180deg); }
+.card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); }
+.card-body { flex: 1; font-size: 15px; line-height: 1.7; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.card-body ul, .card-body ol { padding-left: 18px; }
+.card-body li { margin: 3px 0; }
+.card-body b, .card-body strong { color: #c4cbff; }
+.card-body u { text-decoration-color: var(--accent); }
+.card-body i { color: var(--muted); }
+.card-body img { display: none; }
+.card-tap-hint { font-size: 12px; color: var(--muted2); text-align: center; padding-top: 4px; }
+
+.flip-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; cursor: pointer; }
+.rating-btns { display: flex; gap: 10px; }
+.rating-btn { flex: 1; padding: 13px 8px; border-radius: var(--radius-sm); border: 1px solid; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; transition: transform 0.1s; }
+.rating-btn:active { transform: scale(0.96); }
+.rating-btn .emoji { font-size: 20px; }
+.rating-btn .label { font-size: 11px; letter-spacing: 0.4px; }
+.btn-wrong { background: rgba(240,106,106,0.1); border-color: rgba(240,106,106,0.3); color: var(--red); }
+.btn-skip { background: var(--surface); border-color: var(--border2); color: var(--muted); flex: 0.7 !important; }
+.btn-right { background: rgba(61,214,140,0.1); border-color: rgba(61,214,140,0.3); color: var(--green); }
+.key-hint { text-align: center; font-size: 11px; color: var(--muted2); }
+
+/* DONE */
+.done-screen { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 32px 20px; text-align: center; flex: 1; }
+.done-screen.active { display: flex; }
+.done-emoji { font-size: 56px; }
+.done-title { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+.done-sub { font-size: 13px; color: var(--muted); }
+.score-grid { display: flex; gap: 24px; margin: 6px 0; }
+.score-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.score-num { font-size: 30px; font-weight: 800; letter-spacing: -1px; }
+.score-lbl { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; }
+.done-btns { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 260px; }
+.done-btn { padding: 13px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; cursor: pointer; border: none; }
+.done-btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; }
+.done-btn.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border2); }
+
+/* MANAGE */
+.manage-wrap { padding: 16px 16px 100px; max-width: 640px; margin: 0 auto; }
+.add-card-form { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.form-row { display: flex; flex-direction: column; gap: 5px; }
+.form-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); }
+.form-input, .form-textarea, .form-select { background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; transition: border-color 0.15s; width: 100%; resize: none; }
+.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); }
+.form-textarea { min-height: 78px; }
+.form-actions { display: flex; gap: 8px; }
+.btn-primary { flex: 1; padding: 11px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.btn-secondary { padding: 11px 14px; background: var(--surface); color: var(--muted); border: 1px solid var(--border2); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.new-deck-row { display: flex; gap: 8px; }
+.import-box { background: var(--card); border: 1px dashed var(--border2); border-radius: var(--radius); padding: 24px 20px; text-align: center; cursor: pointer; transition: border-color 0.15s, background 0.15s; margin-top: 6px; }
+.import-box:hover { border-color: var(--accent); background: rgba(124,106,247,0.04); }
+.import-icon { font-size: 32px; margin-bottom: 6px; }
+.import-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.import-sub { font-size: 12px; color: var(--muted); }
+#apkgInput { display: none; }
+.card-list-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 13px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; }
+.card-list-front { font-size: 13px; color: var(--text); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.card-list-front * { font-size: 13px !important; }
+.card-list-deck { font-size: 10px; color: var(--muted); margin-top: 3px; }
+.card-del { width: 28px; height: 28px; border-radius: 7px; border: none; background: none; color: var(--muted2); cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; transition: color 0.15s; }
+.card-del:hover { color: var(--red); }
+
+/* TOAST */
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1px solid var(--border2); color: var(--text); padding: 10px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; z-index: 999; transition: transform 0.3s cubic-bezier(.4,0,.2,1); white-space: nowrap; pointer-events: none; }
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">⚡ Cards</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('home')">Decks</button>
+    <button class="nav-tab" onclick="showPage('manage')">+ Verwalten</button>
+  </div>
+  <button class="nav-sync" id="syncBtn" onclick="syncNow()" title="Mit GitHub synchronisieren">↻</button>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="home-wrap">
+    <div id="setupBannerHome" class="setup-banner hidden">
+      <h3>⚙️ GitHub-Sync einrichten</h3>
+      <p>Gib dein GitHub Token und Repo ein, damit deine Karten geräteübergreifend gespeichert werden.<br>
+         Token erstellen: <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained → Contents: Read & Write</strong></p>
+      <div class="setup-row">
+        <input class="setup-input" id="ghToken" type="password" placeholder="ghp_xxx... (GitHub Token)">
+      </div>
+      <div class="setup-row">
+        <input class="setup-input" id="ghRepo" type="text" placeholder="username/repo-name">
+        <button class="setup-btn" onclick="saveConfig()">Speichern</button>
+      </div>
+    </div>
+    <div class="section-title">Deine Decks</div>
+    <div id="deckList"></div>
+    <div class="empty-state hidden" id="emptyDecks">
+      <div class="icon">📚</div>
+      <p>Noch keine Karten.<br>Geh zu "Verwalten" um Karten hinzuzufügen oder ein Anki-Deck zu importieren.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div class="page" id="page-learn">
+  <div class="learn-wrap">
+    <div class="learn-header">
+      <button class="learn-back" onclick="backToHome()">←</button>
+      <div class="learn-deck-name" id="learnDeckName">Deck</div>
+      <div class="learn-stats">
+        <span class="learn-stat green" id="learnRight">✅ 0</span>
+        <span class="learn-stat red" id="learnWrong">❌ 0</span>
+      </div>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+
+    <div class="card-scene" id="cardScene" onclick="flipCard()">
+      <div class="card-inner">
+        <div class="card-face front">
+          <div class="card-tag">Frage · <span id="cardCounter">1 / 1</span></div>
+          <div class="card-body" id="frontBody"></div>
+          <div class="card-tap-hint">antippen zum umdrehen</div>
+        </div>
+        <div class="card-face back">
+          <div class="card-tag">Antwort</div>
+          <div class="card-body" id="backBody"></div>
+          <div class="card-tap-hint">wie gut wusstest du es?</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="flip-btn" id="flipBtn" onclick="flipCard()">Antwort anzeigen</button>
+
+    <div class="rating-btns hidden" id="ratingBtns">
+      <button class="rating-btn btn-wrong" onclick="rate(false)"><span class="emoji">❌</span><span class="label">Nochmal</span></button>
+      <button class="rating-btn btn-skip" onclick="skipCard()"><span class="emoji">→</span><span class="label">Skip</span></button>
+      <button class="rating-btn btn-right" onclick="rate(true)"><span class="emoji">✅</span><span class="label">Gewusst</span></button>
+    </div>
+
+    <div class="key-hint">Leertaste = umdrehen · ← Nochmal · → Gewusst</div>
+
+    <div class="done-screen" id="doneScreen">
+      <div class="done-emoji" id="doneEmoji">🎉</div>
+      <div class="done-title" id="doneTitle">Fertig!</div>
+      <div class="done-sub" id="doneSub"></div>
+      <div class="score-grid">
+        <div class="score-item"><div class="score-num" style="color:var(--green)" id="doneRight">0</div><div class="score-lbl">Gewusst</div></div>
+        <div class="score-item"><div class="score-num" style="color:var(--red)" id="doneWrong">0</div><div class="score-lbl">Nochmal</div></div>
+        <div class="score-item"><div class="score-num" style="color:var(--accent)" id="donePct">—</div><div class="score-lbl">Quote</div></div>
+      </div>
+      <div class="done-btns">
+        <button class="done-btn primary" onclick="restartDeck()">🔄 Nochmal</button>
+        <button class="done-btn secondary" id="wrongBtn" onclick="restartWrong()">❌ Nur falsche</button>
+        <button class="done-btn secondary" onclick="backToHome()">← Zurück</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MANAGE -->
+<div class="page" id="page-manage">
+  <div class="manage-wrap">
+    <div id="setupBannerManage" class="setup-banner hidden">
+      <h3>⚙️ GitHub-Sync einrichten</h3>
+      <p>Token: <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained → Contents: Read & Write</strong></p>
+      <div class="setup-row">
+        <input class="setup-input" id="ghToken2" type="password" placeholder="ghp_xxx... (Token)">
+      </div>
+      <div class="setup-row">
+        <input class="setup-input" id="ghRepo2" type="text" placeholder="username/repo-name">
+        <button class="setup-btn" onclick="saveConfig2()">Speichern</button>
+      </div>
+    </div>
+
+    <div class="section-title">Karte hinzufügen</div>
+    <div class="add-card-form">
+      <div class="form-row">
+        <label class="form-label">Deck</label>
+        <div class="new-deck-row">
+          <select class="form-select" id="deckSelectManage" style="flex:1"></select>
+          <button class="btn-secondary" onclick="toggleNewDeck()">+ Neu</button>
+        </div>
+        <div class="new-deck-row hidden" id="newDeckRow">
+          <input class="form-input" id="newDeckName" placeholder="Deck-Name…" style="flex:1">
+          <button class="btn-secondary" onclick="createDeck()">OK</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Vorderseite (Frage)</label>
+        <textarea class="form-textarea" id="cardFront" placeholder="Was ist…?"></textarea>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Rückseite (Antwort)</label>
+        <textarea class="form-textarea" id="cardBack" placeholder="Antwort…"></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" onclick="clearForm()">Leeren</button>
+        <button class="btn-primary" onclick="addCard()">Speichern + Sync</button>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:22px">Anki importieren (.apkg)</div>
+    <div class="import-box" onclick="document.getElementById('apkgInput').click()">
+      <div class="import-icon">📦</div>
+      <div class="import-title">Anki-Datei auswählen</div>
+      <div class="import-sub">.apkg — wird importiert und direkt auf GitHub gespeichert</div>
+    </div>
+    <input type="file" id="apkgInput" accept=".apkg,.zip" onchange="importApkg(event)">
+
+    <div class="section-title" style="margin-top:22px">
+      Karten (<span id="cardCount">0</span>)
+      <button class="btn-secondary" style="float:right;padding:4px 10px;font-size:11px;margin-top:-2px" onclick="deleteAll()">Alle löschen</button>
+    </div>
+    <div id="cardListEl"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"></script>
+<script>
+// ── CONFIG (localStorage, nicht GitHub) ──
+const CFG_KEY = 'flashcards_config';
+const GH_FILE = 'cards.json';
+
+function loadConfig() {
+  try { return JSON.parse(localStorage.getItem(CFG_KEY)) || {}; } catch { return {}; }
+}
+function saveConfig_() {
+  localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+}
+
+let cfg = loadConfig();
+
+// ── CARDS DATA ──
+let cards = []; // [{id, front, back, deck, created}]
+let ghSha = null; // SHA of cards.json on GitHub (needed for updates)
+
+// ── GITHUB API ──
+function ghHeaders() {
+  return {
+    'Authorization': `token ${cfg.token}`,
+    'Accept': 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json'
+  };
+}
+
+function ghUrl(path) {
+  return `https://api.github.com/repos/${cfg.repo}/contents/${path}`;
+}
+
+async function ghGet() {
+  if (!cfg.token || !cfg.repo) return false;
+  try {
+    const r = await fetch(ghUrl(GH_FILE), { headers: ghHeaders() });
+    if (r.status === 404) {
+      // File doesn't exist yet — start fresh
+      ghSha = null;
+      cards = [];
+      return true;
+    }
+    if (!r.ok) throw new Error(`GitHub: ${r.status}`);
+    const j = await r.json();
+    ghSha = j.sha;
+    const decoded = atob(j.content.replace(/\n/g, ''));
+    cards = JSON.parse(decoded);
+    return true;
+  } catch(e) {
+    toast('❌ GitHub Fehler: ' + e.message, 4000);
+    return false;
+  }
+}
+
+async function ghPut() {
+  if (!cfg.token || !cfg.repo) return false;
+  try {
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(cards, null, 2))));
+    const body = {
+      message: `update cards (${cards.length} total)`,
+      content,
+      ...(ghSha ? { sha: ghSha } : {})
+    };
+    const r = await fetch(ghUrl(GH_FILE), {
+      method: 'PUT',
+      headers: ghHeaders(),
+      body: JSON.stringify(body)
+    });
+    if (!r.ok) {
+      const err = await r.json();
+      throw new Error(err.message || r.status);
+    }
+    const j = await r.json();
+    ghSha = j.content.sha;
+    return true;
+  } catch(e) {
+    toast('❌ Sync-Fehler: ' + e.message, 4000);
+    return false;
+  }
+}
+
+// ── SETUP ──
+function saveConfig() {
+  const token = document.getElementById('ghToken').value.trim();
+  const repo = document.getElementById('ghRepo').value.trim();
+  if (!token || !repo) { toast('Token und Repo eingeben!'); return; }
+  cfg.token = token;
+  cfg.repo = repo;
+  saveConfig_();
+  document.getElementById('setupBannerHome').classList.add('hidden');
+  document.getElementById('setupBannerManage').classList.add('hidden');
+  syncNow();
+}
+
+function saveConfig2() {
+  const token = document.getElementById('ghToken2').value.trim();
+  const repo = document.getElementById('ghRepo2').value.trim();
+  if (!token || !repo) { toast('Token und Repo eingeben!'); return; }
+  cfg.token = token;
+  cfg.repo = repo;
+  saveConfig_();
+  document.getElementById('setupBannerHome').classList.add('hidden');
+  document.getElementById('setupBannerManage').classList.add('hidden');
+  syncNow();
+}
+
+function checkSetup() {
+  const notConfigured = !cfg.token || !cfg.repo;
+  document.getElementById('setupBannerHome').classList.toggle('hidden', !notConfigured);
+  document.getElementById('setupBannerManage').classList.toggle('hidden', !notConfigured);
+}
+
+// ── SYNC ──
+let syncing = false;
+
+async function syncNow() {
+  if (syncing) return;
+  if (!cfg.token || !cfg.repo) { showPage('home'); return; }
+  syncing = true;
+  document.getElementById('syncBtn').classList.add('syncing');
+  toast('⏳ Synchronisiere…', 10000);
+  const ok = await ghGet();
+  syncing = false;
+  document.getElementById('syncBtn').classList.remove('syncing');
+  if (ok) {
+    toast('✅ Synchronisiert!');
+    renderHome();
+    renderManage();
+  }
+}
+
+// ── UTILS ──
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+let toastTimer;
+function toast(msg, dur = 2200) {
+  clearTimeout(toastTimer);
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  toastTimer = setTimeout(() => el.classList.remove('show'), dur);
+}
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ── NAVIGATION ──
+let currentPage = 'home';
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-' + p).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  if (p === 'home') { tabs[0].classList.add('active'); renderHome(); }
+  if (p === 'manage') { tabs[1].classList.add('active'); renderManage(); }
+  currentPage = p;
+}
+
+// ── HOME ──
+function renderHome() {
+  checkSetup();
+  const el = document.getElementById('deckList');
+  const empty = document.getElementById('emptyDecks');
+  const byDeck = {};
+  cards.forEach(c => {
+    if (!byDeck[c.deck]) byDeck[c.deck] = [];
+    byDeck[c.deck].push(c);
+  });
+  const names = Object.keys(byDeck);
+  if (names.length === 0) { el.innerHTML = ''; empty.classList.remove('hidden'); return; }
+  empty.classList.add('hidden');
+  const emojis = ['📚','🧠','💊','🔬','⚕️','🖥️','📋','🏥','🧬','📖','🎯','💡'];
+  const allDecks = [
+    ...(names.length > 1 ? [{ name: '🌐 Alle Karten', key: '__all__', count: cards.length }] : []),
+    ...names.sort().map((n, i) => ({ name: n, key: n, count: byDeck[n].length, emoji: emojis[i % emojis.length] }))
+  ];
+  el.innerHTML = allDecks.map(d => `
+    <div class="deck-card" onclick="startLearn('${esc(d.key)}')">
+      <div class="deck-icon">${d.key === '__all__' ? '🌐' : d.emoji}</div>
+      <div class="deck-info">
+        <div class="deck-name">${esc(d.name)}</div>
+        <div class="deck-meta">${d.count} Karten</div>
+      </div>
+      <div class="deck-actions" onclick="event.stopPropagation()">
+        <button class="deck-btn danger" onclick="deleteDeck('${esc(d.key)}')">🗑</button>
+        <button class="deck-btn" onclick="startLearn('${esc(d.key)}')">▶</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function deleteDeck(key) {
+  const n = key === '__all__' ? cards.length : cards.filter(c => c.deck === key).length;
+  if (!confirm(`${key === '__all__' ? 'Alle' : `"${key}"`} (${n} Karten) wirklich löschen?`)) return;
+  cards = key === '__all__' ? [] : cards.filter(c => c.deck !== key);
+  toast('⏳ Speichere…', 10000);
+  const ok = await ghPut();
+  if (ok) toast('🗑 Gelöscht & gespeichert');
+  renderHome();
+  renderManage();
+}
+
+// ── LEARN ──
+let queue = [], wrongCards = [], learnIdx = 0, rightCnt = 0, wrongCnt = 0, flipped = false, learnDeck = '';
+
+function startLearn(key) {
+  const src = key === '__all__' ? cards : cards.filter(c => c.deck === key);
+  if (!src.length) { toast('Keine Karten'); return; }
+  learnDeck = key;
+  queue = shuffle(src);
+  wrongCards = []; learnIdx = 0; rightCnt = 0; wrongCnt = 0;
+  document.getElementById('learnDeckName').textContent = key === '__all__' ? 'Alle Karten' : key;
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-home').classList.remove('active');
+  document.getElementById('page-learn').classList.add('active');
+  currentPage = 'learn';
+  hideDone();
+  renderCard();
+}
+
+function renderCard() {
+  if (learnIdx >= queue.length) { showDone(); return; }
+  const c = queue[learnIdx];
+  document.getElementById('frontBody').innerHTML = c.front;
+  document.getElementById('backBody').innerHTML = c.back;
+  document.getElementById('cardCounter').textContent = `${learnIdx + 1} / ${queue.length}`;
+  document.getElementById('learnRight').textContent = `✅ ${rightCnt}`;
+  document.getElementById('learnWrong').textContent = `❌ ${wrongCnt}`;
+  document.getElementById('progFill').style.width = Math.round((learnIdx / queue.length) * 100) + '%';
+  flipped = false;
+  document.getElementById('cardScene').classList.remove('flipped');
+  document.getElementById('flipBtn').classList.remove('hidden');
+  document.getElementById('ratingBtns').classList.add('hidden');
+}
+
+function flipCard() {
+  if (flipped) return;
+  flipped = true;
+  document.getElementById('cardScene').classList.add('flipped');
+  document.getElementById('flipBtn').classList.add('hidden');
+  document.getElementById('ratingBtns').classList.remove('hidden');
+}
+
+function rate(ok) {
+  if (ok) rightCnt++; else { wrongCnt++; wrongCards.push(queue[learnIdx]); }
+  learnIdx++;
+  renderCard();
+}
+
+function skipCard() { learnIdx++; renderCard(); }
+
+function showDone() {
+  document.getElementById('cardScene').classList.add('hidden');
+  document.getElementById('flipBtn').classList.add('hidden');
+  document.getElementById('ratingBtns').classList.add('hidden');
+  const total = rightCnt + wrongCnt;
+  const pct = total > 0 ? Math.round((rightCnt / total) * 100) : 0;
+  document.getElementById('doneRight').textContent = rightCnt;
+  document.getElementById('doneWrong').textContent = wrongCnt;
+  document.getElementById('donePct').textContent = pct + '%';
+  const e = pct === 100 ? ['🎉','Perfekt!','Alles gewusst!'] : pct >= 80 ? ['🌟','Sehr gut!','Fast perfekt'] : pct >= 50 ? ['💪','Gut gemacht!','Weiter so!'] : ['😅','Weiter üben!','Nochmal drüber'];
+  document.getElementById('doneEmoji').textContent = e[0];
+  document.getElementById('doneTitle').textContent = e[1];
+  document.getElementById('doneSub').textContent = e[2];
+  document.getElementById('wrongBtn').style.display = wrongCards.length > 0 ? '' : 'none';
+  document.getElementById('doneScreen').classList.add('active');
+  document.getElementById('progFill').style.width = '100%';
+}
+
+function hideDone() {
+  document.getElementById('cardScene').classList.remove('hidden');
+  document.getElementById('doneScreen').classList.remove('active');
+}
+
+function restartDeck() { startLearn(learnDeck); }
+function restartWrong() {
+  if (!wrongCards.length) { restartDeck(); return; }
+  queue = shuffle(wrongCards); wrongCards = []; learnIdx = 0; rightCnt = 0; wrongCnt = 0;
+  hideDone(); renderCard();
+}
+function backToHome() { showPage('home'); }
+
+// keyboard
+document.addEventListener('keydown', e => {
+  if (currentPage !== 'learn') return;
+  if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+  if (e.code === 'Space') { e.preventDefault(); flipCard(); }
+  if (e.code === 'ArrowRight' && flipped) rate(true);
+  if (e.code === 'ArrowLeft' && flipped) rate(false);
+});
+
+// ── MANAGE ──
+function renderManage() {
+  checkSetup();
+  renderDeckSelect();
+  renderCardList();
+}
+
+function renderDeckSelect() {
+  const sel = document.getElementById('deckSelectManage');
+  const decks = [...new Set(cards.map(c => c.deck))].sort();
+  sel.innerHTML = decks.length === 0
+    ? '<option value="">— Erst Deck erstellen —</option>'
+    : decks.map(d => `<option value="${esc(d)}">${esc(d)}</option>`).join('');
+}
+
+function renderCardList() {
+  document.getElementById('cardCount').textContent = cards.length;
+  const el = document.getElementById('cardListEl');
+  if (!cards.length) { el.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:12px 0">Noch keine Karten.</div>'; return; }
+  const show = [...cards].reverse().slice(0, 60);
+  el.innerHTML = show.map(c => `
+    <div class="card-list-item">
+      <div style="flex:1;min-width:0">
+        <div class="card-list-front">${c.front}</div>
+        <div class="card-list-deck">${esc(c.deck)}</div>
+      </div>
+      <button class="card-del" onclick="deleteCard('${c.id}')">🗑</button>
+    </div>
+  `).join('');
+  if (cards.length > 60) el.innerHTML += `<div style="color:var(--muted);font-size:12px;text-align:center;padding:8px">… und ${cards.length - 60} weitere</div>`;
+}
+
+function toggleNewDeck() {
+  document.getElementById('newDeckRow').classList.toggle('hidden');
+  if (!document.getElementById('newDeckRow').classList.contains('hidden'))
+    document.getElementById('newDeckName').focus();
+}
+
+function createDeck() {
+  const name = document.getElementById('newDeckName').value.trim();
+  if (!name) { toast('Name eingeben!'); return; }
+  document.getElementById('newDeckName').value = '';
+  document.getElementById('newDeckRow').classList.add('hidden');
+  const sel = document.getElementById('deckSelectManage');
+  // Add if not already there
+  if (![...sel.options].some(o => o.value === name)) {
+    const opt = document.createElement('option');
+    opt.value = name; opt.textContent = name;
+    sel.appendChild(opt);
+  }
+  sel.value = name;
+  toast(`Deck "${name}" bereit`);
+}
+
+async function addCard() {
+  const front = document.getElementById('cardFront').value.trim();
+  const back = document.getElementById('cardBack').value.trim();
+  const deck = document.getElementById('deckSelectManage').value;
+  if (!front) { toast('Vorderseite fehlt!'); return; }
+  if (!back) { toast('Rückseite fehlt!'); return; }
+  if (!deck) { toast('Deck auswählen oder erstellen!'); return; }
+  cards.push({ id: uid(), front, back, deck, created: Date.now() });
+  clearForm();
+  toast('⏳ Speichere auf GitHub…', 10000);
+  const ok = await ghPut();
+  if (ok) toast('✅ Karte gespeichert!');
+  renderManage();
+}
+
+function clearForm() {
+  document.getElementById('cardFront').value = '';
+  document.getElementById('cardBack').value = '';
+}
+
+async function deleteCard(id) {
+  cards = cards.filter(c => c.id !== id);
+  toast('⏳ Speichere…', 10000);
+  const ok = await ghPut();
+  if (ok) toast('🗑 Gelöscht');
+  renderManage();
+}
+
+async function deleteAll() {
+  if (!confirm(`Alle ${cards.length} Karten löschen?`)) return;
+  cards = [];
+  const ok = await ghPut();
+  if (ok) toast('Alle Karten gelöscht');
+  renderManage();
+}
+
+// ── ANKI IMPORT ──
+async function importApkg(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  event.target.value = '';
+  toast('⏳ Lese Anki-Datei…', 60000);
+  try {
+    const zip = await JSZip.loadAsync(file);
+    const dbFile = zip.file('collection.anki21') || zip.file('collection.anki2');
+    if (!dbFile) throw new Error('Keine Anki-Datenbank gefunden');
+    const dbBuf = await dbFile.async('arraybuffer');
+    const SQL = await initSqlJs({ locateFile: f => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/${f}` });
+    const db = new SQL.Database(new Uint8Array(dbBuf));
+
+    const colRes = db.exec("SELECT decks FROM col LIMIT 1");
+    const decksJson = JSON.parse(colRes[0].values[0][0]);
+    const deckMap = {};
+    Object.values(decksJson).forEach(d => { if (d.id) deckMap[String(d.id)] = d.name; });
+
+    const cardRows = db.exec("SELECT nid, did FROM cards");
+    const noteDeckMap = {};
+    if (cardRows.length) cardRows[0].values.forEach(([nid, did]) => { noteDeckMap[String(nid)] = String(did); });
+
+    const notesRes = db.exec("SELECT id, flds FROM notes");
+    if (!notesRes.length) throw new Error('Keine Karten gefunden');
+
+    let imported = 0, skipped = 0;
+    const baseName = file.name.replace('.apkg','').replace(/_/g,' ');
+
+    notesRes[0].values.forEach(([nid, flds]) => {
+      const fields = flds.split('\x1f');
+      const front = (fields[0] || '').trim();
+      const back = (fields[1] || '').trim();
+      if (!front || !back) { skipped++; return; }
+      if (/^[a-f0-9]{20,}-[a-z]+-\d+$/.test(front)) { skipped++; return; }
+      const did = noteDeckMap[String(nid)] || '';
+      const fullName = deckMap[did] || baseName;
+      const shortDeck = fullName.split('::').pop();
+      cards.push({ id: uid(), front, back, deck: shortDeck, created: Date.now() });
+      imported++;
+    });
+
+    db.close();
+    toast('⏳ Speichere auf GitHub…', 60000);
+    const ok = await ghPut();
+    if (ok) toast(`✅ ${imported} Karten importiert & gespeichert!`, 3500);
+    renderManage();
+    renderHome();
+  } catch(e) {
+    toast('❌ ' + e.message, 4000);
+  }
+}
+
+// ── INIT ──
+checkSetup();
+renderHome();
+if (cfg.token && cfg.repo) syncNow();
+</script>
+</body>
+</html>
