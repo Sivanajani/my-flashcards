@@ -1,0 +1,4 @@
+# Lokale Backups der Karten (nicht zu GitHub pushen)
+cards_backup_*.json
+cards.backup.json
+cards.beforeD02.json
