@@ -482,13 +482,17 @@ async function ghGet() {
     if (j.content && j.encoding === 'base64') {
       const bytes = Uint8Array.from(atob(j.content.replace(/\n/g, '')), c => c.charCodeAt(0));
       text = new TextDecoder('utf-8').decode(bytes);
-    } else {
-      // File > 1 MB: GitHub Contents API returns empty content, fetch the raw file instead
-      const rr = await fetch(ghUrl(GH_FILE), { headers: { ...ghHeaders(), 'Accept': 'application/vnd.github.raw' } });
+    } else if (j.download_url) {
+      // File > 1 MB: Contents API omits content, fetch the raw file via its direct download URL
+      const rr = await fetch(j.download_url);
       if (!rr.ok) throw new Error(`GitHub raw: ${rr.status}`);
       text = await rr.text();
+    } else {
+      throw new Error('Kein Inhalt von GitHub erhalten');
     }
-    cards = JSON.parse(text);
+    const data = JSON.parse(text);
+    if (!Array.isArray(data)) throw new Error('cards.json ist kein Array');
+    cards = data;
     return true;
   } catch(e) { toast('GitHub Fehler: ' + e.message, 4000); return false; }
 }
