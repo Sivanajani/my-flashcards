@@ -128,6 +128,64 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .card-text li { margin: 4px 0; }
 .card-text b, .card-text strong { color: var(--accent); }
 .card-text img { display: block; max-width: 100%; height: auto; margin: 12px auto; border-radius: 8px; border: 1px solid var(--border); background: #fff; }
+/* Quizlet-Modi */
+.mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+.mode-card { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 18px 10px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg); cursor: pointer; transition: all 0.15s; }
+.mode-card:hover { border-color: var(--accent); background: var(--accent-light); transform: translateY(-2px); }
+.mode-card .mode-ic { width: 46px; height: 46px; border-radius: 13px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+.mode-card .mode-ic svg { width: 23px; height: 23px; }
+.mode-card .m-title { font-size: 14px; font-weight: 700; color: var(--text); }
+.mode-card .m-sub { font-size: 11px; color: var(--muted); }
+.quiz-count { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.quiz-prompt { font-size: 17px; line-height: 1.6; color: var(--text); background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow-sm); }
+.quiz-prompt b, .quiz-prompt strong { color: var(--accent); }
+.quiz-prompt img { display: block; max-width: 100%; height: auto; margin: 10px auto; border-radius: 8px; border: 1px solid var(--border); }
+.quiz-opts { display: flex; flex-direction: column; gap: 9px; margin-top: 14px; }
+.quiz-opt { text-align: left; font-size: 14px; line-height: 1.5; color: var(--text); background: var(--card); border: 1.5px solid var(--border2); border-radius: 12px; padding: 13px 15px; cursor: pointer; transition: all 0.12s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); }
+.quiz-opt:disabled { cursor: default; }
+.quiz-opt.correct { border-color: var(--green); background: var(--green-bg); font-weight: 600; }
+.quiz-opt.wrong { border-color: var(--red); background: var(--red-bg); }
+.write-input { width: 100%; min-height: 110px; resize: vertical; font: inherit; font-size: 15px; line-height: 1.6; padding: 13px 15px; border: 1.5px solid var(--border2); border-radius: 12px; background: var(--card); color: var(--text); margin-top: 14px; }
+.write-input:focus { outline: none; border-color: var(--accent); }
+.write-block { margin-top: 14px; }
+.write-h { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.write-user { font-size: 15px; line-height: 1.6; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; white-space: pre-wrap; }
+.match-timer { text-align: center; font-size: 22px; font-weight: 800; color: var(--accent); margin: 4px 0 14px; }
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.match-tile { min-height: 78px; font-size: 12.5px; line-height: 1.4; color: var(--text); background: var(--card); border: 1.5px solid var(--border2); border-radius: 12px; padding: 10px 11px; cursor: pointer; transition: all 0.12s; display: flex; align-items: center; justify-content: center; text-align: center; }
+.match-tile:hover { border-color: var(--accent); }
+.match-tile.sel { border-color: var(--accent); background: var(--accent-light); box-shadow: 0 0 0 2px var(--accent-light); }
+.match-tile.matched { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.match-tile.wrong { border-color: var(--red); background: var(--red-bg); }
+.quiz-opt { display: flex; align-items: flex-start; gap: 11px; }
+.quiz-otext { flex: 1; min-width: 0; }
+.quiz-badge { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: var(--accent-light); color: var(--accent); font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+.quiz-opt.correct .quiz-badge { background: var(--green); color: #fff; }
+.quiz-opt.wrong .quiz-badge { background: var(--red); color: #fff; }
+.dp-prog { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow-sm); }
+.dp-prog-top { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.dp-modes { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin: 14px 0; }
+.dp-mode { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 12px 4px; font-size: 12px; font-weight: 600; color: var(--text); background: var(--card); border: 1px solid var(--border2); border-radius: 12px; cursor: pointer; transition: all .15s; }
+.dp-mode:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.dp-mode svg { width: 18px; height: 18px; }
+.dp-tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+.dp-tab { flex: 1; padding: 8px; font-size: 12px; font-weight: 700; color: var(--muted); background: var(--bg); border: 1px solid var(--border2); border-radius: 9px; cursor: pointer; }
+.dp-tab.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+.dp-list { display: flex; flex-direction: column; gap: 7px; }
+.dp-card { display: flex; gap: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 11px 13px; box-shadow: var(--shadow-sm); }
+.dp-check { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border2); background: none; color: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+.dp-check svg { width: 14px; height: 14px; }
+.dp-check.on { background: var(--green); border-color: var(--green); color: #fff; }
+.dp-front { flex: 1; min-width: 0; cursor: pointer; }
+.dp-q { font-size: 14px; color: var(--text); font-weight: 500; line-height: 1.5; }
+.dp-q b, .dp-q strong { color: var(--accent); }
+.dp-q img { display: none; }
+.dp-a { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 13.5px; }
+.dp-card.open .dp-a { display: block; }
+.dp-empty { text-align: center; color: var(--muted); font-size: 13px; padding: 30px; }
+
+
 .card-divider { height: 1px; background: var(--border); margin: 0; }
 .card-answer-area { padding: 20px 22px 22px; transition: all 0.25s ease; }
 .card-answer-area.hidden-answer .card-answer-content { opacity: 0; filter: blur(6px); user-select: none; pointer-events: none; }
@@ -231,6 +289,8 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
   <symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
   <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="ic-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="11"/><path d="M6 3H18l-1 7a5 5 0 0 1-10 0Z"/><path d="M4 3c0 0 0 4 2 7"/><path d="M20 3c0 0 0 4-2 7"/></symbol>
+  <symbol id="ic-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="ic-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
 </svg>
 
 <nav class="nav">
@@ -272,6 +332,23 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
     </div>
   </div>
 </div>
+
+<!-- MODE PICKER MODAL -->
+<div class="modal-overlay" id="modeModal" onclick="if(event.target===this)closeMode()">
+  <div class="modal">
+    <div class="modal-title">
+      <span id="modeDeckTitle">Modus waehlen</span>
+      <button class="modal-close" onclick="closeMode()">&#x2715;</button>
+    </div>
+    <div class="mode-grid">
+      <button class="mode-card" onclick="launchMode('learn')"><span class="mode-ic"><svg><use href="#ic-cards"/></svg></span><span class="m-title">Lernen</span><span class="m-sub">Karteikarten</span></button>
+      <button class="mode-card" onclick="launchMode('quiz')"><span class="mode-ic"><svg><use href="#ic-check"/></svg></span><span class="m-title">Quiz</span><span class="m-sub">Multiple Choice</span></button>
+      <button class="mode-card" onclick="launchMode('write')"><span class="mode-ic"><svg><use href="#ic-pencil"/></svg></span><span class="m-title">Schreiben</span><span class="m-sub">Antwort tippen</span></button>
+      <button class="mode-card" onclick="launchMode('match')"><span class="mode-ic"><svg><use href="#ic-grid"/></svg></span><span class="m-title">Match</span><span class="m-sub">Zuordnen auf Zeit</span></button>
+    </div>
+  </div>
+</div>
+
 
 <!-- HOME -->
 <div class="page active" id="page-home">
@@ -386,7 +463,59 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
   </div>
 </div>
 
+<!-- DECK DETAIL -->
+<div class="page" id="page-deck">
+  <div class="learn-wrap">
+    <div class="learn-header">
+      <button class="learn-back" onclick="backToHome()"><svg><use href="#ic-back"/></svg></button>
+      <div class="learn-deck-name" id="deckPageName">Deck</div>
+      <div class="learn-stats"></div>
+    </div>
+    <div id="deckPageBody"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+
+<div class="page" id="page-quiz">
+  <div class="learn-wrap">
+    <div class="learn-header">
+      <button class="learn-back" onclick="backToHome()"><svg><use href="#ic-back"/></svg></button>
+      <div class="learn-deck-name" id="quizDeckName">Quiz</div>
+      <div class="learn-stats"><span class="learn-stat green" id="quizScore"><svg><use href="#ic-check"/></svg> 0</span></div>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="quizProg" style="width:0%"></div></div>
+    <div id="quizBody"></div>
+  </div>
+</div>
+
+<!-- WRITE -->
+<div class="page" id="page-write">
+  <div class="learn-wrap">
+    <div class="learn-header">
+      <button class="learn-back" onclick="backToHome()"><svg><use href="#ic-back"/></svg></button>
+      <div class="learn-deck-name" id="writeDeckName">Schreiben</div>
+      <div class="learn-stats"><span class="learn-stat green" id="writeScore"><svg><use href="#ic-check"/></svg> 0</span></div>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="writeProg" style="width:0%"></div></div>
+    <div id="writeBody"></div>
+  </div>
+</div>
+
+<!-- MATCH -->
+<div class="page" id="page-match">
+  <div class="learn-wrap">
+    <div class="learn-header">
+      <button class="learn-back" onclick="backToHome()"><svg><use href="#ic-back"/></svg></button>
+      <div class="learn-deck-name" id="matchDeckName">Match</div>
+      <div class="learn-stats"></div>
+    </div>
+    <div id="matchBody"></div>
+  </div>
+</div>
+
 <!-- MANAGE -->
+
 <div class="page" id="page-manage">
   <div class="manage-wrap">
     <div id="setupBannerManage" class="setup-banner hidden">
@@ -597,15 +726,15 @@ function renderHome() {
     ...names.sort().map(n => ({ name: n, key: n, count: byDeck[n].length }))
   ];
   el.innerHTML = allDecks.map(d => `
-    <div class="deck-card" onclick="startLearn('${esc(d.key)}')">
+    <div class="deck-card" onclick="pickMode('${esc(d.key)}')">
       <div class="deck-icon"><svg><use href="#ic-book"/></svg></div>
       <div class="deck-info">
         <div class="deck-name">${esc(d.name)}</div>
-        <div class="deck-meta">${d.count} Karten</div>
+        <div class="deck-meta">${d.count} Karten · ${deckLearnedCount(d.key)} gelernt</div>
       </div>
       <div class="deck-actions" onclick="event.stopPropagation()">
         <button class="deck-btn danger" onclick="deleteDeck('${esc(d.key)}')" title="Löschen"><svg><use href="#ic-trash"/></svg></button>
-        <button class="deck-btn" onclick="startLearn('${esc(d.key)}')" title="Lernen"><svg><use href="#ic-play"/></svg></button>
+        <button class="deck-btn" onclick="pickMode('${esc(d.key)}')" title="Lernen"><svg><use href="#ic-play"/></svg></button>
       </div>
     </div>
   `).join('');
@@ -656,7 +785,7 @@ function speakBack(e) {
 let queue = [], wrongCards = [], learnIdx = 0, rightCnt = 0, wrongCnt = 0, revealed = false, learnDeck = '';
 
 function startLearn(key) {
-  const src = key === '__all__' ? cards : cards.filter(c => c.deck === key);
+  const src = studyPool(key);
   if (!src.length) { toast('Keine Karten'); return; }
   learnDeck = key;
   queue = shuffle(src); wrongCards = []; learnIdx = 0; rightCnt = 0; wrongCnt = 0;
@@ -701,6 +830,7 @@ function hideAnswer() {
 }
 
 function rate(ok) {
+  if (queue[learnIdx]) setLearned(queue[learnIdx].id, ok);
   if (ok) rightCnt++; else { wrongCnt++; wrongCards.push(queue[learnIdx]); }
   learnIdx++;
   renderCard();
@@ -905,6 +1035,149 @@ async function saveSettings() {
 }
 
 // ── INIT ──
+// ── QUIZLET MODES ──
+function plain(html){ let s=(html||'').replace(/<\/li>/gi,'; ').replace(/<li[^>]*>/gi,'').replace(/<br\s*\/?>/gi,' ').replace(/<\/(p|div|h[1-6]|tr)>/gi,' '); const d=document.createElement('div'); d.innerHTML=s; return (d.textContent||'').replace(/\s*;\s*;\s*/g,'; ').replace(/\s+/g,' ').replace(/\s*;\s*$/,'').replace(/^[;\s]+/,'').trim(); }
+function trunc(s,n){ return s.length>n ? s.slice(0,n-1).trim()+'…' : s; }
+function poolOf(key){ return key==='__all__' ? cards.slice() : cards.filter(c=>c.deck===key); }
+function sampleOther(pool, n, exclude){ const a=pool.filter(x=>x!==exclude && plain(x.back)!==plain(exclude.back)); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a.slice(0,n); }
+function gotoPage(p){ stopSpeech(); document.querySelectorAll('.page').forEach(el=>el.classList.remove('active')); document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); document.getElementById('page-'+p).classList.add('active'); currentPage=p; window.scrollTo(0,0); }
+function scoreScreen(title, sub, retryFn){
+  return '<div class="done-screen active" style="position:static;padding:30px 16px">'+
+    '<div class="done-icon"><svg><use href="#ic-trophy"/></svg></div>'+
+    '<div class="done-title">'+title+'</div>'+
+    '<div class="done-sub">'+sub+'</div>'+
+    '<div class="done-btns">'+
+      '<button class="done-btn primary" onclick="'+retryFn+'"><svg><use href="#ic-repeat"/></svg> Nochmal</button>'+
+      '<button class="done-btn secondary" onclick="backToHome()"><svg><use href="#ic-back"/></svg> Zurueck</button>'+
+    '</div></div>';
+}
+let pendingDeck=null;
+function pickMode(key){ currentDeckKey=key; deckFilter='open'; renderDeckPage(); gotoPage('deck'); }
+function closeMode(){ document.getElementById('modeModal').classList.remove('active'); }
+function launchMode(m){ const k=pendingDeck; closeMode(); if(m==='learn') startLearn(k); else if(m==='quiz') startQuiz(k); else if(m==='write') startWrite(k); else if(m==='match') startMatch(k); }
+
+let qKey,qPool=[],qQueue=[],qIdx=0,qScore=0;
+function startQuiz(key){ qPool=studyPool(key); if(qPool.length<2){ toast('Zu wenige Karten fuer Quiz'); return; } qKey=key; qQueue=shuffle(qPool); qIdx=0; qScore=0; document.getElementById('quizDeckName').textContent=(key==='__all__'?'Alle Karten':key)+' · Quiz'; gotoPage('quiz'); renderQuiz(); }
+function renderQuiz(){
+  if(qIdx>=qQueue.length){ document.getElementById('quizProg').style.width='100%'; document.getElementById('quizBody').innerHTML=scoreScreen(Math.round(qScore/qQueue.length*100)+'% richtig', qScore+' von '+qQueue.length+' korrekt', 'startQuiz(qKey)'); return; }
+  const c=qQueue[qIdx];
+  const opts=shuffle([c].concat(sampleOther(qPool,3,c)));
+  document.getElementById('quizScore').innerHTML='<svg><use href="#ic-check"/></svg> '+qScore;
+  document.getElementById('quizProg').style.width=Math.round(qIdx/qQueue.length*100)+'%';
+  document.getElementById('quizBody').innerHTML=
+    '<div class="quiz-count">Frage '+(qIdx+1)+' / '+qQueue.length+'</div>'+
+    '<div class="quiz-prompt">'+c.front+'</div>'+
+    '<div class="quiz-opts">'+opts.map(function(o,i){return '<button class="quiz-opt" data-correct="'+(o===c?1:0)+'" onclick="answerQuiz(this)"><span class="quiz-badge">'+String.fromCharCode(65+i)+'</span><span class="quiz-otext">'+esc(trunc(plain(o.back),200))+'</span></button>';}).join('')+'</div>'+
+    '<button class="flip-btn hidden" id="quizNext" onclick="nextQuiz()" style="margin-top:14px">Weiter &rarr;</button>';
+}
+function answerQuiz(btn){
+  btn.parentElement.querySelectorAll('.quiz-opt').forEach(function(o){ o.disabled=true; if(o.dataset.correct==='1') o.classList.add('correct'); });
+  if(btn.dataset.correct==='1'){ qScore++; if(qQueue[qIdx]) setLearned(qQueue[qIdx].id,true); } else btn.classList.add('wrong');
+  document.getElementById('quizScore').innerHTML='<svg><use href="#ic-check"/></svg> '+qScore;
+  document.getElementById('quizNext').classList.remove('hidden');
+}
+function nextQuiz(){ qIdx++; renderQuiz(); }
+
+let wKey,wQueue=[],wIdx=0,wRight=0,wWrong=0;
+function startWrite(key){ const p=studyPool(key); if(!p.length){ toast('Keine Karten'); return; } wKey=key; wQueue=shuffle(p); wIdx=0; wRight=0; wWrong=0; document.getElementById('writeDeckName').textContent=(key==='__all__'?'Alle Karten':key)+' · Schreiben'; gotoPage('write'); renderWrite(); }
+function renderWrite(){
+  if(wIdx>=wQueue.length){ document.getElementById('writeProg').style.width='100%'; document.getElementById('writeBody').innerHTML=scoreScreen(Math.round(wRight/wQueue.length*100)+'% gewusst', wRight+' von '+wQueue.length+' richtig', 'startWrite(wKey)'); return; }
+  const c=wQueue[wIdx];
+  document.getElementById('writeScore').innerHTML='<svg><use href="#ic-check"/></svg> '+wRight;
+  document.getElementById('writeProg').style.width=Math.round(wIdx/wQueue.length*100)+'%';
+  document.getElementById('writeBody').innerHTML=
+    '<div class="quiz-count">'+(wIdx+1)+' / '+wQueue.length+'</div>'+
+    '<div class="quiz-prompt">'+c.front+'</div>'+
+    '<textarea class="write-input" id="writeInput" placeholder="Antwort aus dem Kopf tippen..."></textarea>'+
+    '<button class="flip-btn" id="writeShow" onclick="showWrite()" style="margin-top:12px">Antwort pruefen</button>'+
+    '<div id="writeReveal"></div>';
+  const ta=document.getElementById('writeInput'); if(ta) ta.focus();
+}
+function showWrite(){
+  const c=wQueue[wIdx];
+  const ua=document.getElementById('writeInput').value;
+  document.getElementById('writeShow').classList.add('hidden');
+  document.getElementById('writeInput').disabled=true;
+  document.getElementById('writeReveal').innerHTML=
+    '<div class="write-block"><div class="write-h">Deine Antwort</div><div class="write-user">'+(esc(ua)||'<i>(leer)</i>')+'</div></div>'+
+    '<div class="write-block"><div class="write-h" style="color:var(--green)">Musterloesung</div><div class="card-text">'+c.back+'</div></div>'+
+    '<div class="rating-btns" style="display:flex;margin-top:14px">'+
+      '<button class="rating-btn btn-wrong" onclick="gradeWrite(false)"><span class="r-icon"><svg><use href="#ic-x"/></svg></span><span class="label">Falsch</span></button>'+
+      '<button class="rating-btn btn-right" onclick="gradeWrite(true)"><span class="r-icon"><svg><use href="#ic-check"/></svg></span><span class="label">Richtig</span></button>'+
+    '</div>';
+  document.getElementById('writeReveal').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function gradeWrite(ok){ if(ok) wRight++; else wWrong++; wIdx++; renderWrite(); }
+
+let mKey,mSel=null,mMatched=0,mTotal=0,mTimer=null,mStart=0;
+function startMatch(key){
+  const p=studyPool(key); if(p.length<2){ toast('Zu wenige Karten fuer Match'); return; }
+  mKey=key; const pick=shuffle(p).slice(0,Math.min(6,p.length)); mTotal=pick.length; mMatched=0; mSel=null; mStart=0; clearInterval(mTimer); mTimer=null;
+  let tiles=[]; pick.forEach(function(c,i){ tiles.push({id:i,k:'f'+i,text:trunc(plain(c.front),120)}); tiles.push({id:i,k:'b'+i,text:trunc(plain(c.back),95)}); });
+  tiles=shuffle(tiles);
+  document.getElementById('matchDeckName').textContent=(key==='__all__'?'Alle Karten':key)+' · Match';
+  gotoPage('match');
+  document.getElementById('matchBody').innerHTML='<div class="match-timer" id="matchTimer">0.0s</div><div class="match-grid">'+
+    tiles.map(function(t){return '<button class="match-tile" data-id="'+t.id+'" data-k="'+t.k+'" onclick="tapTile(this)">'+esc(t.text)+'</button>';}).join('')+'</div>';
+}
+function tapTile(el){
+  if(el.classList.contains('matched')) return;
+  if(!mStart){ mStart=Date.now(); mTimer=setInterval(function(){ const t=document.getElementById('matchTimer'); if(t) t.textContent=((Date.now()-mStart)/1000).toFixed(1)+'s'; },100); }
+  if(mSel===el){ el.classList.remove('sel'); mSel=null; return; }
+  if(!mSel){ mSel=el; el.classList.add('sel'); return; }
+  if(mSel.dataset.id===el.dataset.id && mSel.dataset.k!==el.dataset.k){
+    el.classList.add('matched'); mSel.classList.add('matched'); mSel.classList.remove('sel'); mSel=null; mMatched++;
+    if(mMatched===mTotal){ clearInterval(mTimer); const t=((Date.now()-mStart)/1000).toFixed(1); setTimeout(function(){ document.getElementById('matchBody').innerHTML=scoreScreen(t+'s', 'Alle '+mTotal+' Paare zugeordnet!', 'startMatch(mKey)'); },350); }
+  } else {
+    const a=mSel, b=el; a.classList.add('wrong'); b.classList.add('wrong'); a.classList.remove('sel'); mSel=null;
+    setTimeout(function(){ a.classList.remove('wrong'); b.classList.remove('wrong'); },650);
+  }
+}
+
+
+// ── LEARNED TRACKING ──
+function loadLearned(){ try{ return JSON.parse(localStorage.getItem('flashcards_learned'))||{}; }catch(e){ return {}; } }
+let learned = loadLearned();
+function saveLearned(){ try{ localStorage.setItem('flashcards_learned', JSON.stringify(learned)); }catch(e){} }
+function isLearned(id){ return !!learned[id]; }
+function setLearned(id,v){ if(v) learned[id]=1; else delete learned[id]; saveLearned(); }
+function deckLearnedCount(key){ return poolOf(key).filter(function(c){ return isLearned(c.id); }).length; }
+function studyPool(key){ let p=poolOf(key); if(deckFilter==='open'){ const o=p.filter(function(c){return !isLearned(c.id);}); if(o.length) p=o; } else if(deckFilter==='done'){ const d=p.filter(function(c){return isLearned(c.id);}); if(d.length) p=d; } return p; }
+
+// ── DECK DETAIL PAGE ──
+let currentDeckKey=null, deckFilter='open';
+function renderDeckPage(){
+  const key=currentDeckKey, pool=poolOf(key);
+  const total=pool.length, done=pool.filter(function(c){return isLearned(c.id);}).length;
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('deckPageName').textContent=(key==='__all__'?'Alle Karten':key);
+  let list=pool;
+  if(deckFilter==='open') list=pool.filter(function(c){return !isLearned(c.id);});
+  else if(deckFilter==='done') list=pool.filter(function(c){return isLearned(c.id);});
+  document.getElementById('deckPageBody').innerHTML=
+    '<div class="dp-prog"><div class="dp-prog-top"><span>'+done+' / '+total+' gelernt</span><span>'+pct+'%</span></div>'+
+      '<div class="prog-bar"><div class="prog-fill" style="width:'+pct+'%"></div></div></div>'+
+    '<div class="dp-modes">'+
+      '<button class="dp-mode" onclick="startLearn(currentDeckKey)"><svg><use href="#ic-cards"/></svg>Lernen</button>'+
+      '<button class="dp-mode" onclick="startQuiz(currentDeckKey)"><svg><use href="#ic-check"/></svg>Quiz</button>'+
+      '<button class="dp-mode" onclick="startWrite(currentDeckKey)"><svg><use href="#ic-pencil"/></svg>Schreiben</button>'+
+      '<button class="dp-mode" onclick="startMatch(currentDeckKey)"><svg><use href="#ic-grid"/></svg>Match</button>'+
+    '</div>'+
+    '<div class="dp-tabs">'+
+      '<button class="dp-tab'+(deckFilter==='open'?' active':'')+'" onclick="setDeckFilter(\'open\')">Offen ('+(total-done)+')</button>'+
+      '<button class="dp-tab'+(deckFilter==='done'?' active':'')+'" onclick="setDeckFilter(\'done\')">Gelernt ('+done+')</button>'+
+      '<button class="dp-tab'+(deckFilter==='all'?' active':'')+'" onclick="setDeckFilter(\'all\')">Alle ('+total+')</button>'+
+    '</div>'+
+    '<div class="dp-list">'+(list.length?list.map(function(c){ const l=isLearned(c.id);
+      return '<div class="dp-card"><button class="dp-check'+(l?' on':'')+'" onclick="toggleLearned(\''+c.id+'\',event)"><svg><use href="#ic-check"/></svg></button>'+
+        '<div class="dp-front" onclick="this.parentElement.classList.toggle(\'open\')"><div class="dp-q">'+c.front+'</div><div class="dp-a card-text">'+c.back+'</div></div></div>';
+    }).join(''):'<div class="dp-empty">Keine Karten in dieser Ansicht.</div>')+'</div>';
+}
+function setDeckFilter(f){ deckFilter=f; renderDeckPage(); }
+function toggleLearned(id,e){ if(e) e.stopPropagation(); setLearned(id,!isLearned(id)); renderDeckPage(); }
+
+
+// init
 checkSetup(); renderHome();
 if (cfg.token && cfg.repo) syncNow();
 </script>
