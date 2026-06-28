@@ -8,6 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📇</text></svg>">
 <title>Flashcards</title>
+<script>try{if(localStorage.getItem('flashcards_theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}</script>
 <style>
 :root {
   --bg: #f0f2f8;
@@ -33,6 +34,20 @@
   --radius: 16px;
   --radius-sm: 10px;
 }
+html.dark {
+  --bg: #0f1115; --surface: #161922; --card: #1a1e29;
+  --border: #2a2f3d; --border2: #373d50;
+  --accent: #818cf8; --accent-light: #21263a; --accent2: #6366f1;
+  --text: #e9ebf4; --text2: #aeb4c8; --muted: #7e849c; --muted2: #4a5066;
+  --green: #34d399; --green-bg: #0e2a1f; --green-border: #1f5240;
+  --red: #f87171; --red-bg: #2a1414; --red-border: #5a2828;
+  --shadow: 0 1px 4px rgba(0,0,0,.45), 0 4px 16px rgba(0,0,0,.55);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.4);
+}
+html.dark body { background: var(--bg); }
+html.dark .nav { background: rgba(22,25,34,0.95); }
+html.dark .setup-input, html.dark .modal-input:focus { background: var(--card); }
+html.dark .card-text img, html.dark .quiz-prompt img { background: #fff; }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.5; overscroll-behavior: none; }
 
@@ -291,6 +306,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
   <symbol id="ic-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="11"/><path d="M6 3H18l-1 7a5 5 0 0 1-10 0Z"/><path d="M4 3c0 0 0 4 2 7"/><path d="M20 3c0 0 0 4-2 7"/></symbol>
   <symbol id="ic-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
   <symbol id="ic-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
 </svg>
 
 <nav class="nav">
@@ -300,6 +316,9 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
     <button class="nav-tab" onclick="showPage('manage')">Verwalten</button>
   </div>
   <div style="margin-left:auto;display:flex;gap:6px">
+    <button class="nav-icon-btn" onclick="toggleTheme()" title="Hell / Dunkel">
+      <svg><use href="#ic-moon"/></svg>
+    </button>
     <button class="nav-icon-btn" id="syncBtn" onclick="syncNow()" title="Synchronisieren">
       <svg><use href="#ic-sync"/></svg>
     </button>
@@ -1177,6 +1196,7 @@ function setDeckFilter(f){ deckFilter=f; renderDeckPage(); }
 function toggleLearned(id,e){ if(e) e.stopPropagation(); setLearned(id,!isLearned(id)); renderDeckPage(); }
 
 
+function toggleTheme(){ const dark=document.documentElement.classList.toggle('dark'); try{ localStorage.setItem('flashcards_theme', dark?'dark':'light'); }catch(e){} }
 // init
 checkSetup(); renderHome();
 if (cfg.token && cfg.repo) syncNow();
