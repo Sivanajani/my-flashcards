@@ -257,6 +257,16 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .form-input, .form-textarea, .form-select { background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; padding: 10px 12px; font-family: inherit; transition: border-color 0.15s; width: 100%; resize: none; }
 .form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); background: #fff; }
 .form-textarea { min-height: 80px; }
+.rte-toolbar { display: flex; gap: 5px; margin-bottom: 6px; }
+.rte-btn { width: 32px; height: 30px; border: 1px solid var(--border2); background: var(--bg); color: var(--text2); border-radius: 7px; cursor: pointer; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: all .12s; }
+.rte-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.rte-btn svg { width: 15px; height: 15px; }
+.form-rte { background: var(--bg); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 14px; line-height: 1.6; padding: 10px 12px; min-height: 80px; width: 100%; overflow-wrap: anywhere; }
+.form-rte:focus { outline: none; border-color: var(--accent); }
+.form-rte:empty:before { content: attr(data-ph); color: var(--muted); }
+.form-rte ul, .form-rte ol { padding-left: 22px; margin: 4px 0; }
+.form-rte b, .form-rte strong { color: var(--accent); }
+.form-rte img { max-width: 100%; height: auto; border-radius: 6px; margin: 6px 0; }
 .form-actions { display: flex; gap: 8px; }
 .btn-primary { flex: 1; padding: 11px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; }
 .btn-primary:hover { opacity: 0.9; }
@@ -564,15 +574,25 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
       </div>
       <div class="form-row">
         <label class="form-label">Vorderseite (Frage)</label>
-        <textarea class="form-textarea" id="cardFront" placeholder="Was ist&hellip;?"></textarea>
+        <div class="rte-toolbar">
+          <button type="button" class="rte-btn" onmousedown="event.preventDefault()" onclick="fmt('bold')" title="Fett"><b>B</b></button>
+          <button type="button" class="rte-btn" onmousedown="event.preventDefault()" onclick="fmt('insertUnorderedList')" title="Aufzählung">&bull;</button>
+          <button type="button" class="rte-btn" onmousedown="event.preventDefault()" onclick="fmt('insertOrderedList')" title="Nummerierung">1.</button>
+        </div>
+        <div class="form-rte" id="cardFront" contenteditable="true" data-ph="Was ist&hellip;?"></div>
       </div>
       <div class="form-row">
         <label class="form-label">Rückseite (Antwort)</label>
-        <textarea class="form-textarea" id="cardBack" placeholder="Antwort&hellip;"></textarea>
+        <div class="rte-toolbar">
+          <button type="button" class="rte-btn" onmousedown="event.preventDefault()" onclick="fmt('bold')" title="Fett"><b>B</b></button>
+          <button type="button" class="rte-btn" onmousedown="event.preventDefault()" onclick="fmt('insertUnorderedList')" title="Aufzählung">&bull;</button>
+          <button type="button" class="rte-btn" onmousedown="event.preventDefault()" onclick="fmt('insertOrderedList')" title="Nummerierung">1.</button>
+        </div>
+        <div class="form-rte" id="cardBack" contenteditable="true" data-ph="Antwort&hellip;"></div>
       </div>
       <div class="form-actions">
         <button class="btn-secondary" onclick="clearForm()">Leeren</button>
-        <button class="btn-primary" onclick="addCard()">Speichern + Sync</button>
+        <button class="btn-primary" id="saveCardBtn" onclick="addCard()">Speichern + Sync</button>
       </div>
     </div>
 
@@ -919,6 +939,7 @@ function renderCardList() {
         <div class="card-list-front">${c.front}</div>
         <div class="card-list-deck">${esc(c.deck)}</div>
       </div>
+      <button class="card-del" onclick="editCard('${c.id}')" title="Bearbeiten"><svg><use href="#ic-pencil"/></svg></button>
       <button class="card-del" onclick="deleteCard('${c.id}')" title="Löschen"><svg><use href="#ic-trash"/></svg></button>
     </div>
   `).join('');
@@ -941,14 +962,30 @@ function createDeck() {
   sel.value = name;
   toast(`Deck "${name}" bereit`);
 }
+function fmt(cmd){ document.execCommand(cmd, false, null); return false; }
+let editingId = null;
+function editCard(id){
+  const c = cards.find(x => x.id === id); if (!c) return;
+  document.getElementById('cardFront').innerHTML = c.front;
+  document.getElementById('cardBack').innerHTML = c.back;
+  const sel = document.getElementById('deckSelectManage');
+  if (![...sel.options].some(o => o.value === c.deck)) { const o = document.createElement('option'); o.value = c.deck; o.textContent = c.deck; sel.appendChild(o); }
+  sel.value = c.deck;
+  editingId = id;
+  const sb = document.getElementById('saveCardBtn'); if (sb) sb.textContent = 'Aktualisieren';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  toast('Bearbeiten – Felder oben geladen');
+}
 async function addCard() {
-  const front = document.getElementById('cardFront').value.trim();
-  const back = document.getElementById('cardBack').value.trim();
+  const frontEl = document.getElementById('cardFront'), backEl = document.getElementById('cardBack');
+  const front = (frontEl.textContent.trim()) ? frontEl.innerHTML.trim() : '';
+  const back = (backEl.textContent.trim()) ? backEl.innerHTML.trim() : '';
   const deck = document.getElementById('deckSelectManage').value;
   if (!front) { toast('Vorderseite fehlt!'); return; }
   if (!back) { toast('Rückseite fehlt!'); return; }
   if (!deck) { toast('Deck auswählen oder erstellen!'); return; }
-  cards.push({ id: uid(), front, back, deck, created: Date.now() });
+  if (editingId) { const ex = cards.find(c => c.id === editingId); if (ex) { ex.front = front; ex.back = back; ex.deck = deck; } editingId = null; const sb = document.getElementById('saveCardBtn'); if (sb) sb.textContent = 'Speichern + Sync'; }
+  else { cards.push({ id: uid(), front, back, deck, created: Date.now() }); }
   clearForm();
   toast('Speichere auf GitHub…', 10000);
   const ok = await ghPut();
@@ -956,8 +993,10 @@ async function addCard() {
   renderManage();
 }
 function clearForm() {
-  document.getElementById('cardFront').value = '';
-  document.getElementById('cardBack').value = '';
+  document.getElementById('cardFront').innerHTML = '';
+  document.getElementById('cardBack').innerHTML = '';
+  editingId = null;
+  const sb = document.getElementById('saveCardBtn'); if (sb) sb.textContent = 'Speichern + Sync';
 }
 async function deleteCard(id) {
   cards = cards.filter(c => c.id !== id);
